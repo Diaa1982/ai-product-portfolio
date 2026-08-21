@@ -1,46 +1,47 @@
 # AI Use Case Assessor
 
 **Product ID:** P08  
-**Domain:** AI portfolio intake, prioritization and governance  
-**Baseline maturity:** Product definition
+**Category:** Strategy, Performance & AI Governance  
+**Release:** 1.0.0 technical deployment candidate  
+**Formal go-live status:** Not approved
 
-## Public-value proposition
+P08 turns an AI idea into an evidence-led assessment across business value, feasibility, risk and governance. It supports client-led, diagnostic-led and hybrid discovery. It does not approve funding, risk acceptance, consequential automation or production deployment.
 
-Evaluate proposed AI use cases consistently across value, feasibility, data, risk, governance and implementation readiness.
+## Working product
 
-## Intended users
+- Dedicated interface at `/p08` and OpenAPI documentation at `/docs`.
+- Versioned 60% value / 40% feasibility priority model.
+- Four portfolio classes: Quick Win, Strategic Bet, Fill-In and Question Mark.
+- Low/medium/high risk screening and insufficient-information routing.
+- Lifecycle: Discover → Evaluate → Prioritize → Approve → Develop → Deploy → Operate → Retire.
+- CEO-only approval enforcement for proposals, final client outputs, strategic/high-risk recommendations, service/rule or pricing changes and unresolved escalations.
+- Synthetic scenario, automated unit tests and container deployment package.
 
-AI governance boards, design authorities, innovation teams and business sponsors.
+## Run locally
 
-## Core capabilities
+```bash
+docker compose -f products/ai-use-case-assessor/deploy/docker-compose.yml up --build
+```
 
-- Configurable value and feasibility scoring
-- Risk and responsible-AI screening
-- Stage-gate recommendations
-- Portfolio comparison and executive dashboard
+Open `http://localhost:8080/p08`; health is available at `http://localhost:8080/health`.
 
-## Human-accountability boundary
+## Product documents
 
-Scores inform governance decisions; they do not approve funding, risk acceptance, procurement or production deployment.
+| Document | Purpose |
+|---|---|
+| [PRD](docs/PRD.md) | Scope, users, outcomes and acceptance criteria |
+| [Architecture](docs/ARCHITECTURE.md) | Components, boundaries and production target |
+| [Data model](docs/DATA-MODEL.md) | Assessment, evidence and approval structures |
+| [Scoring methodology](docs/SCORING-METHODOLOGY.md) | Criteria, weights, classes and governance |
+| [API](docs/API.md) | Endpoints and example requests |
+| [Security and privacy](docs/SECURITY-PRIVACY.md) | Threats, controls and production obligations |
+| [Deployment](docs/DEPLOYMENT.md) | Build, configuration, health and rollback |
+| [Runbook](docs/RUNBOOK.md) | Operations, incidents and recovery |
+| [Test plan](docs/TEST-PLAN.md) | Automated and non-functional assurance |
+| [UAT](docs/UAT.md) | Business acceptance scenarios and sign-off |
+| [Go-live evidence](docs/GO-LIVE-EVIDENCE.md) | Evidence index and decision record |
+| [Go-live checklist](GO-LIVE-CHECKLIST.md) | L0–L10 readiness position |
 
-## Minimum product controls
+## Accountability boundary
 
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Encode scoring configuration
-- [ ] Build intake workflow
-- [ ] Add portfolio dashboard
-- [ ] Test inter-rater reliability and sensitivity
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+The engine produces advisory scores and routing recommendations. Evidence owners validate inputs, control owners assess risk, and the human CEO remains the final approver for protected actions. Production access, identity, persistence, data sources, retention, monitoring and organization-specific approvals must be configured in the target environment before formal go-live.

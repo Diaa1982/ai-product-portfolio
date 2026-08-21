@@ -8,6 +8,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from .engine import JsonCaseStore, PortfolioEngine
+from .p08_assessor import AssessmentInput, UseCaseAssessor
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -15,14 +16,17 @@ PRODUCT_REGISTRY = Path(os.getenv("PRODUCT_REGISTRY_PATH", REPO_ROOT / "products
 WORKFLOW_PATH = Path(os.getenv("WORKFLOW_PATH", REPO_ROOT / "products" / "workflows.json"))
 CASE_STORE_PATH = Path(os.getenv("CASE_STORE_PATH", REPO_ROOT / "data" / "runtime" / "cases.json"))
 DASHBOARD_PATH = Path(os.getenv("DASHBOARD_PATH", Path(__file__).parent / "static" / "index.html"))
+P08_DASHBOARD_PATH = Path(os.getenv("P08_DASHBOARD_PATH", Path(__file__).parent / "static" / "p08.html"))
+P08_CONFIG_PATH = Path(os.getenv("P08_CONFIG_PATH", REPO_ROOT / "products" / "ai-use-case-assessor" / "config" / "scoring.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
+p08_assessor = UseCaseAssessor(P08_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
-    version="0.2.0",
-    description="Shared case, evidence, analysis and approval platform for 18 AI products.",
+    version="0.3.0",
+    description="Shared governed platform plus a deployment-candidate AI Use Case Assessor.",
 )
 
 
@@ -48,6 +52,34 @@ class ApprovalDecision(BaseModel):
     reason: str = Field(min_length=3, max_length=1000)
 
 
+class P08AssessmentRequest(BaseModel):
+    title: str = Field(min_length=3, max_length=200)
+    assessment_mode: str
+    business_problem: str
+    desired_outcome: str
+    business_owner: str
+    process_trigger: str
+    process_closure: str
+    ai_task: str
+    success_criteria: list[str]
+    prohibited_automated_decisions: list[str]
+    low_confidence_behavior: str
+    data_sources: list[dict[str, Any]]
+    evidence_references: list[str]
+    value_scores: dict[str, float]
+    feasibility_scores: dict[str, float]
+    risk_scores: dict[str, float]
+    assumptions: list[str] = Field(default_factory=list)
+
+
+class P08ApprovalRequest(BaseModel):
+    assessment_id: str
+    action: str
+    approver_role: str
+    decision: str
+    reason: str = Field(min_length=3, max_length=1000)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -61,14 +93,36 @@ def dashboard() -> FileResponse:
     return FileResponse(DASHBOARD_PATH)
 
 
+@app.get("/p08", include_in_schema=False)
+def p08_dashboard() -> FileResponse:
+    return FileResponse(P08_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
-    return {
-        "status": "ok",
-        "version": app.version,
-        "product_count": len(engine.workflows),
-        "synthetic_data_only": True,
-    }
+    return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
+            "synthetic_data_only": True, "p08_config_version": p08_assessor.config["config_version"]}
+
+
+@app.get("/p08/config")
+def p08_config() -> dict[str, Any]:
+    return p08_assessor.config
+
+
+@app.post("/p08/assess")
+def p08_assess(request: P08AssessmentRequest) -> dict[str, Any]:
+    try:
+        return p08_assessor.assess(AssessmentInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p08/approve")
+def p08_approve(request: P08ApprovalRequest) -> dict[str, Any]:
+    try:
+        return p08_assessor.approve(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
 
 
 @app.get("/products")
