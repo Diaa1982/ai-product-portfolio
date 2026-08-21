@@ -1,0 +1,133 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P01",
+  "product_name": "PFM Agentic AI",
+  "operating_principle": "Decision support over the full PFM cycle with validation, human approval, segregation of duties and immutable audit evidence.",
+  "implementation_assumption": "The analytical and workflow layer may connect to existing FMIS, budget, treasury, revenue and audit systems only after organization-specific interface, authority and data validation.",
+  "workflow_types": [
+    "budget_variance_review",
+    "commitment_pressure_review",
+    "cash_liquidity_review",
+    "fiscal_risk_review",
+    "accounting_exception_review",
+    "audit_follow_up",
+    "executive_brief"
+  ],
+  "alert_thresholds": {
+    "variance_percent": 20,
+    "utilization_percent": 95
+  },
+  "human_approval_roles": [
+    "PFM_PROCESS_OWNER",
+    "BUDGET_AUTHORITY",
+    "TREASURY_AUTHORITY",
+    "ACCOUNTING_AUTHORITY",
+    "AUDIT_AUTHORITY",
+    "EXECUTIVE_AUTHORITY"
+  ],
+  "escalation_route": "PFM_PROCESS_OWNER",
+  "failure_route": "DATA_AND_CONTROL_REMEDIATION_QUEUE",
+  "protected_autonomous_actions": [
+    "approve budget",
+    "approve appropriation",
+    "approve reallocation",
+    "release funds",
+    "authorize payment",
+    "change fees",
+    "write off receivables",
+    "approve refund",
+    "issue tax assessment",
+    "issue penalty",
+    "make legal determination",
+    "approve journal",
+    "close accounting period",
+    "certify balance",
+    "approve financial statements",
+    "publish financial statements",
+    "issue audit opinion",
+    "close audit finding"
+  ],
+  "agents": [
+    {
+      "agent_id": "fiscal_strategy_planning",
+      "name": "Fiscal Strategy & Planning Agent",
+      "purpose": "Prepare evidence-led fiscal scenarios, assumptions and risk summaries for human review.",
+      "inputs": ["macrofiscal assumptions", "fiscal objectives", "risk evidence"],
+      "outputs": ["scenario analysis", "fiscal risk classification", "planning brief"],
+      "human_gate": "PFM_PROCESS_OWNER",
+      "allowed_next_agents": ["budget_preparation", "debt_fiscal_risk", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "budget_preparation",
+      "name": "Budget Preparation Agent",
+      "purpose": "Validate budget submissions and prepare allocation and variance analysis without approving appropriations.",
+      "inputs": ["approved ceilings", "budget submissions", "costing evidence"],
+      "outputs": ["validation exceptions", "option analysis", "budget brief"],
+      "human_gate": "BUDGET_AUTHORITY",
+      "allowed_next_agents": ["budget_execution_commitments", "fiscal_strategy_planning", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "budget_execution_commitments",
+      "name": "Budget Execution & Commitments Agent",
+      "purpose": "Monitor execution, commitments, available balances and exceptions.",
+      "inputs": ["approved budget", "revised budget", "actuals", "commitments"],
+      "outputs": ["variance analysis", "commitment pressure alerts", "control exceptions"],
+      "human_gate": "BUDGET_AUTHORITY",
+      "allowed_next_agents": ["treasury_cash", "accounting_reporting", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "revenue_management",
+      "name": "Revenue Management Agent",
+      "purpose": "Analyze collections, receivables and forecast variance without tax, fee, refund or write-off determinations.",
+      "inputs": ["revenue plan", "collections", "receivables evidence"],
+      "outputs": ["collection variance", "forecast", "exception brief"],
+      "human_gate": "PFM_PROCESS_OWNER",
+      "allowed_next_agents": ["treasury_cash", "accounting_reporting", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "treasury_cash",
+      "name": "Treasury & Cash Agent",
+      "purpose": "Prepare cash forecasts and liquidity alerts without releasing funds or authorizing payments.",
+      "inputs": ["cash position", "obligations due", "cash forecast"],
+      "outputs": ["liquidity gap", "cash alert", "scenario options"],
+      "human_gate": "TREASURY_AUTHORITY",
+      "allowed_next_agents": ["debt_fiscal_risk", "accounting_reporting", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "debt_fiscal_risk",
+      "name": "Debt & Fiscal Risk Agent",
+      "purpose": "Classify debt and fiscal risks and prepare scenarios for authorized decision-makers.",
+      "inputs": ["debt portfolio", "guarantees", "fiscal risk evidence"],
+      "outputs": ["risk classification", "scenario analysis", "escalation brief"],
+      "human_gate": "PFM_PROCESS_OWNER",
+      "allowed_next_agents": ["fiscal_strategy_planning", "treasury_cash", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "accounting_reporting",
+      "name": "Accounting & Reporting Agent",
+      "purpose": "Identify accounting and IPSAS-oriented reporting exceptions without approving journals, closing periods, certifying balances or publishing statements.",
+      "inputs": ["ledger extracts", "accounting policies", "supporting evidence"],
+      "outputs": ["accounting exception", "reconciliation issue", "draft reporting note"],
+      "human_gate": "ACCOUNTING_AUTHORITY",
+      "allowed_next_agents": ["internal_control_audit", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "internal_control_audit",
+      "name": "Internal Control & Audit Follow-up Agent",
+      "purpose": "Track control evidence and audit remediation without issuing opinions or closing findings.",
+      "inputs": ["control evidence", "audit findings", "management actions"],
+      "outputs": ["control gap", "remediation status", "audit follow-up brief"],
+      "human_gate": "AUDIT_AUTHORITY",
+      "allowed_next_agents": ["accounting_reporting", "performance_executive_reporting"]
+    },
+    {
+      "agent_id": "performance_executive_reporting",
+      "name": "Performance & Executive Reporting Agent",
+      "purpose": "Consolidate validated facts, assumptions, risks and recommendations into a decision brief.",
+      "inputs": ["validated agent outputs", "evidence references", "approved workflow state"],
+      "outputs": ["executive brief", "decision log", "follow-up actions"],
+      "human_gate": "EXECUTIVE_AUTHORITY",
+      "allowed_next_agents": ["fiscal_strategy_planning", "budget_preparation", "budget_execution_commitments", "revenue_management", "treasury_cash", "debt_fiscal_risk", "accounting_reporting", "internal_control_audit"]
+    }
+  ]
+}

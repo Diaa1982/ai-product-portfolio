@@ -6,7 +6,7 @@
       "id": "P01",
       "slug": "pfm-agentic-ai",
       "name": "PFM Agentic AI",
-      "maturity": "architecture",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -16,11 +16,27 @@
       },
       "documents": {
         "product_readme": "products/pfm-agentic-ai/README.md",
-        "go_live_checklist": "products/pfm-agentic-ai/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/pfm-agentic-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-agentic-ai/docs/PRD.md",
+        "operating_blueprint": "products/pfm-agentic-ai/docs/OPERATING-BLUEPRINT.md",
+        "agent_cards": "products/pfm-agentic-ai/docs/AGENT-CARDS.md",
+        "workflow": "products/pfm-agentic-ai/docs/WORKFLOW.md",
+        "control_risk_governance_matrix": "products/pfm-agentic-ai/docs/CONTROL-RISK-GOVERNANCE-MATRIX.md",
+        "calculation_methodology": "products/pfm-agentic-ai/docs/PFM-CALCULATION-METHODOLOGY.md",
+        "pefa_ipsas_alignment": "products/pfm-agentic-ai/docs/PFM-PEFA-IPSAS-ALIGNMENT.md",
+        "security_privacy": "products/pfm-agentic-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-agentic-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-agentic-ai/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-agentic-ai/docs/TEST-PLAN.md",
+        "uat": "products/pfm-agentic-ai/docs/UAT.md",
+        "roadmap": "products/pfm-agentic-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-agentic-ai/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

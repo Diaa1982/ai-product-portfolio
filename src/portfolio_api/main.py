@@ -8,6 +8,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from .engine import JsonCaseStore, PortfolioEngine
+from .p01_pfm_agentic import PFMCaseInput, PFMAgenticOrchestrator
 from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
 from .p08_assessor import AssessmentInput, UseCaseAssessor
@@ -30,6 +31,8 @@ P14_DASHBOARD_PATH = Path(os.getenv("P14_DASHBOARD_PATH", Path(__file__).parent 
 P14_CONFIG_PATH = Path(os.getenv("P14_CONFIG_PATH", REPO_ROOT / "products" / "ai-governance-control-tower" / "config" / "governance.v1.json"))
 P09_DASHBOARD_PATH = Path(os.getenv("P09_DASHBOARD_PATH", Path(__file__).parent / "static" / "p09.html"))
 P09_CONFIG_PATH = Path(os.getenv("P09_CONFIG_PATH", REPO_ROOT / "products" / "corporate-performance-review-ai" / "config" / "performance.v1.json"))
+P01_DASHBOARD_PATH = Path(os.getenv("P01_DASHBOARD_PATH", Path(__file__).parent / "static" / "p01.html"))
+P01_CONFIG_PATH = Path(os.getenv("P01_CONFIG_PATH", REPO_ROOT / "products" / "pfm-agentic-ai" / "config" / "pfm-agents.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -38,11 +41,12 @@ p03_radar = StrategicRadar(P03_CONFIG_PATH)
 p04_detector = SignalDetector(P04_CONFIG_PATH)
 p14_control_tower = AIGovernanceControlTower(P14_CONFIG_PATH)
 p09_performance = CorporatePerformanceReview(P09_CONFIG_PATH)
+p01_orchestrator = PFMAgenticOrchestrator(P01_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
-    version="0.3.0",
-    description="Shared governed platform plus a deployment-candidate AI Use Case Assessor.",
+    version="0.4.0",
+    description="Shared governed platform with controlled, evidence-led AI product workflows.",
 )
 
 
@@ -238,6 +242,40 @@ class P09ApprovalRequest(BaseModel):
     reason: str = Field(min_length=3, max_length=1000)
 
 
+class P01AnalysisRequest(BaseModel):
+    case_id: str = Field(min_length=3, max_length=100)
+    workflow_type: str
+    current_agent: str
+    next_agent: str
+    business_outcome: str
+    payload: dict[str, Any]
+    success_criteria: list[str]
+    evidence_references: list[str]
+    assumptions: list[str] = Field(default_factory=list)
+    approved_budget: float = Field(ge=0)
+    revised_budget: float = Field(ge=0)
+    period_plan: float = Field(ge=0)
+    actuals: float = Field(ge=0)
+    commitments: float = Field(ge=0)
+    cash_available: float = Field(ge=0)
+    obligations_due: float = Field(ge=0)
+    due_date: str
+    validation_passed: bool
+    high_risk: bool = False
+    human_approval_reference: str | None = None
+
+
+class P01ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
+
+class P01ApprovalRequest(BaseModel):
+    case_id: str
+    approver_role: str
+    decision: str
+    reason: str = Field(min_length=3, max_length=1000)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -276,6 +314,11 @@ def p09_dashboard() -> FileResponse:
     return FileResponse(P09_DASHBOARD_PATH)
 
 
+@app.get("/p01", include_in_schema=False)
+def p01_dashboard() -> FileResponse:
+    return FileResponse(P01_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
@@ -283,7 +326,34 @@ def health() -> dict[str, Any]:
             "p03_config_version": p03_radar.config["config_version"],
             "p04_config_version": p04_detector.config["config_version"],
             "p14_config_version": p14_control_tower.config["config_version"],
-            "p09_config_version": p09_performance.config["config_version"]}
+            "p09_config_version": p09_performance.config["config_version"],
+            "p01_config_version": p01_orchestrator.config["config_version"]}
+
+
+@app.get("/p01/config")
+def p01_config() -> dict[str, Any]:
+    return p01_orchestrator.config
+
+
+@app.post("/p01/analyze")
+def p01_analyze(request: P01AnalysisRequest) -> dict[str, Any]:
+    try:
+        return p01_orchestrator.analyze(PFMCaseInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p01/actions/check")
+def p01_check_action(request: P01ActionRequest) -> dict[str, Any]:
+    return p01_orchestrator.check_action(request.action)
+
+
+@app.post("/p01/handoffs/approve")
+def p01_approve_handoff(request: P01ApprovalRequest) -> dict[str, Any]:
+    try:
+        return p01_orchestrator.approve_handoff(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
 
 
 @app.get("/p09/config")

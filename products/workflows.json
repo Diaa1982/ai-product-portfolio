@@ -3,21 +3,35 @@
   "workflows": [
     {
       "product_id": "P01",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
-        "budget",
-        "actual",
-        "commitments"
+        "workflow_type",
+        "current_agent",
+        "next_agent",
+        "handoff_payload",
+        "success_criteria",
+        "evidence_references",
+        "approved_budget",
+        "revised_budget",
+        "period_plan",
+        "actuals",
+        "commitments",
+        "cash_available",
+        "obligations_due",
+        "validation_status"
       ],
-      "calculation_profile": "pfm_execution",
-      "approval_gate": "G3_MVP_REVIEW",
-      "approval_role": "PFM_ACCOUNTABLE_OFFICER",
+      "calculation_profile": "pfm_agentic_execution_and_liquidity",
+      "approval_gate": "VALIDATED_HANDOFF_AND_HIGH_RISK_HUMAN_GATE",
+      "approval_role": "PFM_PROCESS_OWNER_OR_CONFIGURED_AUTHORITY",
       "evidence_required_for_material_findings": true,
       "thresholds": {
-        "high_utilization": 0.9,
-        "commitment_pressure": 0.25
-      }
+        "variance_percent": 20,
+        "utilization_percent": 95,
+        "negative_available_balance": 0,
+        "negative_liquidity_gap": 0
+      },
+      "protected_autonomous_actions": true
     },
     {
       "product_id": "P02",
