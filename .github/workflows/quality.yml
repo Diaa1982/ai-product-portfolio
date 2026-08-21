@@ -84,3 +84,23 @@ jobs:
             --data @products/signal-detection-agent/synthetic/verified-change.json \
             http://127.0.0.1:8080/p04/detect |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['evidence_status']=='verified'; assert r['review_route']=='priority_analyst_review'; assert r['publication_status']=='not_published_analyst_review_required'"
+      - name: Build P14 deployment image
+        run: docker build -f products/ai-governance-control-tower/deploy/Dockerfile -t p14-control-tower:ci .
+      - name: Smoke-test P14 risk and incident controls
+        shell: bash
+        run: |
+          docker run -d --name p14-control-tower-ci -p 8080:8080 p14-control-tower:ci
+          trap 'docker logs p14-control-tower-ci; docker rm -f p14-control-tower-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p14 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ai-governance-control-tower/synthetic/low-risk-profile.json \
+            http://127.0.0.1:8080/p14/risk/classify |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['risk_tier']=='Low'; assert r['deployment_blocked'] is False"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ai-governance-control-tower/synthetic/critical-monitoring-event.json \
+            http://127.0.0.1:8080/p14/monitor |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['severity']=='Critical'; assert r['required_action']=='safe_shutdown_and_incident_command'"

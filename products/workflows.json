@@ -224,18 +224,26 @@
     },
     {
       "product_id": "P14",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
         "use_case_id",
-        "risk_tier",
+        "purpose",
+        "owners",
+        "data_classification",
+        "autonomy_level",
+        "risk_factors",
+        "control_evidence",
         "lifecycle_gate"
       ],
-      "calculation_profile": "none",
-      "approval_gate": "AI_LIFECYCLE_GATE",
-      "approval_role": "AI_GOVERNANCE_BOARD",
+      "calculation_profile": "ai_governance_risk_and_gate",
+      "approval_gate": "G0_G4_AI_LIFECYCLE",
+      "approval_role": "HUMAN_GOVERNANCE_AUTHORITIES",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "high_drift": 0.35,
+        "critical_drift": 0.6
+      }
     },
     {
       "product_id": "P15",

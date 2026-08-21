@@ -1,46 +1,32 @@
 # AI Governance Control Tower
 
 **Product ID:** P14  
-**Domain:** AI portfolio, risk, controls and lifecycle governance  
-**Baseline maturity:** Product definition
+**Release:** 1.0.0 technical deployment candidate  
+**Formal go-live:** Not approved  
+**Data:** Synthetic only
 
-## Public-value proposition
+P14 governs the AI portfolio through proportional risk tiers, G0–G4 gates, control evidence, accountable human approvals, monitoring incidents, safe shutdown and benefits oversight. It aligns to ISO/IEC 42001 concepts without claiming certification.
 
-Operate a transparent AI portfolio with intake, stage gates, accountable ownership, risks, controls, approvals, monitoring and benefits realization.
+## Working capabilities
 
-## Intended users
+- Low, Moderate, High and Critical risk classification.
+- Explicit block on autonomous payments, transfers, journal postings, budget adjustments, financial certification, financial-statement publication and risk acceptance.
+- G0 Intake → G1 Value/Risk → G2 Design/Data/Controls → G3 Independent Validation → G4 CEO Production Authorization.
+- Cumulative risk-tier control requirements and evidence completeness.
+- Mandatory QA before G3/G4 and independent testing for High/Critical systems.
+- Human-only gate decisions; CEO is final G4 approver.
+- Monitoring for security, privacy, unauthorized action, financial-control, audit, fairness, explainability, performance and drift events.
+- Safe shutdown/incident command for critical breaches.
+- Dedicated `/p14` dashboard, API, tests, synthetic decision pack and hardened container.
 
-AI governance boards, design authorities, risk, security, legal, audit and product owners.
+## Run
 
-## Core capabilities
+```bash
+docker compose -f products/ai-governance-control-tower/deploy/docker-compose.yml up --build
+```
 
-- Use-case register and stage gates
-- Risk, control and obligation register
-- Approval and human-oversight workflow
-- Model inventory, monitoring and benefits dashboard
+Open `/p14`; OpenAPI is at `/docs`.
 
-## Human-accountability boundary
+## Documents
 
-The product records and routes governance decisions; it does not accept risk or approve production deployment on behalf of accountable authorities.
-
-## Minimum product controls
-
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Define control taxonomy
-- [ ] Implement G0-G5 workflow
-- [ ] Integrate use-case assessor
-- [ ] Add model and incident registers
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+[PRD](docs/PRD.md) · [Architecture](docs/ARCHITECTURE.md) · [Risk method](docs/RISK-METHODOLOGY.md) · [Gate standard](docs/GATE-STANDARD.md) · [Control catalog](docs/CONTROL-CATALOG.md) · [Registers](docs/REGISTERS.md) · [ISO 42001 alignment](docs/ISO-42001-ALIGNMENT.md) · [PFM alignment](docs/PFM-ALIGNMENT.md) · [Board procedure](docs/BOARD-OPERATING-PROCEDURE.md) · [Security](docs/SECURITY-PRIVACY.md) · [Deployment](docs/DEPLOYMENT.md) · [Runbook](docs/RUNBOOK.md) · [Tests](docs/TEST-PLAN.md) · [UAT](docs/UAT.md) · [Evidence](docs/GO-LIVE-EVIDENCE.md) · [Checklist](GO-LIVE-CHECKLIST.md)

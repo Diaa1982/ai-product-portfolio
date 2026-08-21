@@ -1,0 +1,32 @@
+{
+  "config_version":"1.0.0",
+  "principles":["lawful and accountable","human-centered","safe and secure","fair","transparent and explainable","robust and resilient","privacy by design","sustainable","business and public value first"],
+  "risk_tier_order":["Low","Moderate","High","Critical"],
+  "controls_by_tier":{
+    "Low":["CTRL-OWNER","CTRL-PURPOSE","CTRL-INVENTORY","CTRL-AUDIT"],
+    "Moderate":["CTRL-HUMAN-OVERSIGHT","CTRL-EXPLAINABILITY","CTRL-EVALUATION","CTRL-DATA"],
+    "High":["CTRL-IMPACT-ASSESSMENT","CTRL-PRIVACY-SECURITY","CTRL-INDEPENDENT-TEST","CTRL-RED-TEAM","CTRL-ROLLBACK"],
+    "Critical":["CTRL-BOARD-RISK","CTRL-SAFE-SHUTDOWN","CTRL-CEO-AUTHORIZATION","CTRL-CONTINUOUS-MONITORING"]
+  },
+  "roles_by_tier":{
+    "Low":["PRODUCT_OWNER"],"Moderate":["PRODUCT_OWNER","DESIGN_AUTHORITY"],
+    "High":["AI_GOVERNANCE_COUNCIL","DOMAIN_RISK_OWNER","INDEPENDENT_ASSURANCE"],
+    "Critical":["AI_GOVERNANCE_COUNCIL","DOMAIN_RISK_OWNER","INDEPENDENT_ASSURANCE","CEO"]
+  },
+  "gates":{
+    "G0":{"name":"Intake and ownership","required_controls":["CTRL-OWNER","CTRL-PURPOSE","CTRL-INVENTORY"],"required_approver_roles":["PRODUCT_OWNER"]},
+    "G1":{"name":"Value and risk triage","required_controls":["CTRL-IMPACT-ASSESSMENT","CTRL-HUMAN-OVERSIGHT"],"high_impact_controls":["CTRL-BOARD-RISK"],"required_approver_roles":["AI_GOVERNANCE_COUNCIL"]},
+    "G2":{"name":"Design, data and control approval","required_controls":["CTRL-DATA","CTRL-PRIVACY-SECURITY","CTRL-EXPLAINABILITY","CTRL-ROLLBACK"],"high_impact_controls":["CTRL-SAFE-SHUTDOWN"],"required_approver_roles":["DESIGN_AUTHORITY"]},
+    "G3":{"name":"Independent validation and pilot acceptance","required_controls":["CTRL-EVALUATION","CTRL-AUDIT"],"high_impact_controls":["CTRL-INDEPENDENT-TEST","CTRL-RED-TEAM"],"required_approver_roles":["INDEPENDENT_ASSURANCE"]},
+    "G4":{"name":"Production deployment authorization","required_controls":["CTRL-CONTINUOUS-MONITORING","CTRL-ROLLBACK"],"high_impact_controls":["CTRL-CEO-AUTHORIZATION"],"required_approver_roles":["CEO"]}
+  },
+  "required_prior_approvals_by_risk":{
+    "Low":["PRODUCT_OWNER","DESIGN_AUTHORITY","INDEPENDENT_ASSURANCE"],
+    "Moderate":["PRODUCT_OWNER","AI_GOVERNANCE_COUNCIL","DESIGN_AUTHORITY","INDEPENDENT_ASSURANCE"],
+    "High":["PRODUCT_OWNER","AI_GOVERNANCE_COUNCIL","DOMAIN_RISK_OWNER","DESIGN_AUTHORITY","INDEPENDENT_ASSURANCE"],
+    "Critical":["PRODUCT_OWNER","AI_GOVERNANCE_COUNCIL","DOMAIN_RISK_OWNER","DESIGN_AUTHORITY","INDEPENDENT_ASSURANCE"]
+  },
+  "final_production_approver_role":"CEO",
+  "monitoring_thresholds":{"high_drift":0.35,"critical_drift":0.60},
+  "pfm_prohibited_autonomous_actions":["payment","transfer","journal posting","budget adjustment","financial certification","public financial statement publication","risk acceptance"]
+}

@@ -1,0 +1,7 @@
+{
+  "use_case_id":"UC-SYN-001","title":"Synthetic fiscal advisory","purpose":"Draft evidence-led fiscal analysis for human review",
+  "owner_role":"PRODUCT_OWNER","data_owner_role":"DATA_OWNER","data_classification":"Internal",
+  "external_autonomous_action":false,"consequential_decision":false,"prohibited_financial_action":false,
+  "sensitive_personal_data":false,"decision_support_at_scale":false,"public_facing":false,
+  "human_reviewed_output":false,"agentic_autonomy_level":1,"evidence_references":["EV-SYN-001"]
+}

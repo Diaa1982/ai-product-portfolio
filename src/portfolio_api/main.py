@@ -11,6 +11,7 @@ from .engine import JsonCaseStore, PortfolioEngine
 from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
 from .p08_assessor import AssessmentInput, UseCaseAssessor
+from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -24,12 +25,15 @@ P03_DASHBOARD_PATH = Path(os.getenv("P03_DASHBOARD_PATH", Path(__file__).parent 
 P03_CONFIG_PATH = Path(os.getenv("P03_CONFIG_PATH", REPO_ROOT / "products" / "strategic-radar" / "config" / "radar.v1.json"))
 P04_DASHBOARD_PATH = Path(os.getenv("P04_DASHBOARD_PATH", Path(__file__).parent / "static" / "p04.html"))
 P04_CONFIG_PATH = Path(os.getenv("P04_CONFIG_PATH", REPO_ROOT / "products" / "signal-detection-agent" / "config" / "detection.v1.json"))
+P14_DASHBOARD_PATH = Path(os.getenv("P14_DASHBOARD_PATH", Path(__file__).parent / "static" / "p14.html"))
+P14_CONFIG_PATH = Path(os.getenv("P14_CONFIG_PATH", REPO_ROOT / "products" / "ai-governance-control-tower" / "config" / "governance.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
 p08_assessor = UseCaseAssessor(P08_CONFIG_PATH)
 p03_radar = StrategicRadar(P03_CONFIG_PATH)
 p04_detector = SignalDetector(P04_CONFIG_PATH)
+p14_control_tower = AIGovernanceControlTower(P14_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -164,6 +168,47 @@ class P04ApprovalRequest(BaseModel):
     reason: str = Field(min_length=3, max_length=1000)
 
 
+class P14UseCaseRequest(BaseModel):
+    use_case_id: str
+    title: str
+    purpose: str
+    owner_role: str
+    data_owner_role: str
+    data_classification: str
+    external_autonomous_action: bool = False
+    consequential_decision: bool = False
+    prohibited_financial_action: bool = False
+    sensitive_personal_data: bool = False
+    decision_support_at_scale: bool = False
+    public_facing: bool = False
+    human_reviewed_output: bool = False
+    agentic_autonomy_level: int = Field(ge=0, le=4)
+    evidence_references: list[str]
+
+
+class P14GateRequest(BaseModel):
+    profile: P14UseCaseRequest
+    gate: str
+    control_evidence: dict[str, str]
+    prior_approvals: list[str] = Field(default_factory=list)
+    qa_passed: bool = False
+    independent_testing_passed: bool = False
+
+
+class P14GateApprovalRequest(BaseModel):
+    use_case_id: str
+    gate: str
+    approver_role: str
+    decision: str
+    reason: str = Field(min_length=3, max_length=1000)
+    gate_status: str
+
+
+class P14MonitoringRequest(BaseModel):
+    use_case_id: str
+    metrics: dict[str, Any]
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -192,12 +237,59 @@ def p04_dashboard() -> FileResponse:
     return FileResponse(P04_DASHBOARD_PATH)
 
 
+@app.get("/p14", include_in_schema=False)
+def p14_dashboard() -> FileResponse:
+    return FileResponse(P14_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
             "synthetic_data_only": True, "p08_config_version": p08_assessor.config["config_version"],
             "p03_config_version": p03_radar.config["config_version"],
-            "p04_config_version": p04_detector.config["config_version"]}
+            "p04_config_version": p04_detector.config["config_version"],
+            "p14_config_version": p14_control_tower.config["config_version"]}
+
+
+@app.get("/p14/config")
+def p14_config() -> dict[str, Any]:
+    return p14_control_tower.config
+
+
+@app.post("/p14/risk/classify")
+def p14_classify(request: P14UseCaseRequest) -> dict[str, Any]:
+    try:
+        return p14_control_tower.classify_risk(UseCaseProfile(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p14/gates/evaluate")
+def p14_evaluate_gate(request: P14GateRequest) -> dict[str, Any]:
+    try:
+        return p14_control_tower.evaluate_gate(
+            UseCaseProfile(**request.profile.model_dump()), request.gate,
+            request.control_evidence, request.prior_approvals,
+            request.qa_passed, request.independent_testing_passed,
+        ).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p14/gates/approve")
+def p14_approve_gate(request: P14GateApprovalRequest) -> dict[str, Any]:
+    try:
+        return p14_control_tower.approve_gate(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p14/monitor")
+def p14_monitor(request: P14MonitoringRequest) -> dict[str, Any]:
+    try:
+        return p14_control_tower.monitor(request.use_case_id, request.metrics)
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
 
 
 @app.get("/p04/config")

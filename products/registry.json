@@ -316,7 +316,7 @@
       "id": "P14",
       "slug": "ai-governance-control-tower",
       "name": "AI Governance Control Tower",
-      "maturity": "product-definition",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -326,11 +326,28 @@
       },
       "documents": {
         "product_readme": "products/ai-governance-control-tower/README.md",
-        "go_live_checklist": "products/ai-governance-control-tower/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/ai-governance-control-tower/GO-LIVE-CHECKLIST.md",
+        "prd": "products/ai-governance-control-tower/docs/PRD.md",
+        "architecture": "products/ai-governance-control-tower/docs/ARCHITECTURE.md",
+        "risk_methodology": "products/ai-governance-control-tower/docs/RISK-METHODOLOGY.md",
+        "gate_standard": "products/ai-governance-control-tower/docs/GATE-STANDARD.md",
+        "control_catalog": "products/ai-governance-control-tower/docs/CONTROL-CATALOG.md",
+        "registers": "products/ai-governance-control-tower/docs/REGISTERS.md",
+        "iso_42001_alignment": "products/ai-governance-control-tower/docs/ISO-42001-ALIGNMENT.md",
+        "pfm_alignment": "products/ai-governance-control-tower/docs/PFM-ALIGNMENT.md",
+        "board_procedure": "products/ai-governance-control-tower/docs/BOARD-OPERATING-PROCEDURE.md",
+        "security_privacy": "products/ai-governance-control-tower/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/ai-governance-control-tower/docs/DEPLOYMENT.md",
+        "runbook": "products/ai-governance-control-tower/docs/RUNBOOK.md",
+        "test_plan": "products/ai-governance-control-tower/docs/TEST-PLAN.md",
+        "uat": "products/ai-governance-control-tower/docs/UAT.md",
+        "go_live_evidence": "products/ai-governance-control-tower/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {
