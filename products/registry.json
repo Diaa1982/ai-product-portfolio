@@ -1,5 +1,5 @@
 {
-  "schema_version": "1.0.0",
+  "schema_version": "1.1.0",
   "updated_at": "2026-08-21",
   "products": [
     {
@@ -9,7 +9,19 @@
       "maturity": "architecture",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/pfm-agentic-ai/README.md",
+        "go_live_checklist": "products/pfm-agentic-ai/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P02",
@@ -18,7 +30,19 @@
       "maturity": "concept",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/pfm-brain/README.md",
+        "go_live_checklist": "products/pfm-brain/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P03",
@@ -27,7 +51,19 @@
       "maturity": "blueprint",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/strategic-radar/README.md",
+        "go_live_checklist": "products/strategic-radar/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P04",
@@ -36,7 +72,19 @@
       "maturity": "concept",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/signal-detection-agent/README.md",
+        "go_live_checklist": "products/signal-detection-agent/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P05",
@@ -45,7 +93,19 @@
       "maturity": "concept",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/service-design-ai/README.md",
+        "go_live_checklist": "products/service-design-ai/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P06",
@@ -54,7 +114,19 @@
       "maturity": "concept",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/process-audit-ai/README.md",
+        "go_live_checklist": "products/process-audit-ai/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P07",
@@ -63,7 +135,19 @@
       "maturity": "requirements",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/partnership-management-copilot/README.md",
+        "go_live_checklist": "products/partnership-management-copilot/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P08",
@@ -72,7 +156,19 @@
       "maturity": "method",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/ai-use-case-assessor/README.md",
+        "go_live_checklist": "products/ai-use-case-assessor/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P09",
@@ -81,7 +177,19 @@
       "maturity": "configuration",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/corporate-performance-review-ai/README.md",
+        "go_live_checklist": "products/corporate-performance-review-ai/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P10",
@@ -90,7 +198,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/enterprise-process-intelligence/README.md",
+        "go_live_checklist": "products/enterprise-process-intelligence/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P11",
@@ -99,7 +219,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/ipsas-compliance-ai/README.md",
+        "go_live_checklist": "products/ipsas-compliance-ai/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P12",
@@ -108,7 +240,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/revenue-reconciliation-ai/README.md",
+        "go_live_checklist": "products/revenue-reconciliation-ai/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P13",
@@ -117,7 +261,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "PFM Architecture, Benchmarking & Maturity",
+        "slug": "02-pfm-architecture-benchmarking-maturity"
+      },
+      "documents": {
+        "product_readme": "products/pfm-business-architecture/README.md",
+        "go_live_checklist": "products/pfm-business-architecture/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P14",
@@ -126,7 +282,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/ai-governance-control-tower/README.md",
+        "go_live_checklist": "products/ai-governance-control-tower/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P15",
@@ -135,7 +303,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Enterprise Architecture & Technology Management",
+        "slug": "05-enterprise-architecture-technology"
+      },
+      "documents": {
+        "product_readme": "products/enterprise-architecture-intelligence/README.md",
+        "go_live_checklist": "products/enterprise-architecture-intelligence/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P16",
@@ -144,7 +324,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "Enterprise Architecture & Technology Management",
+        "slug": "05-enterprise-architecture-technology"
+      },
+      "documents": {
+        "product_readme": "products/integrated-it-management-ai/README.md",
+        "go_live_checklist": "products/integrated-it-management-ai/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P17",
@@ -153,7 +345,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "PFM Architecture, Benchmarking & Maturity",
+        "slug": "02-pfm-architecture-benchmarking-maturity"
+      },
+      "documents": {
+        "product_readme": "products/pfm-cycle-time-benchmark/README.md",
+        "go_live_checklist": "products/pfm-cycle-time-benchmark/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     },
     {
       "id": "P18",
@@ -162,7 +366,19 @@
       "maturity": "product-definition",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
-      "production_ready": false
+      "production_ready": false,
+      "category": {
+        "name": "PFM Architecture, Benchmarking & Maturity",
+        "slug": "02-pfm-architecture-benchmarking-maturity"
+      },
+      "documents": {
+        "product_readme": "products/pfm-maturity-certification/README.md",
+        "go_live_checklist": "products/pfm-maturity-certification/GO-LIVE-CHECKLIST.md"
+      },
+      "readiness": {
+        "stage": "executable-mvp-foundation",
+        "go_live_ready": false
+      }
     }
   ]
 }
