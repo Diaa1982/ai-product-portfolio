@@ -17,6 +17,7 @@ secrets/
 # Data and generated evidence
 data/raw/
 data/production/
+data/runtime/
 uploads/
 artifacts/
 logs/
