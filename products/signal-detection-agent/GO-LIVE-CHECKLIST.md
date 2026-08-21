@@ -25,7 +25,7 @@
 | L4 — Governance and compliance | Partial | Approve PFM/policy decision rights, high-impact review, exception sources and legal obligations |
 | L5 — Security and privacy | Baseline | Implement enterprise IAM, egress/SSRF/content controls, encryption, immutable audit and security testing |
 | L6 — Architecture and integration | Candidate | Provision orchestration, workers, stores, source/P03 adapters, schedules and observability |
-| L7 — Verification and assurance | Nine local tests passed | Pass CI/container smoke, corpus, citation, security, performance, accessibility and resilience testing |
+| L7 — Verification and assurance | CI, nine P04 tests, compile, image build and live smoke test passed | Complete corpus, citation, security, performance, accessibility and resilience assurance |
 | L8 — Operating model | Template ready | Name source/analyst/PFM/approval/support owners; approve SLA/SLO, RTO/RPO and procedures |
 | L9 — Deployment and resilience | Container candidate | Validate target CI/CD, signing, backup/restore, capacity, continuity and rollback |
 | L10 — Go-live authority and value | Not started | Complete UAT, residual-risk acceptance and final production authorization |
