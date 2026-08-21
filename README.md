@@ -47,6 +47,18 @@ uvicorn src.portfolio_api.main:app --reload
 
 Open `http://127.0.0.1:8000` for the dashboard and `http://127.0.0.1:8000/docs` for the API.
 
+## Portfolio groups
+
+Each project remains an independent package with its own product document and go-live checklist.
+
+1. [PFM Intelligence & Financial Operations](groups/01-pfm-intelligence-financial-operations/README.md)
+2. [PFM Architecture, Benchmarking & Maturity](groups/02-pfm-architecture-benchmarking-maturity/README.md)
+3. [Strategy, Performance & AI Governance](groups/03-strategy-performance-ai-governance/README.md)
+4. [Process, Service & Partnership Operations](groups/04-process-service-partnership-operations/README.md)
+5. [Enterprise Architecture & Technology Management](groups/05-enterprise-architecture-technology/README.md)
+
+Open the [categorized project catalog and go-live readiness matrix](docs/PROJECT-CATALOG.md) for direct links to every project document and its tailored checklist. The [standard go-live gates](docs/GO-LIVE-GATE-STANDARD.md) define the evidence required before any production launch.
+
 ## Repository map
 
 - `products/` — product packages, registry and workflow configuration.
