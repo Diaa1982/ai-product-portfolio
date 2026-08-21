@@ -6,6 +6,23 @@
       "version": "1.1",
       "required_inputs": [
         "business_outcome",
+        "budget",
+        "actual",
+        "commitments"
+      ],
+      "calculation_profile": "pfm_agentic_execution_and_liquidity",
+      "approval_gate": "VALIDATED_HANDOFF_AND_HIGH_RISK_HUMAN_GATE",
+      "approval_role": "PFM_PROCESS_OWNER_OR_CONFIGURED_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "variance_percent": 20,
+        "utilization_percent": 95,
+        "negative_available_balance": 0,
+        "negative_liquidity_gap": 0
+      },
+      "protected_autonomous_actions": true,
+      "agentic_required_inputs": [
+        "business_outcome",
         "workflow_type",
         "current_agent",
         "next_agent",
@@ -20,18 +37,7 @@
         "cash_available",
         "obligations_due",
         "validation_status"
-      ],
-      "calculation_profile": "pfm_agentic_execution_and_liquidity",
-      "approval_gate": "VALIDATED_HANDOFF_AND_HIGH_RISK_HUMAN_GATE",
-      "approval_role": "PFM_PROCESS_OWNER_OR_CONFIGURED_AUTHORITY",
-      "evidence_required_for_material_findings": true,
-      "thresholds": {
-        "variance_percent": 20,
-        "utilization_percent": 95,
-        "negative_available_balance": 0,
-        "negative_liquidity_gap": 0
-      },
-      "protected_autonomous_actions": true
+      ]
     },
     {
       "product_id": "P02",
