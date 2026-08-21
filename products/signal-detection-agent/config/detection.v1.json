@@ -1,0 +1,23 @@
+{
+  "config_version": "1.0.0",
+  "allowed_source_classes": ["official", "recognized_industry_association", "licensed_data"],
+  "prohibited_source_classes": ["blog", "social_media", "general_news", "opinion", "unverifiable_aggregator"],
+  "signal_categories": ["Regulatory and licensing", "Public spending, incentives and funding", "Macro and sector indicators", "Tenders, procurement, infrastructure and investment", "Trade, customs, tax, tariff, subsidy and market access", "Labor and skills", "Digital mandates", "Environmental rules", "Filings and capital disclosures"],
+  "pfm_focus": ["Budget execution", "Variance analysis", "Commitment pressure", "Cash and liquidity", "Financial reporting quality", "Audit findings", "Repeat findings", "Unimplemented recommendations", "Systemic fiscal risk", "Other"],
+  "audiences": ["government", "business", "both"],
+  "materiality_criteria": [
+    {"id":"jurisdictional_scope","weight":0.16},{"id":"industry_breadth","weight":0.16},
+    {"id":"time_sensitivity","weight":0.18},{"id":"evidence_strength","weight":0.20},
+    {"id":"novelty","weight":0.14},{"id":"stakeholder_relevance","weight":0.16}
+  ],
+  "confidence_criteria": [
+    {"id":"evidence","weight":0.25},{"id":"classification","weight":0.15},
+    {"id":"novelty","weight":0.15},{"id":"corroboration","weight":0.15},
+    {"id":"extraction_quality","weight":0.15},{"id":"recommendation_coherence","weight":0.15}
+  ],
+  "thresholds": {"priority_review":0.82,"standard_review":0.55},
+  "human_approver_role": "STRATEGY_RISK_AUTHORITY",
+  "source_registry": [
+    {"source_id":"SYN-OFFICIAL-P04","name":"Synthetic official change feed","source_class":"official","approved":true,"active":true,"allowed_domains":["official.example"],"official_lineage_required":false,"environment":"synthetic-demo"}
+  ]
+}

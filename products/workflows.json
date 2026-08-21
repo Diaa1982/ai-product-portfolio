@@ -63,18 +63,25 @@
     },
     {
       "product_id": "P04",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
-        "signal_statement",
-        "impact_score",
-        "confidence_score"
+        "source_id",
+        "source_version",
+        "evidence_hash",
+        "exact_citations",
+        "change_summary",
+        "materiality_scores",
+        "confidence_scores"
       ],
-      "calculation_profile": "none",
+      "calculation_profile": "signal_detection_materiality_confidence",
       "approval_gate": "HIGH_IMPACT_SIGNAL_REVIEW",
       "approval_role": "STRATEGY_RISK_AUTHORITY",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "priority_review": 0.82,
+        "standard_review": 0.55
+      }
     },
     {
       "product_id": "P05",

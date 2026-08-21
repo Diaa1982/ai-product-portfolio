@@ -1,0 +1,16 @@
+{
+  "title":"Synthetic revenue change","creation_mode":"automated_version_change","audience":"government",
+  "signal_category":"Trade, customs, tax, tariff, subsidy and market access","pfm_focus":"Systemic fiscal risk",
+  "affected_entities":["Synthetic entity"],"effective_date":"2026-09-01",
+  "source_id":"SYN-OFFICIAL-P04","source_url":"https://official.example/tax/1",
+  "current_version":"v2","current_hash":"bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+  "prior_version":"v1","prior_hash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+  "snapshot_path":"synthetic/p04/current.json","fetched_at":"2026-08-21T00:00:00Z","published_at":"2026-08-20T00:00:00Z",
+  "issuing_authority":"Synthetic Authority","provenance_token":"PV-SYN-001",
+  "citations":[{"exact_span":"Synthetic rate changed.","page":1}],"change_summary":"Rate changed from A to B.","evidence_quality":"verified",
+  "materiality_scores":{"jurisdictional_scope":0.9,"industry_breadth":0.8,"time_sensitivity":0.9,"evidence_strength":0.95,"novelty":0.85,"stakeholder_relevance":0.9},
+  "confidence_scores":{"evidence":0.95,"classification":0.9,"novelty":0.85,"corroboration":0.8,"extraction_quality":0.9,"recommendation_coherence":0.85},
+  "fact":"The synthetic rate changed.","interpretation":"Revenue assumptions may require review.","recommendation":"Validate fiscal impact with the revenue owner.",
+  "opportunity":"Refresh the medium-term revenue scenario.","risk":"Forecast variance if assumptions remain unchanged.","scenario":"Test baseline and downside revenue paths.",
+  "kpi_hypothesis":"Revenue forecast variance may increase.","high_impact":false
+}

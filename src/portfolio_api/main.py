@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 from .engine import JsonCaseStore, PortfolioEngine
 from .p03_radar import SignalInput, StrategicRadar
+from .p04_detector import DetectionInput, SignalDetector
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 
 
@@ -21,11 +22,14 @@ P08_DASHBOARD_PATH = Path(os.getenv("P08_DASHBOARD_PATH", Path(__file__).parent 
 P08_CONFIG_PATH = Path(os.getenv("P08_CONFIG_PATH", REPO_ROOT / "products" / "ai-use-case-assessor" / "config" / "scoring.v1.json"))
 P03_DASHBOARD_PATH = Path(os.getenv("P03_DASHBOARD_PATH", Path(__file__).parent / "static" / "p03.html"))
 P03_CONFIG_PATH = Path(os.getenv("P03_CONFIG_PATH", REPO_ROOT / "products" / "strategic-radar" / "config" / "radar.v1.json"))
+P04_DASHBOARD_PATH = Path(os.getenv("P04_DASHBOARD_PATH", Path(__file__).parent / "static" / "p04.html"))
+P04_CONFIG_PATH = Path(os.getenv("P04_CONFIG_PATH", REPO_ROOT / "products" / "signal-detection-agent" / "config" / "detection.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
 p08_assessor = UseCaseAssessor(P08_CONFIG_PATH)
 p03_radar = StrategicRadar(P03_CONFIG_PATH)
+p04_detector = SignalDetector(P04_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -118,6 +122,48 @@ class P03ApprovalRequest(BaseModel):
     reason: str = Field(min_length=3, max_length=1000)
 
 
+class P04DetectionRequest(BaseModel):
+    title: str = Field(min_length=3, max_length=200)
+    creation_mode: str
+    audience: str
+    signal_category: str
+    pfm_focus: str
+    affected_entities: list[str]
+    effective_date: str
+    source_id: str
+    source_url: str
+    current_version: str
+    current_hash: str
+    prior_version: str
+    prior_hash: str
+    snapshot_path: str
+    fetched_at: str
+    published_at: str
+    issuing_authority: str
+    provenance_token: str
+    citations: list[dict[str, Any]]
+    change_summary: str
+    evidence_quality: str
+    materiality_scores: dict[str, float | None]
+    confidence_scores: dict[str, float | None]
+    fact: str
+    interpretation: str
+    recommendation: str
+    opportunity: str
+    risk: str
+    scenario: str
+    kpi_hypothesis: str
+    high_impact: bool = False
+
+
+class P04ApprovalRequest(BaseModel):
+    signal_id: str
+    action: str
+    approver_role: str
+    decision: str
+    reason: str = Field(min_length=3, max_length=1000)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -141,11 +187,43 @@ def p03_dashboard() -> FileResponse:
     return FileResponse(P03_DASHBOARD_PATH)
 
 
+@app.get("/p04", include_in_schema=False)
+def p04_dashboard() -> FileResponse:
+    return FileResponse(P04_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
             "synthetic_data_only": True, "p08_config_version": p08_assessor.config["config_version"],
-            "p03_config_version": p03_radar.config["config_version"]}
+            "p03_config_version": p03_radar.config["config_version"],
+            "p04_config_version": p04_detector.config["config_version"]}
+
+
+@app.get("/p04/config")
+def p04_config() -> dict[str, Any]:
+    return p04_detector.config
+
+
+@app.get("/p04/sources")
+def p04_sources() -> dict[str, Any]:
+    return {"sources": list(p04_detector.sources.values()), "synthetic_only": True}
+
+
+@app.post("/p04/detect")
+def p04_detect(request: P04DetectionRequest) -> dict[str, Any]:
+    try:
+        return p04_detector.detect(DetectionInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p04/approve")
+def p04_approve(request: P04ApprovalRequest) -> dict[str, Any]:
+    try:
+        return p04_detector.approve(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
 
 
 @app.get("/p03/config")

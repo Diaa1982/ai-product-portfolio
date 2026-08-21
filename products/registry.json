@@ -82,7 +82,7 @@
       "id": "P04",
       "slug": "signal-detection-agent",
       "name": "Signal Detection Agent",
-      "maturity": "concept",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -92,11 +92,24 @@
       },
       "documents": {
         "product_readme": "products/signal-detection-agent/README.md",
-        "go_live_checklist": "products/signal-detection-agent/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/signal-detection-agent/GO-LIVE-CHECKLIST.md",
+        "prd": "products/signal-detection-agent/docs/PRD.md",
+        "architecture": "products/signal-detection-agent/docs/ARCHITECTURE.md",
+        "pfm_alignment": "products/signal-detection-agent/docs/PFM-ALIGNMENT.md",
+        "evidence_standard": "products/signal-detection-agent/docs/EVIDENCE-STANDARD.md",
+        "detection_methodology": "products/signal-detection-agent/docs/DETECTION-METHODOLOGY.md",
+        "security_privacy": "products/signal-detection-agent/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/signal-detection-agent/docs/DEPLOYMENT.md",
+        "runbook": "products/signal-detection-agent/docs/RUNBOOK.md",
+        "test_plan": "products/signal-detection-agent/docs/TEST-PLAN.md",
+        "uat": "products/signal-detection-agent/docs/UAT.md",
+        "go_live_evidence": "products/signal-detection-agent/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {
