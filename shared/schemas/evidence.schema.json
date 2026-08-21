@@ -1,0 +1,17 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Evidence Record",
+  "type": "object",
+  "required": ["evidence_id", "source_id", "source_version", "retrieved_at", "classification", "content_hash"],
+  "properties": {
+    "evidence_id": {"type": "string"},
+    "source_id": {"type": "string"},
+    "source_version": {"type": "string"},
+    "retrieved_at": {"type": "string", "format": "date-time"},
+    "classification": {"type": "string"},
+    "content_hash": {"type": "string"},
+    "locator": {"type": "string"},
+    "approved_for_use": {"type": "boolean", "default": false}
+  },
+  "additionalProperties": false
+}
