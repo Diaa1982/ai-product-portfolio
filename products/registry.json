@@ -48,7 +48,7 @@
       "id": "P03",
       "slug": "strategic-radar",
       "name": "Strategic Radar",
-      "maturity": "blueprint",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -58,11 +58,24 @@
       },
       "documents": {
         "product_readme": "products/strategic-radar/README.md",
-        "go_live_checklist": "products/strategic-radar/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/strategic-radar/GO-LIVE-CHECKLIST.md",
+        "prd": "products/strategic-radar/docs/PRD.md",
+        "architecture": "products/strategic-radar/docs/ARCHITECTURE.md",
+        "pfm_alignment": "products/strategic-radar/docs/PFM-ALIGNMENT.md",
+        "source_governance": "products/strategic-radar/docs/SOURCE-GOVERNANCE.md",
+        "materiality": "products/strategic-radar/docs/MATERIALITY-METHODOLOGY.md",
+        "security_privacy": "products/strategic-radar/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/strategic-radar/docs/DEPLOYMENT.md",
+        "runbook": "products/strategic-radar/docs/RUNBOOK.md",
+        "test_plan": "products/strategic-radar/docs/TEST-PLAN.md",
+        "uat": "products/strategic-radar/docs/UAT.md",
+        "go_live_evidence": "products/strategic-radar/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

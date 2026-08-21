@@ -52,3 +52,19 @@ jobs:
             --data @products/ai-use-case-assessor/synthetic/complete-assessment.json \
             http://127.0.0.1:8080/p08/assess |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['portfolio_classification']=='Quick Win'; assert r['required_gate']=='PRIORITIZATION'"
+      - name: Build P03 deployment image
+        run: docker build -f products/strategic-radar/deploy/Dockerfile -t p03-radar:ci .
+      - name: Smoke-test P03 evidence and materiality API
+        shell: bash
+        run: |
+          docker run -d --name p03-radar-ci -p 8080:8080 p03-radar:ci
+          trap 'docker logs p03-radar-ci; docker rm -f p03-radar-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p03 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/strategic-radar/synthetic/verified-signal.json \
+            http://127.0.0.1:8080/p03/signals/assess |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['evidence_status']=='verified'; assert r['materiality_route']=='auto_alert_eligible'"

@@ -1,23 +1,294 @@
 {
   "schema_version": "1.0.0",
   "workflows": [
-    {"product_id":"P01","version":"1.0","required_inputs":["business_outcome","budget","actual","commitments"],"calculation_profile":"pfm_execution","approval_gate":"G3_MVP_REVIEW","approval_role":"PFM_ACCOUNTABLE_OFFICER","evidence_required_for_material_findings":true,"thresholds":{"high_utilization":0.90,"commitment_pressure":0.25}},
-    {"product_id":"P02","version":"1.0","required_inputs":["business_outcome","budget","actual","commitments"],"calculation_profile":"pfm_execution","approval_gate":"ANALYTICAL_REVIEW","approval_role":"PFM_ANALYTICS_LEAD","evidence_required_for_material_findings":true,"thresholds":{"high_utilization":0.90,"commitment_pressure":0.25}},
-    {"product_id":"P03","version":"1.0","required_inputs":["business_outcome","signal_statement","impact_score","confidence_score"],"calculation_profile":"none","approval_gate":"SIGNAL_PUBLICATION","approval_role":"STRATEGY_RISK_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P04","version":"1.0","required_inputs":["business_outcome","signal_statement","impact_score","confidence_score"],"calculation_profile":"none","approval_gate":"HIGH_IMPACT_SIGNAL_REVIEW","approval_role":"STRATEGY_RISK_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P05","version":"1.0","required_inputs":["business_outcome","service_name","customer_type","request_type"],"calculation_profile":"none","approval_gate":"SERVICE_DESIGN_APPROVAL","approval_role":"SERVICE_OWNER","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P06","version":"1.0","required_inputs":["business_outcome","process_name","documented_version","audit_scope"],"calculation_profile":"none","approval_gate":"ASSURANCE_REVIEW","approval_role":"AUTHORIZED_ASSURANCE_REVIEWER","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P07","version":"1.0","required_inputs":["business_outcome","partner_name","agreement_status","expiry_date"],"calculation_profile":"none","approval_gate":"PARTNERSHIP_REVIEW","approval_role":"PARTNERSHIP_OWNER","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P08","version":"1.0","required_inputs":["business_outcome","value_score","feasibility_score"],"calculation_profile":"weighted_score","approval_gate":"AI_USE_CASE_GATE","approval_role":"AI_GOVERNANCE_BOARD","evidence_required_for_material_findings":true,"thresholds":{"minimum_score":3.0}},
-    {"product_id":"P09","version":"1.0","required_inputs":["business_outcome","kpi_name","target","actual"],"calculation_profile":"none","approval_gate":"PERFORMANCE_REVIEW","approval_role":"PERFORMANCE_OWNER","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P10","version":"1.0","required_inputs":["business_outcome","process_name","process_owner","lifecycle_stage"],"calculation_profile":"none","approval_gate":"PROCESS_PUBLICATION","approval_role":"PROCESS_GOVERNANCE_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P11","version":"1.0","required_inputs":["business_outcome","accounting_issue","reporting_period","materiality"],"calculation_profile":"none","approval_gate":"ACCOUNTING_REVIEW","approval_role":"AUTHORIZED_ACCOUNTING_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P12","version":"1.0","required_inputs":["business_outcome","budget","actual","commitments"],"calculation_profile":"pfm_execution","approval_gate":"RECONCILIATION_EXCEPTION_REVIEW","approval_role":"REVENUE_CONTROL_OFFICER","evidence_required_for_material_findings":true,"thresholds":{"high_utilization":0.95,"commitment_pressure":0.30}},
-    {"product_id":"P13","version":"1.0","required_inputs":["business_outcome","capability_name","current_maturity","target_maturity"],"calculation_profile":"none","approval_gate":"ARCHITECTURE_APPROVAL","approval_role":"PFM_ARCHITECTURE_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P14","version":"1.0","required_inputs":["business_outcome","use_case_id","risk_tier","lifecycle_gate"],"calculation_profile":"none","approval_gate":"AI_LIFECYCLE_GATE","approval_role":"AI_GOVERNANCE_BOARD","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P15","version":"1.0","required_inputs":["business_outcome","capability_name","application_name","target_state"],"calculation_profile":"none","approval_gate":"ENTERPRISE_ARCHITECTURE_DECISION","approval_role":"DESIGN_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P16","version":"1.0","required_inputs":["business_outcome","service_name","risk_rating","change_type"],"calculation_profile":"none","approval_gate":"IT_CHANGE_RISK_REVIEW","approval_role":"CHANGE_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P17","version":"1.0","required_inputs":["business_outcome","process_name","process_type","observed_cycle_time"],"calculation_profile":"none","approval_gate":"BENCHMARK_VALIDATION","approval_role":"PROCESS_PERFORMANCE_AUTHORITY","evidence_required_for_material_findings":true,"thresholds":{}},
-    {"product_id":"P18","version":"1.0","required_inputs":["business_outcome","assessment_scope","maturity_dimension","evidence_period"],"calculation_profile":"none","approval_gate":"ASSESSMENT_MODERATION","approval_role":"AUTHORIZED_ASSESSMENT_MODERATOR","evidence_required_for_material_findings":true,"thresholds":{}}
+    {
+      "product_id": "P01",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "budget",
+        "actual",
+        "commitments"
+      ],
+      "calculation_profile": "pfm_execution",
+      "approval_gate": "G3_MVP_REVIEW",
+      "approval_role": "PFM_ACCOUNTABLE_OFFICER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_utilization": 0.9,
+        "commitment_pressure": 0.25
+      }
+    },
+    {
+      "product_id": "P02",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "budget",
+        "actual",
+        "commitments"
+      ],
+      "calculation_profile": "pfm_execution",
+      "approval_gate": "ANALYTICAL_REVIEW",
+      "approval_role": "PFM_ANALYTICS_LEAD",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_utilization": 0.9,
+        "commitment_pressure": 0.25
+      }
+    },
+    {
+      "product_id": "P03",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "signal_statement",
+        "official_source_id",
+        "source_url",
+        "source_version",
+        "evidence_hash",
+        "change_summary",
+        "materiality_scores",
+        "confidence_score"
+      ],
+      "calculation_profile": "strategic_radar_materiality",
+      "approval_gate": "SIGNAL_PUBLICATION",
+      "approval_role": "STRATEGY_RISK_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "auto_alert": 0.82,
+        "analyst_review": 0.55,
+        "executive_confidence": 0.75
+      }
+    },
+    {
+      "product_id": "P04",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "signal_statement",
+        "impact_score",
+        "confidence_score"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "HIGH_IMPACT_SIGNAL_REVIEW",
+      "approval_role": "STRATEGY_RISK_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P05",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "service_name",
+        "customer_type",
+        "request_type"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "SERVICE_DESIGN_APPROVAL",
+      "approval_role": "SERVICE_OWNER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P06",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "process_name",
+        "documented_version",
+        "audit_scope"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "ASSURANCE_REVIEW",
+      "approval_role": "AUTHORIZED_ASSURANCE_REVIEWER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P07",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "partner_name",
+        "agreement_status",
+        "expiry_date"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "PARTNERSHIP_REVIEW",
+      "approval_role": "PARTNERSHIP_OWNER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P08",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "value_score",
+        "feasibility_score"
+      ],
+      "calculation_profile": "weighted_score",
+      "approval_gate": "AI_USE_CASE_GATE",
+      "approval_role": "AI_GOVERNANCE_BOARD",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "minimum_score": 3
+      }
+    },
+    {
+      "product_id": "P09",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "kpi_name",
+        "target",
+        "actual"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "PERFORMANCE_REVIEW",
+      "approval_role": "PERFORMANCE_OWNER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P10",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "process_name",
+        "process_owner",
+        "lifecycle_stage"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "PROCESS_PUBLICATION",
+      "approval_role": "PROCESS_GOVERNANCE_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P11",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "accounting_issue",
+        "reporting_period",
+        "materiality"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "ACCOUNTING_REVIEW",
+      "approval_role": "AUTHORIZED_ACCOUNTING_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P12",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "budget",
+        "actual",
+        "commitments"
+      ],
+      "calculation_profile": "pfm_execution",
+      "approval_gate": "RECONCILIATION_EXCEPTION_REVIEW",
+      "approval_role": "REVENUE_CONTROL_OFFICER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_utilization": 0.95,
+        "commitment_pressure": 0.3
+      }
+    },
+    {
+      "product_id": "P13",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "capability_name",
+        "current_maturity",
+        "target_maturity"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "ARCHITECTURE_APPROVAL",
+      "approval_role": "PFM_ARCHITECTURE_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P14",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "use_case_id",
+        "risk_tier",
+        "lifecycle_gate"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "AI_LIFECYCLE_GATE",
+      "approval_role": "AI_GOVERNANCE_BOARD",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P15",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "capability_name",
+        "application_name",
+        "target_state"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "ENTERPRISE_ARCHITECTURE_DECISION",
+      "approval_role": "DESIGN_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P16",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "service_name",
+        "risk_rating",
+        "change_type"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "IT_CHANGE_RISK_REVIEW",
+      "approval_role": "CHANGE_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P17",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "process_name",
+        "process_type",
+        "observed_cycle_time"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "BENCHMARK_VALIDATION",
+      "approval_role": "PROCESS_PERFORMANCE_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    },
+    {
+      "product_id": "P18",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "assessment_scope",
+        "maturity_dimension",
+        "evidence_period"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "ASSESSMENT_MODERATION",
+      "approval_role": "AUTHORIZED_ASSESSMENT_MODERATOR",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {}
+    }
   ]
 }

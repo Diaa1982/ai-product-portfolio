@@ -8,6 +8,7 @@ from fastapi.responses import FileResponse
 from pydantic import BaseModel, Field
 
 from .engine import JsonCaseStore, PortfolioEngine
+from .p03_radar import SignalInput, StrategicRadar
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 
 
@@ -18,10 +19,13 @@ CASE_STORE_PATH = Path(os.getenv("CASE_STORE_PATH", REPO_ROOT / "data" / "runtim
 DASHBOARD_PATH = Path(os.getenv("DASHBOARD_PATH", Path(__file__).parent / "static" / "index.html"))
 P08_DASHBOARD_PATH = Path(os.getenv("P08_DASHBOARD_PATH", Path(__file__).parent / "static" / "p08.html"))
 P08_CONFIG_PATH = Path(os.getenv("P08_CONFIG_PATH", REPO_ROOT / "products" / "ai-use-case-assessor" / "config" / "scoring.v1.json"))
+P03_DASHBOARD_PATH = Path(os.getenv("P03_DASHBOARD_PATH", Path(__file__).parent / "static" / "p03.html"))
+P03_CONFIG_PATH = Path(os.getenv("P03_CONFIG_PATH", REPO_ROOT / "products" / "strategic-radar" / "config" / "radar.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
 p08_assessor = UseCaseAssessor(P08_CONFIG_PATH)
+p03_radar = StrategicRadar(P03_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -80,6 +84,40 @@ class P08ApprovalRequest(BaseModel):
     reason: str = Field(min_length=3, max_length=1000)
 
 
+class P03SignalRequest(BaseModel):
+    title: str = Field(min_length=3, max_length=200)
+    audience: str
+    industry: str
+    jurisdiction: str
+    pfm_category: str
+    signal_statement: str
+    fact: str
+    interpretation: str
+    recommendation: str
+    source_id: str
+    source_url: str
+    source_version: str
+    published_at: str
+    retrieved_at: str
+    evidence_hash: str
+    change_summary: str
+    materiality_scores: dict[str, float | None]
+    confidence_score: float = Field(ge=0, le=1)
+    high_impact: bool = False
+    normative_policy_advice: bool = False
+    sensitive_jurisdiction: bool = False
+    executive_delivery: bool = False
+    promote_to_memory: bool = False
+
+
+class P03ApprovalRequest(BaseModel):
+    signal_id: str
+    action: str
+    approver_role: str
+    decision: str
+    reason: str = Field(min_length=3, max_length=1000)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -98,10 +136,42 @@ def p08_dashboard() -> FileResponse:
     return FileResponse(P08_DASHBOARD_PATH)
 
 
+@app.get("/p03", include_in_schema=False)
+def p03_dashboard() -> FileResponse:
+    return FileResponse(P03_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
-            "synthetic_data_only": True, "p08_config_version": p08_assessor.config["config_version"]}
+            "synthetic_data_only": True, "p08_config_version": p08_assessor.config["config_version"],
+            "p03_config_version": p03_radar.config["config_version"]}
+
+
+@app.get("/p03/config")
+def p03_config() -> dict[str, Any]:
+    return p03_radar.config
+
+
+@app.get("/p03/sources")
+def p03_sources() -> dict[str, Any]:
+    return {"sources": list(p03_radar.sources.values()), "synthetic_only": True}
+
+
+@app.post("/p03/signals/assess")
+def p03_assess_signal(request: P03SignalRequest) -> dict[str, Any]:
+    try:
+        return p03_radar.assess_signal(SignalInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p03/approve")
+def p03_approve(request: P03ApprovalRequest) -> dict[str, Any]:
+    try:
+        return p03_radar.approve(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
 
 
 @app.get("/p08/config")
