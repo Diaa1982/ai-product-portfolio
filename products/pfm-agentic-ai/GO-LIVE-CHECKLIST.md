@@ -2,6 +2,8 @@
 
 Status: **technical deployment candidate — not production-approved**.
 
+Technical verification: [Portfolio Quality run 64](https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32523441850) passed all 67 repository tests and all six container/API smoke paths on 2026-08-21.
+
 | Area | Technical candidate evidence | Production gap |
 |---|---|---|
 | Product scope | PRD and MVP acceptance documented | Approve use cases, benefits, owners and exclusions |

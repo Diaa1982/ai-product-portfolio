@@ -1,5 +1,10 @@
 # Go-Live Evidence Register
 
+## Verified technical evidence
+
+- GitHub Actions [Portfolio Quality run 64](https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32523441850) passed on 2026-08-21: 67 repository tests, compilation, registry and secret-file validation, six container builds and six live API smoke tests.
+- P01 code baseline: [`81ad2ec`](https://github.com/Diaa1982/ai-product-portfolio/commit/81ad2ec5c78d276c3f4d9e8d8743e0ea3d83e73d).
+
 ## Available in repository
 
 - Versioned nine-agent configuration and protected-action catalogue.
