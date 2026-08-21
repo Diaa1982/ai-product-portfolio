@@ -12,6 +12,7 @@ from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
+from .p09_performance import CorporatePerformanceReview, KPIReviewInput
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -27,6 +28,8 @@ P04_DASHBOARD_PATH = Path(os.getenv("P04_DASHBOARD_PATH", Path(__file__).parent 
 P04_CONFIG_PATH = Path(os.getenv("P04_CONFIG_PATH", REPO_ROOT / "products" / "signal-detection-agent" / "config" / "detection.v1.json"))
 P14_DASHBOARD_PATH = Path(os.getenv("P14_DASHBOARD_PATH", Path(__file__).parent / "static" / "p14.html"))
 P14_CONFIG_PATH = Path(os.getenv("P14_CONFIG_PATH", REPO_ROOT / "products" / "ai-governance-control-tower" / "config" / "governance.v1.json"))
+P09_DASHBOARD_PATH = Path(os.getenv("P09_DASHBOARD_PATH", Path(__file__).parent / "static" / "p09.html"))
+P09_CONFIG_PATH = Path(os.getenv("P09_CONFIG_PATH", REPO_ROOT / "products" / "corporate-performance-review-ai" / "config" / "performance.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -34,6 +37,7 @@ p08_assessor = UseCaseAssessor(P08_CONFIG_PATH)
 p03_radar = StrategicRadar(P03_CONFIG_PATH)
 p04_detector = SignalDetector(P04_CONFIG_PATH)
 p14_control_tower = AIGovernanceControlTower(P14_CONFIG_PATH)
+p09_performance = CorporatePerformanceReview(P09_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -209,6 +213,31 @@ class P14MonitoringRequest(BaseModel):
     metrics: dict[str, Any]
 
 
+class P09ReviewRequest(BaseModel):
+    kpi_master: dict[str, Any]
+    result: dict[str, Any]
+    source_row_hash: str
+    data_cutoff: str
+    prior_actual: float | None = None
+    owner_explanation: str
+    inference: str
+    recommendation: str
+    corrective_actions: list[dict[str, Any]] = Field(default_factory=list)
+    target_treatment: str
+    proposed_target: float | None = None
+    review_due_at: str
+    submitted_at: str
+    executive_briefing: bool = False
+
+
+class P09ApprovalRequest(BaseModel):
+    review_id: str
+    action: str
+    approver_role: str
+    decision: str
+    reason: str = Field(min_length=3, max_length=1000)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -242,13 +271,40 @@ def p14_dashboard() -> FileResponse:
     return FileResponse(P14_DASHBOARD_PATH)
 
 
+@app.get("/p09", include_in_schema=False)
+def p09_dashboard() -> FileResponse:
+    return FileResponse(P09_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
             "synthetic_data_only": True, "p08_config_version": p08_assessor.config["config_version"],
             "p03_config_version": p03_radar.config["config_version"],
             "p04_config_version": p04_detector.config["config_version"],
-            "p14_config_version": p14_control_tower.config["config_version"]}
+            "p14_config_version": p14_control_tower.config["config_version"],
+            "p09_config_version": p09_performance.config["config_version"]}
+
+
+@app.get("/p09/config")
+def p09_config() -> dict[str, Any]:
+    return p09_performance.config
+
+
+@app.post("/p09/review")
+def p09_review(request: P09ReviewRequest) -> dict[str, Any]:
+    try:
+        return p09_performance.review(KPIReviewInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p09/approve")
+def p09_approve(request: P09ApprovalRequest) -> dict[str, Any]:
+    try:
+        return p09_performance.approve(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
 
 
 @app.get("/p14/config")

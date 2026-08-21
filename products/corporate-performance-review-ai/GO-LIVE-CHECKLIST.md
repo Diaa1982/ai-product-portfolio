@@ -1,51 +1,34 @@
 # Corporate Performance Review AI — Go-Live Readiness Checklist
 
 **Product ID:** P09  
-**Category:** [Strategy, Performance & AI Governance](../../groups/03-strategy-performance-ai-governance/README.md)  
-**Current stage:** Executable MVP foundation  
-**Go-live ready:** No
+**Current stage:** Technical deployment candidate  
+**Formal go-live ready:** No  
+**Permitted data:** Synthetic only
 
-## What already exists in GitHub
+## Implemented
 
-- KPI review configuration and governed workflow.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
+- [x] KPI master/result schema and validation.
+- [x] Higher/Lower/Exact calculations and specialized-rule routing.
+- [x] Configurable default status bands and approved override support.
+- [x] Official evidence/approval, source hash and data cut-off controls.
+- [x] Prior trend and review-calendar status.
+- [x] Narrative separation and corrective-action validation.
+- [x] Target treatments with NOT APPROVED proposals.
+- [x] Human performance/executive approvals.
+- [x] API/UI, synthetic case, ten tests, hardened container and full documents.
 
-## Product-specific critical blockers
-
-- [ ] KPI master-data integration.
-- [ ] upload validation.
-- [ ] evidence connectors.
-- [ ] narrative evaluation.
-- [ ] review-calendar UAT.
-
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
+| Gate | Status | Remaining accountable work |
 |---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
+| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, outcomes, scope, funding and value baseline |
+| L1 — Product and process | Technical ready; approval pending | Approve review method, calendar, KPI levels, outputs, exclusions and service levels |
+| L2 — Data and evidence | Synthetic baseline | Integrate approved KPI master/results, evidence owners, lineage, quality, retention and authoritative publication status |
+| L3 — AI and knowledge | Deterministic baseline | Approve formulas/thresholds/specialized rules; validate narrative faithfulness and target/action logic |
+| L4 — Governance and compliance | Partial | Approve KPI/data/performance/executive decision rights and PFM/accounting/audit boundaries |
+| L5 — Security and privacy | Baseline | Implement enterprise IAM, secure uploads, encryption, immutable source/audit and security/privacy testing |
+| L6 — Architecture and integration | Candidate | Provision KPI/evidence/calendar/action/report connectors, persistence and observability |
+| L7 — Verification and assurance | Ten local tests passed | Pass CI/container smoke, workbook/schema, calculation, security, performance, accessibility and resilience testing |
+| L8 — Operating model | Template ready | Name owners/reviewers/support; approve calendar, SLA/SLO, RTO/RPO, training and escalation |
+| L9 — Deployment and resilience | Container candidate | Validate target CI/CD, signing, backup/restore, continuity and rollback |
+| L10 — Go-live authority and value | Not started | Complete UAT, residual risks and final publication/production approvals |
 
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+See [evidence](docs/GO-LIVE-EVIDENCE.md), [calculation method](docs/CALCULATION-METHODOLOGY.md), [PFM alignment](docs/PFM-ALIGNMENT.md), [UAT](docs/UAT.md) and [portfolio standard](../../docs/GO-LIVE-GATE-STANDARD.md).

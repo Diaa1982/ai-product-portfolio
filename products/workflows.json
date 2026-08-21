@@ -146,18 +146,25 @@
     },
     {
       "product_id": "P09",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
-        "kpi_name",
-        "target",
-        "actual"
+        "kpi_master",
+        "period_result",
+        "source_row_hash",
+        "data_cutoff",
+        "evidence_reference",
+        "review_calendar"
       ],
-      "calculation_profile": "none",
-      "approval_gate": "PERFORMANCE_REVIEW",
-      "approval_role": "PERFORMANCE_OWNER",
+      "calculation_profile": "corporate_kpi_review",
+      "approval_gate": "PERFORMANCE_AND_EXECUTIVE_REVIEW",
+      "approval_role": "PERFORMANCE_OWNER_OR_EXECUTIVE_APPROVER",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "exceeded": 105,
+        "achieved": 100,
+        "attention": 90
+      }
     },
     {
       "product_id": "P10",

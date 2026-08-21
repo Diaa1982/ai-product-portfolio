@@ -211,7 +211,7 @@
       "id": "P09",
       "slug": "corporate-performance-review-ai",
       "name": "Corporate Performance Review AI",
-      "maturity": "configuration",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -221,11 +221,24 @@
       },
       "documents": {
         "product_readme": "products/corporate-performance-review-ai/README.md",
-        "go_live_checklist": "products/corporate-performance-review-ai/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/corporate-performance-review-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/corporate-performance-review-ai/docs/PRD.md",
+        "kpi_data_standard": "products/corporate-performance-review-ai/docs/KPI-DATA-STANDARD.md",
+        "calculation_methodology": "products/corporate-performance-review-ai/docs/CALCULATION-METHODOLOGY.md",
+        "review_methodology": "products/corporate-performance-review-ai/docs/REVIEW-METHODOLOGY.md",
+        "pfm_alignment": "products/corporate-performance-review-ai/docs/PFM-ALIGNMENT.md",
+        "security_privacy": "products/corporate-performance-review-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/corporate-performance-review-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/corporate-performance-review-ai/docs/RUNBOOK.md",
+        "test_plan": "products/corporate-performance-review-ai/docs/TEST-PLAN.md",
+        "uat": "products/corporate-performance-review-ai/docs/UAT.md",
+        "go_live_evidence": "products/corporate-performance-review-ai/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

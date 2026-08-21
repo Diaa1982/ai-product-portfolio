@@ -104,3 +104,19 @@ jobs:
             --data @products/ai-governance-control-tower/synthetic/critical-monitoring-event.json \
             http://127.0.0.1:8080/p14/monitor |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['severity']=='Critical'; assert r['required_action']=='safe_shutdown_and_incident_command'"
+      - name: Build P09 deployment image
+        run: docker build -f products/corporate-performance-review-ai/deploy/Dockerfile -t p09-performance:ci .
+      - name: Smoke-test P09 governed KPI review API
+        shell: bash
+        run: |
+          docker run -d --name p09-performance-ci -p 8080:8080 p09-performance:ci
+          trap 'docker logs p09-performance-ci; docker rm -f p09-performance-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p09 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/corporate-performance-review-ai/synthetic/kpi-review.json \
+            http://127.0.0.1:8080/p09/review |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['data_quality_status']=='Valid'; assert r['performance_status']=='Exceeded'; assert r['proposed_target_status']=='Not Proposed'"

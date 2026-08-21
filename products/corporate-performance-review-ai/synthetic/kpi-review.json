@@ -1,0 +1,7 @@
+{
+  "kpi_master":{"KPI_ID":"KPI-001","KPI_Name":"Synthetic service performance","Organization_Level":"Enterprise","Frequency":"Quarterly","Direction":"Higher","Unit":"%","Target":95,"Weight":10,"Aggregation_Method":"Average","KPI_Owner":"PERFORMANCE_OWNER","Data_Owner":"DATA_OWNER","Data_Source":"Synthetic KPI register","Tolerance":0},
+  "result":{"KPI_ID":"KPI-001","Period":"2026-Q2","Actual":100,"Target":95,"Forecast":98,"Evidence_Reference":"EV-SYN-1","Owner_Comment":"Validated","Root_Cause":"Synthetic","Existing_Action":"Monitor","Data_Status":"Official","Approval_Date":"2026-07-10"},
+  "source_row_hash":"aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa","data_cutoff":"2026-07-01","prior_actual":94,
+  "owner_explanation":"Owner confirmed improvement.","inference":"Performance is above target.","recommendation":"Retain controls and monitor.",
+  "corrective_actions":[],"target_treatment":"Retain","proposed_target":null,"review_due_at":"2026-07-15T00:00:00Z","submitted_at":"2026-07-10T00:00:00Z","executive_briefing":false
+}

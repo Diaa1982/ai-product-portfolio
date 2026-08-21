@@ -1,0 +1,12 @@
+{
+  "config_version":"1.0.0",
+  "required_master_fields":["KPI_ID","KPI_Name","Organization_Level","Frequency","Direction","Unit","Target","Weight","Aggregation_Method","KPI_Owner","Data_Owner","Data_Source"],
+  "required_result_fields":["KPI_ID","Period","Actual","Target","Data_Status"],
+  "directions":["Higher","Lower","Exact","Range","Milestone","Binary"],
+  "frequencies":["Monthly","Quarterly","Semiannual","Annual"],
+  "aggregation_methods":["Sum","Average","Weighted Average","Last Value","Ratio","Manual"],
+  "default_status_thresholds":{"exceeded":105,"achieved":100,"attention":90},
+  "target_treatments":["Retain","Stretch","Recalibrate","Redesign","Rebaseline"],
+  "organization_levels":["Enterprise","Sector","Division"],
+  "executive_approver_role":"EXECUTIVE_APPROVER"
+}

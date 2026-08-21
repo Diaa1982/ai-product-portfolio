@@ -1,0 +1,17 @@
+services:
+  performance-review:
+    build:
+      context: ../../..
+      dockerfile: products/corporate-performance-review-ai/deploy/Dockerfile
+    ports: ["${P09_PORT:-8080}:8080"]
+    environment:
+      CASE_STORE_PATH: /app/data/runtime/cases.json
+      P09_CONFIG_PATH: /app/products/corporate-performance-review-ai/config/performance.v1.json
+    volumes: ["p09-runtime:/app/data/runtime"]
+    read_only: true
+    tmpfs: ["/tmp"]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    restart: unless-stopped
+volumes:
+  p09-runtime:
