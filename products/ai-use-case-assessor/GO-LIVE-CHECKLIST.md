@@ -26,7 +26,7 @@
 | L4 — Governance and compliance | Partial | Map policy/legal obligations, risk tier, segregation and independent high-impact assurance |
 | L5 — Security and privacy | Baseline only | Implement enterprise IAM/RBAC, encrypted persistence/secrets/audit; pass privacy, vulnerability and penetration reviews |
 | L6 — Architecture and integration | Candidate only | Provision target environments, identity, database, approved connectors and observability |
-| L7 — Verification and assurance | Automated baseline passed locally | Pass CI, security, performance, accessibility, resilience and representative-corpus testing |
+| L7 — Verification and assurance | CI, 7 focused tests, compile, image build and live smoke test passed | Complete security, performance, accessibility, resilience and representative-corpus assurance |
 | L8 — Operating model | Template ready | Name support/control owners; approve RACI, SLA/SLO, RTO/RPO, training and change procedures |
 | L9 — Deployment and resilience | Container candidate | Validate target CI/CD, signed image, backup/restore, rollback, capacity and continuity exercises |
 | L10 — Go-live authority and value | Not started | Complete UAT, accept residual risk, obtain all control approvals and record CEO go-live decision |
