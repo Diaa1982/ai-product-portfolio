@@ -2,9 +2,23 @@
 
 Private monorepo for converting a portfolio of public finance management, enterprise operations, process, service, governance, assurance, and strategic decision-support initiatives into governed AI products.
 
-## Portfolio scope
+## Executable portfolio MVP
 
-The baseline contains 18 product packages spanning:
+The platform now provides:
+
+- 18 configured product workflows.
+- Shared case, evidence, finding, recommendation and approval records.
+- PFM execution calculations for variance, utilization, available balance and commitment pressure.
+- Configurable AI use-case scoring using 60% value and 40% feasibility.
+- Evidence requirements for material findings.
+- Automatic pause for critical cases.
+- Role-enforced approval decisions.
+- Hash-chained, verifiable audit events.
+- FastAPI endpoints and an integrated portfolio dashboard.
+- Synthetic end-to-end demonstration cases.
+- Automated product, engine, API and confidentiality-control tests.
+
+## Portfolio scope
 
 - Public finance planning, budgeting, treasury, revenue, accounting, IPSAS reporting, audit, risk, and executive intelligence.
 - Strategic radar, evidence-grounded signal detection, and controlled recommendation workflows.
@@ -17,22 +31,34 @@ The baseline contains 18 product packages spanning:
 2. Process and control design before automation.
 3. Evidence-grounded AI with source provenance.
 4. Human approval for consequential decisions.
-5. IPSAS, PEFA-aligned PFM practices, ISO management-system principles, and auditable records.
+5. IPSAS and PEFA-aligned PFM practices, ISO management-system principles, and auditable records.
 6. Privacy, security, segregation of duties, and least privilege by design.
 7. Synthetic data only until an approved data-onboarding process is completed.
 8. Recommendations are separated from formal approvals and authorized transactions.
 
+## Quick start
+
+```bash
+python -m venv .venv
+source .venv/bin/activate
+pip install -r requirements.txt
+uvicorn src.portfolio_api.main:app --reload
+```
+
+Open `http://127.0.0.1:8000` for the dashboard and `http://127.0.0.1:8000/docs` for the API.
+
 ## Repository map
 
-- `products/` — independent AI product packages.
-- `shared/` — reusable schemas, governance controls, prompts, evaluation and API components.
-- `docs/` — portfolio architecture, stage gates, roadmap and source mapping.
-- `src/` — common API and product registry service.
-- `tests/` — automated validation.
-- `.github/workflows/` — quality and security checks.
+- `products/` — product packages, registry and workflow configuration.
+- `shared/` — reusable schemas, governance controls, prompts and evaluation standards.
+- `docs/` — architecture, API, stage gates, roadmap and operating guidance.
+- `src/` — shared executable API, workflow engine and dashboard.
+- `synthetic/` — non-production demonstration cases.
+- `tests/` — automated validation and control tests.
+- `.github/workflows/` — quality and confidentiality checks.
 
-## Current state
+## Information protection
 
-This branch establishes the controlled product baseline. It does not contain confidential government information, production financial data, internal evidence, credentials, or organization-specific datasets.
+The repository does not contain confidential government information, production financial data, internal evidence, credentials, or organization-specific datasets. Runtime case data is excluded from Git.
 
-See [Product Register](docs/PRODUCT-REGISTER.md), [Productization Roadmap](docs/PRODUCTIZATION-ROADMAP.md), and [Information Handling](docs/INFORMATION-HANDLING.md).
+See [Product Register](docs/PRODUCT-REGISTER.md), [MVP Operating Guide](docs/MVP-OPERATING-GUIDE.md), [API Summary](docs/API.md), [Productization Roadmap](docs/PRODUCTIZATION-ROADMAP.md), and [Information Handling](docs/INFORMATION-HANDLING.md).
