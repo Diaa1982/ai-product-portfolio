@@ -1,6 +1,6 @@
 # Go-Live Evidence and Decision Record
 
-**Technical deployment candidate:** Pending repository CI and container smoke validation.  
+**Technical deployment candidate:** Yes; Portfolio Quality run 49 passed, including image build and live evidence/materiality API smoke validation.  
 **Organizational production approval:** No.  
 **Permitted data:** Synthetic only.
 
@@ -9,7 +9,7 @@
 | PRD, PFM alignment and architecture | Documented; organization approval pending |
 | Source registry and deterministic evidence verifier | Implemented with synthetic source; real-source approvals pending |
 | Materiality/routing and protected approvals | Implemented; representative calibration pending |
-| API, dashboard, synthetic scenario and tests | Implemented; CI evidence pending |
+| API, dashboard, synthetic scenario and tests | Implemented; CI, image build and live smoke validation passed |
 | Security, deployment, operations and rollback | Candidate documented; target controls/testing pending |
 | Business/PFM UAT | Pending |
 | Product, data/source, security/privacy/legal, platform approvals | Pending |
