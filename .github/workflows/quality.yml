@@ -33,3 +33,22 @@ jobs:
             echo "Potential secret file committed."
             exit 1
           fi
+      - name: Build P08 deployment image
+        run: docker build -f products/ai-use-case-assessor/deploy/Dockerfile -t p08-assessor:ci .
+      - name: Smoke-test P08 health, interface and assessment API
+        shell: bash
+        run: |
+          docker run -d --name p08-assessor-ci -p 8080:8080 p08-assessor:ci
+          trap 'docker logs p08-assessor-ci; docker rm -f p08-assessor-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/health >/dev/null
+          curl --fail --silent http://127.0.0.1:8080/p08 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ai-use-case-assessor/synthetic/complete-assessment.json \
+            http://127.0.0.1:8080/p08/assess |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['portfolio_classification']=='Quick Win'; assert r['required_gate']=='PRIORITIZATION'"
