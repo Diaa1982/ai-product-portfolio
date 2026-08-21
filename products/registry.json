@@ -1,0 +1,168 @@
+{
+  "schema_version": "1.0.0",
+  "updated_at": "2026-08-21",
+  "products": [
+    {
+      "id": "P01",
+      "slug": "pfm-agentic-ai",
+      "name": "PFM Agentic AI",
+      "maturity": "architecture",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P02",
+      "slug": "pfm-brain",
+      "name": "PFM Brain",
+      "maturity": "concept",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P03",
+      "slug": "strategic-radar",
+      "name": "Strategic Radar",
+      "maturity": "blueprint",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P04",
+      "slug": "signal-detection-agent",
+      "name": "Signal Detection Agent",
+      "maturity": "concept",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P05",
+      "slug": "service-design-ai",
+      "name": "Service Design AI",
+      "maturity": "concept",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P06",
+      "slug": "process-audit-ai",
+      "name": "Process Audit AI",
+      "maturity": "concept",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P07",
+      "slug": "partnership-management-copilot",
+      "name": "Partnership Management Copilot",
+      "maturity": "requirements",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P08",
+      "slug": "ai-use-case-assessor",
+      "name": "AI Use Case Assessor",
+      "maturity": "method",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P09",
+      "slug": "corporate-performance-review-ai",
+      "name": "Corporate Performance Review AI",
+      "maturity": "configuration",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P10",
+      "slug": "enterprise-process-intelligence",
+      "name": "Enterprise Process Intelligence",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P11",
+      "slug": "ipsas-compliance-ai",
+      "name": "IPSAS Compliance AI",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P12",
+      "slug": "revenue-reconciliation-ai",
+      "name": "Revenue Reconciliation AI",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P13",
+      "slug": "pfm-business-architecture",
+      "name": "PFM Business Architecture",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P14",
+      "slug": "ai-governance-control-tower",
+      "name": "AI Governance Control Tower",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P15",
+      "slug": "enterprise-architecture-intelligence",
+      "name": "Enterprise Architecture Intelligence",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P16",
+      "slug": "integrated-it-management-ai",
+      "name": "Integrated IT Management AI",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P17",
+      "slug": "pfm-cycle-time-benchmark",
+      "name": "PFM Cycle-Time Benchmark",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    },
+    {
+      "id": "P18",
+      "slug": "pfm-maturity-certification",
+      "name": "PFM Maturity & Certification",
+      "maturity": "product-definition",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false
+    }
+  ]
+}
