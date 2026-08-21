@@ -26,7 +26,7 @@
 | L4 — Governance and compliance | Candidate documented | Approve board/council/design/risk/assurance/CEO authorities, legal obligations, exceptions and ISO alignment |
 | L5 — Security and privacy | Baseline | Implement enterprise IAM/step-up approval, encryption, immutable audit/evidence and complete security/privacy testing |
 | L6 — Architecture and integration | Candidate | Provision databases/registers, workflow/event integrations, P08/product connectors and observability |
-| L7 — Verification and assurance | Eleven local tests passed | Pass CI/container smoke, policy, RBAC, integration, security, performance, accessibility and resilience tests |
+| L7 — Verification and assurance | CI, eleven P14 tests, compile, image build and live risk/incident smoke tests passed | Complete policy, RBAC, integration, security, performance, accessibility and resilience assurance |
 | L8 — Operating model | Template ready | Name governance/operations owners; approve committee procedure, SLA/SLO, RTO/RPO, training and escalation |
 | L9 — Deployment and resilience | Container candidate | Validate target CI/CD, image signing, backup/restore, continuity and rollback exercises |
 | L10 — Go-live authority and value | Not started | Complete UAT, residual-risk acceptance, governance approvals and CEO production authorization |
