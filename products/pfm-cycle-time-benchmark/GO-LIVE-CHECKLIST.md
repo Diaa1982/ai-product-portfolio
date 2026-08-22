@@ -7,7 +7,7 @@
 - [x] Versioned benchmark schema, A–D reliability and comparability controls.
 - [x] Evidence-controlled median/average, gap, confidence and queue engine.
 - [x] Protected-action checks, API/UI, fixture, container and 15 tests.
-- [ ] Record final GitHub Actions run in `docs/GO-LIVE-EVIDENCE.md`.
+- [x] GitHub Portfolio Quality run 32590679622 passed: 202 tests, P17 image build, cited benchmark analysis and protected-action smoke checks.
 
 | Gate | Status | Required before production |
 |---|---|---|
