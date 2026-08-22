@@ -284,3 +284,21 @@ jobs:
             python -c "import json,sys; r=json.load(sys.stdin); assert r['validation_status']=='VALID'; assert r['traceability']['coverage_percent']==100; assert r['migration_readiness']['status']=='READY_FOR_CONTROLLED_POC'; assert len(r['audit_digest'])==64"
           curl --fail --silent --header "Content-Type: application/json" --data '{"action":"migrate production repository"}' http://127.0.0.1:8080/p10/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
+
+
+      - name: Build P13 deployment image
+        run: docker build -f products/pfm-business-architecture/deploy/Dockerfile -t p13-pfm-architecture:ci .
+      - name: Smoke-test P13 value-chain coverage, alignment boundaries and protected actions
+        shell: bash
+        run: |
+          docker run -d --name p13-pfm-architecture-ci -p 8080:8080 p13-pfm-architecture:ci
+          trap 'docker logs p13-pfm-architecture-ci; docker rm -f p13-pfm-architecture-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p13 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" --data @products/pfm-business-architecture/synthetic/complete-pfm-architecture.json http://127.0.0.1:8080/p13/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['assessment_status']=='TRACEABLE_DRAFT'; assert r['coverage']['coverage_percent']==100; assert r['value_chain']['missing_stages']==[]; assert r['alignment']['pefa']['compliance_conclusion'] is False; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" --data '{"action":"approve operating model"}' http://127.0.0.1:8080/p13/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"

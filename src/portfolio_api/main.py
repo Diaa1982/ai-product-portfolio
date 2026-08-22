@@ -18,6 +18,7 @@ from .p05_service_design import ServiceDesignAI, ServiceDesignInput
 from .p06_process_audit import ProcessAuditAI, ProcessAuditInput
 from .p07_partnership import PartnershipInput, PartnershipManagementCopilot
 from .p10_process_intelligence import EnterpriseProcessIntelligence, ProcessPortfolioInput
+from .p13_pfm_business_architecture import PFMBusinessArchitecture, PFMArchitectureInput
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -54,6 +55,8 @@ P07_DASHBOARD_PATH = Path(os.getenv("P07_DASHBOARD_PATH", Path(__file__).parent 
 P07_CONFIG_PATH = Path(os.getenv("P07_CONFIG_PATH", REPO_ROOT / "products" / "partnership-management-copilot" / "config" / "partnership.v1.json"))
 P10_DASHBOARD_PATH = Path(os.getenv("P10_DASHBOARD_PATH", Path(__file__).parent / "static" / "p10.html"))
 P10_CONFIG_PATH = Path(os.getenv("P10_CONFIG_PATH", REPO_ROOT / "products" / "enterprise-process-intelligence" / "config" / "process-intelligence.v1.json"))
+P13_DASHBOARD_PATH = Path(os.getenv("P13_DASHBOARD_PATH", Path(__file__).parent / "static" / "p13.html"))
+P13_CONFIG_PATH = Path(os.getenv("P13_CONFIG_PATH", REPO_ROOT / "products" / "pfm-business-architecture" / "config" / "pfm-architecture.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -70,6 +73,7 @@ p05_service_design = ServiceDesignAI(P05_CONFIG_PATH)
 p06_process_audit = ProcessAuditAI(P06_CONFIG_PATH)
 p07_partnership = PartnershipManagementCopilot(P07_CONFIG_PATH)
 p10_process_intelligence = EnterpriseProcessIntelligence(P10_CONFIG_PATH)
+p13_pfm_architecture = PFMBusinessArchitecture(P13_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -569,6 +573,20 @@ class P10ChangeRequest(BaseModel):
     structural:bool=False; legal:bool=False; cross_unit:bool=False; control:bool=False; metadata_only:bool=False
 class P10ActionRequest(BaseModel): action:str=Field(min_length=3,max_length=200)
 
+class P13AnalysisRequest(BaseModel):
+    assessment_id: str = Field(min_length=3, max_length=100)
+    jurisdiction_profile: str
+    as_of_date: str
+    target_horizon: str
+    public_value_outcomes: list[str]
+    mandates: list[dict[str, Any]]
+    capabilities: list[dict[str, Any]]
+    evidence: list[dict[str, Any]]
+    assumptions: list[str] = Field(default_factory=list)
+
+class P13ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
 
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
@@ -645,6 +663,9 @@ def p07_dashboard() -> FileResponse:
 @app.get("/p10",include_in_schema=False)
 def p10_dashboard()->FileResponse:return FileResponse(P10_DASHBOARD_PATH)
 
+@app.get("/p13", include_in_schema=False)
+def p13_dashboard() -> FileResponse: return FileResponse(P13_DASHBOARD_PATH)
+
 
 @app.get("/health")
 def health() -> dict[str, Any]:
@@ -660,7 +681,19 @@ def health() -> dict[str, Any]:
             "p12_config_version": p12_reconciler.config["config_version"],
             "p05_config_version": p05_service_design.config["config_version"],
             "p06_config_version": p06_process_audit.config["config_version"],
-            "p07_config_version": p07_partnership.config["config_version"],"p10_config_version":p10_process_intelligence.config["config_version"]}
+            "p07_config_version": p07_partnership.config["config_version"],"p10_config_version":p10_process_intelligence.config["config_version"],
+            "p13_config_version": p13_pfm_architecture.config["config_version"]}
+
+@app.get("/p13/config")
+def p13_config() -> dict[str, Any]: return p13_pfm_architecture.config
+
+@app.post("/p13/analyze")
+def p13_analyze(request: P13AnalysisRequest) -> dict[str, Any]:
+    try: return p13_pfm_architecture.analyze(PFMArchitectureInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc: raise as_http_error(exc) from exc
+
+@app.post("/p13/actions/check")
+def p13_check_action(request: P13ActionRequest) -> dict[str, Any]: return p13_pfm_architecture.check_action(request.action)
 
 @app.get("/p10/config")
 def p10_config():return p10_process_intelligence.config

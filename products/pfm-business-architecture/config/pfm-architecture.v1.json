@@ -1,0 +1,28 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P13",
+  "synthetic_data_only": true,
+  "vendor_neutral": true,
+  "principles": ["public_value_first", "process_before_technology", "ai_by_design", "continuous_governance", "service_orientation", "human_accountability", "traceability", "interoperability", "proportionality", "continuous_improvement"],
+  "value_chain": [
+    {"id": "VC01", "name": "Sense future signals and public needs", "mode": "STEER"},
+    {"id": "VC02", "name": "Set fiscal policy and strategy", "mode": "STEER"},
+    {"id": "VC03", "name": "Model scenarios and fiscal outlook", "mode": "STEER"},
+    {"id": "VC04", "name": "Formulate medium-term and annual budgets", "mode": "MANAGE"},
+    {"id": "VC05", "name": "Approve and allocate budget", "mode": "MANAGE"},
+    {"id": "VC06", "name": "Execute and control budget", "mode": "MANAGE"},
+    {"id": "VC07", "name": "Manage treasury, cash and liquidity", "mode": "MANAGE"},
+    {"id": "VC08", "name": "Administer revenue and receivables", "mode": "MANAGE"},
+    {"id": "VC09", "name": "Account, consolidate and report", "mode": "ASSURE"},
+    {"id": "VC10", "name": "Monitor performance, risk and assurance", "mode": "ASSURE"},
+    {"id": "VC11", "name": "Learn, improve and reform", "mode": "ENABLE"}
+  ],
+  "l1_capability_domains": ["fiscal_strategy", "macro_fiscal_analysis", "budget_management", "budget_execution", "revenue_management", "treasury_cash_liquidity", "debt_and_fiscal_risk", "procurement_payables_assets", "public_sector_accounting", "financial_reporting", "performance_management", "risk_control_audit", "service_partner_management", "data_digital_ai", "workforce_and_change"],
+  "architecture_layers": ["business", "information", "data", "application", "integration", "technology", "ai", "security", "operations"],
+  "required_links": ["name", "domain", "owner_role", "mandate_refs", "value_chain_stage", "process_refs", "service_refs", "information_objects", "system_refs", "kpi_refs", "risk_refs", "control_refs", "evidence_refs"],
+  "maturity_scale": {"1": "Initial", "2": "Managed", "3": "Defined", "4": "Measured", "5": "Continuously improved"},
+  "pefa_reference_domains": ["budget_reliability", "transparency", "assets_and_liabilities", "policy_based_strategy_and_budgeting", "predictability_and_control", "accounting_and_reporting", "external_scrutiny_and_audit"],
+  "ipsas_reference_domains": ["recognition", "measurement", "presentation", "disclosure", "consolidation", "cash_to_accrual_transition"],
+  "required_approvals": ["PFM_SPONSOR", "CAPABILITY_OWNER", "ENTERPRISE_ARCHITECTURE_AUTHORITY", "LEGAL_POLICY_OWNER", "RISK_SECURITY_AUTHORITY", "INVESTMENT_AUTHORITY"],
+  "protected_actions": ["approve_operating_model", "approve_capability_owner", "change_legal_mandate", "approve_target_state", "approve_investment", "publish_architecture", "declare_pefa_compliance", "declare_ipsas_compliance", "authorize_production_integration", "approve_go_live"]
+}

@@ -454,7 +454,7 @@
       "id": "P13",
       "slug": "pfm-business-architecture",
       "name": "PFM Business Architecture",
-      "maturity": "product-definition",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -464,11 +464,30 @@
       },
       "documents": {
         "product_readme": "products/pfm-business-architecture/README.md",
-        "go_live_checklist": "products/pfm-business-architecture/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/pfm-business-architecture/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-business-architecture/docs/PRD.md",
+        "architecture": "products/pfm-business-architecture/docs/ARCHITECTURE.md",
+        "pfm_operating_cycle": "products/pfm-business-architecture/docs/PFM-OPERATING-CYCLE.md",
+        "capability_metamodel": "products/pfm-business-architecture/docs/CAPABILITY-METAMODEL.md",
+        "scoring_methodology": "products/pfm-business-architecture/docs/SCORING-METHODOLOGY.md",
+        "roadmap_standard": "products/pfm-business-architecture/docs/ROADMAP-STANDARD.md",
+        "pefa_alignment": "products/pfm-business-architecture/docs/PEFA-ALIGNMENT.md",
+        "ipsas_alignment": "products/pfm-business-architecture/docs/IPSAS-ALIGNMENT.md",
+        "data_model": "products/pfm-business-architecture/docs/DATA-MODEL.md",
+        "api": "products/pfm-business-architecture/docs/API.md",
+        "security_privacy": "products/pfm-business-architecture/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-business-architecture/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-business-architecture/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-business-architecture/docs/TEST-PLAN.md",
+        "uat": "products/pfm-business-architecture/docs/UAT.md",
+        "roadmap": "products/pfm-business-architecture/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-business-architecture/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

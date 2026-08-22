@@ -1,46 +1,23 @@
 # PFM Business Architecture
 
 **Product ID:** P13  
-**Domain:** PFM capabilities, value streams, services and target operating model  
-**Baseline maturity:** Product definition
+**Stage:** Technical deployment candidate  
+**Data policy:** Synthetic only  
+**Production ready:** No
 
-## Public-value proposition
+P13 translates public value, mandates and fiscal strategy into an 11-stage PFM value chain, L1 capabilities, processes, services, information, systems, KPIs, risks, controls and outcomes. It creates an evidence-led capability heatmap and draft transition roadmap without taking statutory, policy, investment or operating-model decisions.
 
-Provide a configurable workbench for mapping the PFM cycle from public value and capabilities through processes, services, data, controls and technology.
+## Executable scope
 
-## Intended users
+- Versioned PFM metamodel with 11 value-chain stages and 15 L1 capability domains.
+- Deterministic traceability, repository-quality and missing-stage validation.
+- Evidence-gated 1–5 maturity, gap analysis and transparent `criticality × gap` priority.
+- Draft three-wave transition roadmap and design-authority decision package.
+- PEFA-informed and IPSAS-oriented reference metadata with no compliance conclusion.
+- FastAPI endpoints, browser workbench, synthetic fixture, 15 focused tests and hardened container.
 
-Finance leaders, reform teams, enterprise architects and development partners.
+Run `python -m unittest tests.test_p13_pfm_business_architecture -v`, start the API and open `/p13`.
 
-## Core capabilities
+Reference labels for GRP, Hyperion, TMS, Bayan, Power BI and ALMAS in synthetic data are patterns—not proof of connectivity. P13 is not a statutory ledger, autonomous approval system, official PEFA assessment or IPSAS certification tool.
 
-- PFM value chain and capability maps
-- Value streams and business services
-- Target operating model and governance
-- Traceability to processes, data, controls and performance
-
-## Human-accountability boundary
-
-The workbench supports reform design; institutional mandates, laws, policies and target operating models require authorized approval.
-
-## Minimum product controls
-
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Encode metamodel and glossary
-- [ ] Build configurable capability map
-- [ ] Add conformance assessment
-- [ ] Create exportable roadmap views
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+See [the checklist](GO-LIVE-CHECKLIST.md), [PRD](docs/PRD.md), [architecture](docs/ARCHITECTURE.md), [operating cycle](docs/PFM-OPERATING-CYCLE.md), [metamodel](docs/CAPABILITY-METAMODEL.md), [scoring](docs/SCORING-METHODOLOGY.md), [API](docs/API.md) and [go-live evidence](docs/GO-LIVE-EVIDENCE.md).

@@ -505,18 +505,25 @@
     },
     {
       "product_id": "P13",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
-        "business_outcome",
-        "capability_name",
-        "current_maturity",
-        "target_maturity"
+        "assessment_id",
+        "jurisdiction_profile",
+        "public_value_outcomes",
+        "mandates",
+        "capabilities",
+        "evidence"
       ],
-      "calculation_profile": "none",
-      "approval_gate": "ARCHITECTURE_APPROVAL",
+      "calculation_profile": "pfm_architecture_v1",
+      "approval_gate": "DESIGN_AUTHORITY_APPROVAL",
       "approval_role": "PFM_ARCHITECTURE_AUTHORITY",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "maturity_min": 1,
+        "maturity_max": 5,
+        "wave_1_priority_min": 12,
+        "wave_2_priority_min": 6
+      }
     },
     {
       "product_id": "P14",
