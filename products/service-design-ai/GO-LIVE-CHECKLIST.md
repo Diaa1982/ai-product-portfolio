@@ -1,51 +1,26 @@
 # Service Design AI — Go-Live Readiness Checklist
 
-**Product ID:** P05  
-**Category:** [Process, Service & Partnership Operations](../../groups/04-process-service-partnership-operations/README.md)  
-**Current stage:** Executable MVP foundation  
+**Current stage:** Technical deployment candidate  
 **Go-live ready:** No
 
-## What already exists in GitHub
+## Technical evidence complete
 
-- Service case workflow and methodology definition.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
+- [x] Versioned institutional classification, journey, lifecycle, methods, 54 deliverables, eight registers and G1–G6 configuration.
+- [x] Executable service-design engine, guided studio, APIs, synthetic case, tests and hardened container.
+- [x] Evidence classifications, missing-input coaching, audit digest and human-only protected actions.
+- [x] Product, architecture, methodology, governance, security, deployment, runbook, test and UAT documentation.
 
-## Product-specific critical blockers
+## Production blockers
 
-- [ ] Interactive assessment.
-- [ ] service classification.
-- [ ] cards/journeys/blueprints.
-- [ ] bilingual UX.
-- [ ] costing and service-owner UAT.
+- [ ] Accountable sponsor and service owner approve scope, lifecycle and decision rights.
+- [ ] Legal/policy owners validate service mandate and institutional classification rules.
+- [ ] Local authorities validate Dubai Services 360 and IDCXS adaptations and ALMAS integration requirements.
+- [ ] Arabic/English content, accessibility and institutional user research pass UAT.
+- [ ] Production sources, data owners, retention, privacy, lineage and evidence controls are approved.
+- [ ] IAM/SSO, integrations, security and privacy assessments, performance, backup, recovery and incident exercises pass.
+- [ ] Service-cost interface is implemented and approved; AI must not calculate or approve service cost.
+- [ ] Pilot services pass owner UAT with service cards, journeys, blueprints and reports.
+- [ ] Operating RACI, support SLA, benefits baseline, monitoring and rollback are approved.
+- [ ] Formal go-live and residual-risk decisions are recorded.
 
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
-|---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
-
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+No checklist item is evidence of government endorsement, Dubai Services 360/IDCXS certification, ALMAS integration or production authorization.

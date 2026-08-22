@@ -1,0 +1,3 @@
+# Security and privacy
+
+The candidate is synthetic-only. Production requires SSO/MFA, role and service-level authorization, segregation of duties, encryption, managed secrets, network controls, field minimization, approved retention/deletion, malware-safe uploads, tamper-evident evidence/decision logs, dependency scanning, threat modelling, penetration testing and incident response. Prompt injection and untrusted-document content must never change classification or gates. Personal data use requires a validated legal basis and privacy assessment; the configured profile does not serve individuals directly.

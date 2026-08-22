@@ -1,0 +1,44 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P05",
+  "profile": "DOF_INSTITUTIONAL_SERVICE_BASELINE",
+  "synthetic_data_only": true,
+  "direct_individual_services_permitted": false,
+  "service_classification_rules": [
+    {"when": "explicit_request=false", "classification": "PUBLIC_BENEFIT"},
+    {"when": "explicit_request=true and customer_type=government_entity", "classification": "G2G"},
+    {"when": "explicit_request=true and customer_type in [private_company,financial_institution]", "classification": "G2B"}
+  ],
+  "journey_stages": ["Awareness & Reach", "Engagement & Access", "Service Delivery", "Post-Service", "Continuous Experience"],
+  "lifecycle_phases": ["identify", "classify", "design", "cost", "launch", "operate", "improve_or_stop"],
+  "evidence_classifications": ["fact", "assumption", "ai_inference", "decision"],
+  "methods": ["three_round_brainstorming", "affinity_mapping", "option_appraisal", "six_thinking_hats", "institutional_stakeholder_profiles", "journey_mapping", "service_blueprinting", "five_whys", "prototype_testing", "raci", "risk_assessment", "roadmap", "benefits_tracking"],
+  "principles": ["digital_first", "proactive", "integrated_services_and_data", "unified_personalized_channels", "efficiency", "customer_centric", "service_consultant", "private_sector_partnership"],
+  "registers": ["service_inventory", "evidence_register", "assumption_register", "decision_register", "stakeholder_register", "risk_control_register", "benefits_register", "approval_register"],
+  "gates": {
+    "G1": {"name": "Identification and classification", "required": ["service_owner_role", "legal_mandate_reference", "objective", "classification_evidence"]},
+    "G2": {"name": "Discovery and evidence", "required": ["beneficiary_groups", "inputs", "outputs", "evidence_references"]},
+    "G3": {"name": "AS-IS service", "required": ["current_state_summary", "journey_complete", "blueprint_complete"]},
+    "G4": {"name": "TO-BE and prototype", "required": ["desired_outcome", "improvement_options", "prototype_test_evidence"]},
+    "G5": {"name": "Launch readiness", "required": ["sla_target", "kpis", "risk_controls", "operating_raci"]},
+    "G6": {"name": "Operate and value", "required": ["benefits_baseline", "monitoring_evidence", "improvement_decision"]}
+  },
+  "deliverables": [
+    "01_service_need_statement", "02_legal_mandate_record", "03_service_inventory_entry", "04_owner_provider_map", "05_beneficiary_definition", "06_identification_report",
+    "07_request_trigger_analysis", "08_classification_decision", "09_public_value_statement", "10_service_boundary", "11_dependency_map", "12_classification_report",
+    "13_evidence_plan", "14_stakeholder_profiles", "15_research_findings", "16_as_is_journey", "17_as_is_blueprint", "18_discovery_report",
+    "19_problem_statements", "20_three_round_brainstorm", "21_affinity_map", "22_option_appraisal", "23_six_hats_review", "24_design_options_report",
+    "25_to_be_journey", "26_to_be_blueprint", "27_service_card", "28_channel_design", "29_data_reuse_design", "30_design_report",
+    "31_five_whys_analysis", "32_prototype_plan", "33_test_script", "34_test_evidence", "35_iteration_decision", "36_prototype_report",
+    "37_costing_input_pack", "38_almas_alignment_record", "39_resource_model", "40_sla_kpi_definition", "41_benefits_baseline", "42_cost_value_report",
+    "43_operating_raci", "44_risk_control_register", "45_launch_readiness_pack", "46_service_guide", "47_training_support_plan", "48_launch_report",
+    "49_monitoring_dashboard_spec", "50_feedback_register", "51_benefits_review", "52_improvement_backlog", "53_stop_continue_decision", "54_end_to_end_service_report"
+  ],
+  "alignment_assumptions": {
+    "dubai_services_360": "Methodology alignment input requiring local validation; not a certification claim.",
+    "idcxs": "Experience alignment input requiring local validation; not an assessment or certification claim.",
+    "almas": "Costing-system integration assumption requiring owner validation; the product does not calculate or approve service cost.",
+    "apqc": "Optional contextual mapping; the enterprise process architecture remains authoritative."
+  },
+  "protected_actions": ["approve_service_classification", "approve_service_design", "approve_service_cost", "approve_sla", "launch_service", "stop_service", "publish_service_guide", "certify_dubai_services_360", "certify_idcxs", "approve_gate"]
+}

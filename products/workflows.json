@@ -139,7 +139,7 @@
     },
     {
       "product_id": "P05",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
         "service_name",
@@ -150,7 +150,55 @@
       "approval_gate": "SERVICE_DESIGN_APPROVAL",
       "approval_role": "SERVICE_OWNER",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {},
+      "service_design_required_inputs": [
+        "case_id",
+        "service_id",
+        "service_name",
+        "explicit_request",
+        "customer_type",
+        "service_owner_role",
+        "legal_mandate_reference",
+        "evidence_references",
+        "objective",
+        "beneficiary_groups",
+        "inputs",
+        "outputs",
+        "stages",
+        "evidence_items",
+        "selected_methods",
+        "gate"
+      ],
+      "service_design_profile": "dof_institutional_service_methodology",
+      "service_design_classifications": [
+        "PUBLIC_BENEFIT",
+        "G2G",
+        "G2B"
+      ],
+      "service_design_journey_stages": [
+        "Awareness & Reach",
+        "Engagement & Access",
+        "Service Delivery",
+        "Post-Service",
+        "Continuous Experience"
+      ],
+      "service_design_evidence_classifications": [
+        "fact",
+        "assumption",
+        "ai_inference",
+        "decision"
+      ],
+      "service_design_deliverable_count": 54,
+      "service_design_register_count": 8,
+      "service_design_gates": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6"
+      ],
+      "service_design_protected_actions": true
     },
     {
       "product_id": "P06",

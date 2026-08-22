@@ -14,6 +14,7 @@ from .p11_ipsas_compliance import IPSASComplianceReviewer, IPSASReviewInput
 from .p12_revenue_reconciliation import RevenueReconciler, RevenueReconciliationInput
 from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
+from .p05_service_design import ServiceDesignAI, ServiceDesignInput
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -42,6 +43,8 @@ P11_DASHBOARD_PATH = Path(os.getenv("P11_DASHBOARD_PATH", Path(__file__).parent 
 P11_CONFIG_PATH = Path(os.getenv("P11_CONFIG_PATH", REPO_ROOT / "products" / "ipsas-compliance-ai" / "config" / "ipsas-review.v1.json"))
 P12_DASHBOARD_PATH = Path(os.getenv("P12_DASHBOARD_PATH", Path(__file__).parent / "static" / "p12.html"))
 P12_CONFIG_PATH = Path(os.getenv("P12_CONFIG_PATH", REPO_ROOT / "products" / "revenue-reconciliation-ai" / "config" / "reconciliation.v1.json"))
+P05_DASHBOARD_PATH = Path(os.getenv("P05_DASHBOARD_PATH", Path(__file__).parent / "static" / "p05.html"))
+P05_CONFIG_PATH = Path(os.getenv("P05_CONFIG_PATH", REPO_ROOT / "products" / "service-design-ai" / "config" / "service-design.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -54,6 +57,7 @@ p01_orchestrator = PFMAgenticOrchestrator(P01_CONFIG_PATH)
 p02_brain = PFMBrain(P02_CONFIG_PATH)
 p11_reviewer = IPSASComplianceReviewer(P11_CONFIG_PATH)
 p12_reconciler = RevenueReconciler(P12_CONFIG_PATH)
+p05_service_design = ServiceDesignAI(P05_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -410,6 +414,51 @@ class P12ActionRequest(BaseModel):
     action: str = Field(min_length=3, max_length=200)
 
 
+class P05DesignRequest(BaseModel):
+    case_id: str = Field(min_length=3, max_length=100)
+    service_id: str
+    service_name: str
+    explicit_request: bool
+    customer_type: str
+    direct_individual_service: bool = False
+    service_owner_role: str
+    provider_roles: list[str]
+    beneficiary_groups: list[str]
+    legal_mandate_reference: str
+    evidence_references: list[str]
+    trigger: str
+    objective: str
+    channels: list[str]
+    inputs: list[str]
+    outputs: list[str]
+    dependencies: list[str]
+    escalation_path: str
+    process_id: str
+    sla_target: str
+    kpis: list[str]
+    stages: list[dict[str, Any]]
+    proactive_trigger: str
+    data_reuse: str
+    inclusivity_considerations: list[str]
+    current_state_summary: str
+    desired_outcome: str
+    evidence_items: list[dict[str, str]]
+    selected_methods: list[str]
+    gate: str = "G1"
+    human_approval_reference: str | None = None
+    improvement_options: list[str] = Field(default_factory=list)
+    prototype_test_evidence: list[str] = Field(default_factory=list)
+    risk_controls: list[str] = Field(default_factory=list)
+    operating_raci: dict[str, str] = Field(default_factory=dict)
+    benefits_baseline: list[str] = Field(default_factory=list)
+    monitoring_evidence: list[str] = Field(default_factory=list)
+    improvement_decision: str = ""
+
+
+class P05ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -468,6 +517,11 @@ def p12_dashboard() -> FileResponse:
     return FileResponse(P12_DASHBOARD_PATH)
 
 
+@app.get("/p05", include_in_schema=False)
+def p05_dashboard() -> FileResponse:
+    return FileResponse(P05_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
@@ -479,7 +533,26 @@ def health() -> dict[str, Any]:
             "p01_config_version": p01_orchestrator.config["config_version"],
             "p02_config_version": p02_brain.config["config_version"],
             "p11_config_version": p11_reviewer.config["config_version"],
-            "p12_config_version": p12_reconciler.config["config_version"]}
+            "p12_config_version": p12_reconciler.config["config_version"],
+            "p05_config_version": p05_service_design.config["config_version"]}
+
+
+@app.get("/p05/config")
+def p05_config() -> dict[str, Any]:
+    return p05_service_design.config
+
+
+@app.post("/p05/design")
+def p05_design(request: P05DesignRequest) -> dict[str, Any]:
+    try:
+        return p05_service_design.design(ServiceDesignInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p05/actions/check")
+def p05_check_action(request: P05ActionRequest) -> dict[str, Any]:
+    return p05_service_design.check_action(request.action)
 
 
 @app.get("/p12/config")

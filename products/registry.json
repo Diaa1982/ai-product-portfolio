@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "updated_at": "2026-08-21",
+  "updated_at": "2026-08-22",
   "products": [
     {
       "id": "P01",
@@ -148,7 +148,7 @@
       "id": "P05",
       "slug": "service-design-ai",
       "name": "Service Design AI",
-      "maturity": "concept",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -158,11 +158,33 @@
       },
       "documents": {
         "product_readme": "products/service-design-ai/README.md",
-        "go_live_checklist": "products/service-design-ai/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/service-design-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/service-design-ai/docs/PRD.md",
+        "architecture": "products/service-design-ai/docs/ARCHITECTURE.md",
+        "methodology": "products/service-design-ai/docs/SERVICE-DESIGN-METHODOLOGY.md",
+        "classification_standard": "products/service-design-ai/docs/CLASSIFICATION-STANDARD.md",
+        "service_card_standard": "products/service-design-ai/docs/SERVICE-CARD-STANDARD.md",
+        "journey_mapping_standard": "products/service-design-ai/docs/JOURNEY-MAPPING-STANDARD.md",
+        "service_blueprint_standard": "products/service-design-ai/docs/SERVICE-BLUEPRINT-STANDARD.md",
+        "methodology_tools": "products/service-design-ai/docs/METHODOLOGY-TOOLS.md",
+        "evidence_reporting": "products/service-design-ai/docs/EVIDENCE-AND-REPORTING-STANDARD.md",
+        "gates_governance": "products/service-design-ai/docs/GATES-AND-GOVERNANCE.md",
+        "dubai_service_alignment": "products/service-design-ai/docs/DUBAI-SERVICE-ALIGNMENT.md",
+        "data_model": "products/service-design-ai/docs/DATA-MODEL.md",
+        "api": "products/service-design-ai/docs/API.md",
+        "security_privacy": "products/service-design-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/service-design-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/service-design-ai/docs/RUNBOOK.md",
+        "test_plan": "products/service-design-ai/docs/TEST-PLAN.md",
+        "uat": "products/service-design-ai/docs/UAT.md",
+        "roadmap": "products/service-design-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/service-design-ai/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

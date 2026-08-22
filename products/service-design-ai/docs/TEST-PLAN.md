@@ -1,0 +1,3 @@
+# Test plan
+
+Run `python -m unittest discover -s tests -v` and `python -m compileall -q src tests`. P05 focused tests cover 54/8/6 control counts, all classification paths, direct-individual rejection, missing-input coaching, five-stage completeness, evidence-label preservation, three-round brainstorming, all six hats, service card/journey/blueprint, gate ready/blocked states, protected actions and audit/report limitations. CI must also build and smoke-test the P05 container. Production assurance adds security, privacy, accessibility, bilingual, integration, load, resilience, recovery and independent methodology tests.
