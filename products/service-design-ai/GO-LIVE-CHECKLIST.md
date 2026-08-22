@@ -9,6 +9,7 @@
 - [x] Executable service-design engine, guided studio, APIs, synthetic case, tests and hardened container.
 - [x] Evidence classifications, missing-input coaching, audit digest and human-only protected actions.
 - [x] Product, architecture, methodology, governance, security, deployment, runbook, test and UAT documentation.
+- [x] GitHub Portfolio Quality run 32547746891: 127 tests plus P05 image build and API/control smoke checks passed.
 
 ## Production blockers
 
