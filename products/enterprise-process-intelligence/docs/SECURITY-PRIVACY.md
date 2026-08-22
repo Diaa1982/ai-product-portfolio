@@ -1,0 +1,2 @@
+# Security and privacy
+Production requires approved residency/cloud, SSO/MFA/RBAC/PAM/SoD, encryption and key management, tamper-evident audit/SIEM, data minimization/retention, secrets management, secure imports, prompt-injection isolation, DR/RTO/RPO, export/exit rights, SBOM/secure SDLC, vulnerability/penetration testing and no unresolved critical findings. Repository models and EA links may be sensitive and use need-to-know access.

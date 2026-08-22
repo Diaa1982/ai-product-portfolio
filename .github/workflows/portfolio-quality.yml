@@ -267,3 +267,20 @@ jobs:
             --data '{"action":"terminate agreement"}' \
             http://127.0.0.1:8080/p07/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
+
+      - name: Build P10 deployment image
+        run: docker build -f products/enterprise-process-intelligence/deploy/Dockerfile -t p10-process-intelligence:ci .
+      - name: Smoke-test P10 hierarchy, traceability, migration and protected actions
+        shell: bash
+        run: |
+          docker run -d --name p10-process-intelligence-ci -p 8080:8080 p10-process-intelligence:ci
+          trap 'docker logs p10-process-intelligence-ci; docker rm -f p10-process-intelligence-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p10 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" --data @products/enterprise-process-intelligence/synthetic/complete-process-portfolio.json http://127.0.0.1:8080/p10/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['validation_status']=='VALID'; assert r['traceability']['coverage_percent']==100; assert r['migration_readiness']['status']=='READY_FOR_CONTROLLED_POC'; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" --data '{"action":"migrate production repository"}' http://127.0.0.1:8080/p10/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"

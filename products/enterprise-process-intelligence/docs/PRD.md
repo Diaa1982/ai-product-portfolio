@@ -1,0 +1,2 @@
+# Product requirements
+P10 provides governed intelligence over all strategic, administrative, operational and support processes. It shall validate hierarchy, notation, ownership, versioning, review, enterprise links, maturity evidence, change routes and migration readiness; produce exception and improvement reports; and preserve human governance decisions. It is vendor-neutral and must not encode an ARIS/BIC procurement conclusion.

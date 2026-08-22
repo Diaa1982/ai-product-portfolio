@@ -1,0 +1,2 @@
+# Test plan
+Run `python -m unittest discover -s tests -v` and compileall. P10 tests cover hierarchy, notation, duplicate IDs/GUIDs, orphans, traceability, annual/triggered review, maturity evidence, migration gates, change routes and protected actions. CI builds and smoke-tests the P10 image. Production adds repository-volume, conversion accuracy, EA-link, security/privacy, accessibility, integration, resilience and recovery tests.

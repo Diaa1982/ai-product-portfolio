@@ -1,0 +1,2 @@
+# UAT
+Process owners, designers, division managers, control units, Strategy/process governance and architecture/security users validate representative L1–L5 hierarchies, VAC/BPMN/FAD semantics, links, exceptions, reviews, change routes, maturity and migration packs. If migration is considered, prove model and EA-link completeness through a controlled POC. Acceptance requires signed defects, residual risks and deployment recommendation.

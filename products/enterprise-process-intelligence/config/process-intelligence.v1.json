@@ -1,0 +1,12 @@
+{
+  "config_version":"1.0.0","product_id":"P10","synthetic_data_only":true,"vendor_neutral":true,
+  "hierarchy":{"L1":"Category","L2":"Group","L3":"Process","L4":"Activity","L5":"Task"},
+  "notation":{"L1":["VAC"],"L2":["VAC"],"L3":["BPMN_2_0"],"L4":["BPMN_2_0"],"L5":["BPMN_2_0"]},
+  "lifecycle":["define","analyze","model_document","execute","measure_monitor","improve"],
+  "required_links":["owner_role","parent_id","objective","trigger","outputs","policies","services","systems","kpis","risks","controls"],
+  "maturity_scale":{"1":"Initial","2":"Managed","3":"Standardized","4":"Measured","5":"Optimized"},
+  "review_rules":{"annual_required":true,"triggers":["audit","assessment","management_direction","performance_trend","risk_event","legal_change","technology_change","service_change"]},
+  "change_routes":{"minor":["DIVISION_CHAMPION","PROCESS_OWNER","PROCESS_GOVERNANCE_TEAM"],"moderate":["DIVISION_CHAMPION","PROCESS_OWNER","DIVISION_MANAGER","PROCESS_GOVERNANCE_TEAM"],"major":["DIVISION_CHAMPION","PROCESS_OWNER","DIVISION_MANAGER","CONTROL_UNITS","SME","STRATEGY_DIRECTOR","PROCESS_GOVERNANCE_BOARD"]},
+  "migration_controls":["security_clearance","complete_export","guid_preservation","hierarchy_preservation","model_conversion_poc","ea_link_preservation","workflow_validation","attachment_export","audit_history_export","identity_rbac","uae_approved_residency","encryption_keys","siem_logs","dr_rto_rpo","exit_rights","sbom_secure_sdlc","no_critical_findings"],
+  "protected_actions":["approve_process","publish_process","approve_major_change","delete_process","migrate_production_repository","approve_vendor","sign_contract","declare_iso_9001_compliance","declare_dgep_compliance"]
+}

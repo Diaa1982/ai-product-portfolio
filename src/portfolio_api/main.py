@@ -17,6 +17,7 @@ from .p04_detector import DetectionInput, SignalDetector
 from .p05_service_design import ServiceDesignAI, ServiceDesignInput
 from .p06_process_audit import ProcessAuditAI, ProcessAuditInput
 from .p07_partnership import PartnershipInput, PartnershipManagementCopilot
+from .p10_process_intelligence import EnterpriseProcessIntelligence, ProcessPortfolioInput
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -51,6 +52,8 @@ P06_DASHBOARD_PATH = Path(os.getenv("P06_DASHBOARD_PATH", Path(__file__).parent 
 P06_CONFIG_PATH = Path(os.getenv("P06_CONFIG_PATH", REPO_ROOT / "products" / "process-audit-ai" / "config" / "process-audit.v1.json"))
 P07_DASHBOARD_PATH = Path(os.getenv("P07_DASHBOARD_PATH", Path(__file__).parent / "static" / "p07.html"))
 P07_CONFIG_PATH = Path(os.getenv("P07_CONFIG_PATH", REPO_ROOT / "products" / "partnership-management-copilot" / "config" / "partnership.v1.json"))
+P10_DASHBOARD_PATH = Path(os.getenv("P10_DASHBOARD_PATH", Path(__file__).parent / "static" / "p10.html"))
+P10_CONFIG_PATH = Path(os.getenv("P10_CONFIG_PATH", REPO_ROOT / "products" / "enterprise-process-intelligence" / "config" / "process-intelligence.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -66,6 +69,7 @@ p12_reconciler = RevenueReconciler(P12_CONFIG_PATH)
 p05_service_design = ServiceDesignAI(P05_CONFIG_PATH)
 p06_process_audit = ProcessAuditAI(P06_CONFIG_PATH)
 p07_partnership = PartnershipManagementCopilot(P07_CONFIG_PATH)
+p10_process_intelligence = EnterpriseProcessIntelligence(P10_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -558,6 +562,13 @@ class P07ChangeReviewRequest(BaseModel):
 class P07ActionRequest(BaseModel):
     action: str = Field(min_length=3, max_length=200)
 
+class P10AnalysisRequest(BaseModel):
+    assessment_id:str; as_of_date:str; repository_name:str; repository_version:str
+    processes:list[dict[str,Any]]; maturity_evidence:list[dict[str,Any]]; migration_evidence:dict[str,str]
+class P10ChangeRequest(BaseModel):
+    structural:bool=False; legal:bool=False; cross_unit:bool=False; control:bool=False; metadata_only:bool=False
+class P10ActionRequest(BaseModel): action:str=Field(min_length=3,max_length=200)
+
 
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
@@ -631,6 +642,9 @@ def p06_dashboard() -> FileResponse:
 def p07_dashboard() -> FileResponse:
     return FileResponse(P07_DASHBOARD_PATH)
 
+@app.get("/p10",include_in_schema=False)
+def p10_dashboard()->FileResponse:return FileResponse(P10_DASHBOARD_PATH)
+
 
 @app.get("/health")
 def health() -> dict[str, Any]:
@@ -646,7 +660,18 @@ def health() -> dict[str, Any]:
             "p12_config_version": p12_reconciler.config["config_version"],
             "p05_config_version": p05_service_design.config["config_version"],
             "p06_config_version": p06_process_audit.config["config_version"],
-            "p07_config_version": p07_partnership.config["config_version"]}
+            "p07_config_version": p07_partnership.config["config_version"],"p10_config_version":p10_process_intelligence.config["config_version"]}
+
+@app.get("/p10/config")
+def p10_config():return p10_process_intelligence.config
+@app.post("/p10/analyze")
+def p10_analyze(request:P10AnalysisRequest):
+    try:return p10_process_intelligence.analyze(ProcessPortfolioInput(**request.model_dump())).to_dict()
+    except (ValueError,PermissionError,KeyError) as exc:raise as_http_error(exc) from exc
+@app.post("/p10/changes/classify")
+def p10_change(request:P10ChangeRequest):return p10_process_intelligence.classify_change(**request.model_dump())
+@app.post("/p10/actions/check")
+def p10_action(request:P10ActionRequest):return p10_process_intelligence.check_action(request.action)
 
 
 @app.get("/p07/config")

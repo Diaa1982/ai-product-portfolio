@@ -1,46 +1,7 @@
 # Enterprise Process Intelligence
-
 **Product ID:** P10  
-**Domain:** Enterprise process governance, analysis and improvement  
-**Baseline maturity:** Product definition
+**Maturity:** Technical deployment candidate; vendor-neutral; not production-live
 
-## Public-value proposition
+P10 validates and analyzes the enterprise process repository across the five-level architecture L1 Category → L2 Group → L3 Process → L4 Activity → L5 Task. It enforces VAC at L1–L2, BPMN 2.0 at L3–L5, Process_ID/GUID uniqueness, ownership, hierarchy, version/review governance and links to objectives, triggers, outputs, policies, services, systems, KPIs, risks and controls.
 
-Provide a vendor-neutral operating layer for process architecture, ownership, modelling, performance, controls, audit and continuous improvement.
-
-## Intended users
-
-Process governance, process owners, designers, quality and transformation teams.
-
-## Core capabilities
-
-- Process hierarchy and repository model
-- Change, approval and publication workflow
-- Performance, risk and control linkage
-- Mining, conformance and improvement insights
-
-## Human-accountability boundary
-
-The product does not publish official processes or change ownership and controls without delegated approval.
-
-## Minimum product controls
-
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Define vendor-neutral process metamodel
-- [ ] Implement lifecycle workflow
-- [ ] Add process audit integration
-- [ ] Create synthetic process repository
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+Implemented capabilities include repository quality, orphan/duplicate/notation exceptions, traceability coverage, annual/triggered review, evidence-based five-level maturity, minor/moderate/major change routing, controlled migration readiness, `/p10` studio/API, 15 tests, synthetic portfolio and hardened container. AI cannot approve/publish/delete processes, approve major changes, migrate production, select vendors, sign contracts or declare ISO/DGEP compliance.

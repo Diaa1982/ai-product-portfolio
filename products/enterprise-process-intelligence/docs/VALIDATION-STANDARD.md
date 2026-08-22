@@ -1,0 +1,2 @@
+# Validation standard
+Checks cover duplicate Process_ID/GUID, invalid levels, missing ownership/status/version, orphan or invalid parent, notation mismatch, inactive/orphan records and missing objective/trigger/output/policy/service/system/KPI/risk/control links. Annual review is mandatory and audit, assessment, direction, trend, risk, legal, technology and service changes trigger additional review. Exceptions remain open until evidenced human correction/publication.

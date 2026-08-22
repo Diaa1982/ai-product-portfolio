@@ -1,0 +1,2 @@
+# Maturity and analytics
+The evidence scale is 1 Initial, 2 Managed, 3 Standardized, 4 Measured, 5 Optimized. Scores without evidence are excluded. Analytics cover hierarchy counts, repository quality, ownership, traceability, review currency, handoffs, control/risk/KPI links, application/data dependencies, automation candidates and improvement backlog. The tool provides management intelligence, not a formal maturity certification.

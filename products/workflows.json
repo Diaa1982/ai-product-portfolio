@@ -379,7 +379,7 @@
     },
     {
       "product_id": "P10",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
         "process_name",
@@ -390,7 +390,32 @@
       "approval_gate": "PROCESS_PUBLICATION",
       "approval_role": "PROCESS_GOVERNANCE_AUTHORITY",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {},
+      "process_intelligence_required_inputs": [
+        "assessment_id",
+        "repository_name",
+        "repository_version",
+        "processes",
+        "maturity_evidence",
+        "migration_evidence"
+      ],
+      "hierarchy": [
+        "L1_CATEGORY",
+        "L2_GROUP",
+        "L3_PROCESS",
+        "L4_ACTIVITY",
+        "L5_TASK"
+      ],
+      "notation_profile": "VAC_L1_L2_BPMN_L3_L5_FAD_LINKS",
+      "process_intelligence_profile": "vendor_neutral_repository_graph",
+      "review_profile": "annual_and_triggered",
+      "change_routes": [
+        "minor",
+        "moderate",
+        "major"
+      ],
+      "migration_control_count": 17,
+      "protected_actions": true
     },
     {
       "product_id": "P11",
