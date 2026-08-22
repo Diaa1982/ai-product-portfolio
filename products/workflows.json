@@ -237,7 +237,7 @@
     },
     {
       "product_id": "P11",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
         "accounting_issue",
@@ -248,7 +248,33 @@
       "approval_gate": "ACCOUNTING_REVIEW",
       "approval_role": "AUTHORIZED_ACCOUNTING_AUTHORITY",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {},
+      "ipsas_review_types": [
+        "journal_quality",
+        "reconciliation",
+        "disclosure_checklist"
+      ],
+      "ipsas_required_inputs": [
+        "entity",
+        "reporting_period",
+        "source_system",
+        "evidence_references",
+        "approved_policy_reference",
+        "requirement_reference",
+        "confidence",
+        "materiality",
+        "review_type_payload"
+      ],
+      "ipsas_control_profile": "accounting_quality_exception_review",
+      "ipsas_human_gate": "ACCOUNTING_MANAGER_OR_EQUIVALENT",
+      "ipsas_thresholds": {
+        "balance_tolerance": 0.01,
+        "reconciliation_tolerance": 0.01,
+        "aging_days": 30,
+        "minimum_confidence": 0.7
+      },
+      "formal_compliance_determination_allowed": false,
+      "protected_autonomous_actions": true
     },
     {
       "product_id": "P12",

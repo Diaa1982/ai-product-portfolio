@@ -162,3 +162,24 @@ jobs:
             --data @products/pfm-brain/synthetic/dataset-readiness.json \
             http://127.0.0.1:8080/p02/dataset/readiness |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['ready_for_analysis'] is True; assert r['sequence_valid'] is True"
+
+      - name: Build P11 deployment image
+        run: docker build -f products/ipsas-compliance-ai/deploy/Dockerfile -t p11-ipsas-review:ci .
+      - name: Smoke-test P11 accounting review and protected actions
+        shell: bash
+        run: |
+          docker run -d --name p11-ipsas-review-ci -p 8080:8080 p11-ipsas-review:ci
+          trap 'docker logs p11-ipsas-review-ci; docker rm -f p11-ipsas-review-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p11 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ipsas-compliance-ai/synthetic/clean-journal-review.json \
+            http://127.0.0.1:8080/p11/review |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['review_status']=='REVIEW_READY'; assert r['calculations']['debit_credit_difference']==0; assert r['exceptions']==[]; assert 'formal compliance determination not performed' in r['compliance_conclusion']"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data '{"action":"publish financial statements"}' \
+            http://127.0.0.1:8080/p11/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['decision']=='DENY_AUTONOMOUS_EXECUTION'; assert r['human_authority_required'] is True"

@@ -298,7 +298,7 @@
       "id": "P11",
       "slug": "ipsas-compliance-ai",
       "name": "IPSAS Compliance AI",
-      "maturity": "product-definition",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -308,11 +308,26 @@
       },
       "documents": {
         "product_readme": "products/ipsas-compliance-ai/README.md",
-        "go_live_checklist": "products/ipsas-compliance-ai/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/ipsas-compliance-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/ipsas-compliance-ai/docs/PRD.md",
+        "architecture": "products/ipsas-compliance-ai/docs/ARCHITECTURE.md",
+        "accounting_review_methodology": "products/ipsas-compliance-ai/docs/ACCOUNTING-REVIEW-METHODOLOGY.md",
+        "controlled_knowledge_standard": "products/ipsas-compliance-ai/docs/CONTROLLED-KNOWLEDGE-STANDARD.md",
+        "review_controls": "products/ipsas-compliance-ai/docs/REVIEW-CONTROLS.md",
+        "control_risk_governance_matrix": "products/ipsas-compliance-ai/docs/CONTROL-RISK-GOVERNANCE-MATRIX.md",
+        "security_privacy": "products/ipsas-compliance-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/ipsas-compliance-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/ipsas-compliance-ai/docs/RUNBOOK.md",
+        "test_plan": "products/ipsas-compliance-ai/docs/TEST-PLAN.md",
+        "uat": "products/ipsas-compliance-ai/docs/UAT.md",
+        "roadmap": "products/ipsas-compliance-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/ipsas-compliance-ai/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

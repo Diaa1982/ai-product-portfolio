@@ -10,6 +10,7 @@ from pydantic import BaseModel, Field
 from .engine import JsonCaseStore, PortfolioEngine
 from .p01_pfm_agentic import PFMCaseInput, PFMAgenticOrchestrator
 from .p02_pfm_brain import FiscalSnapshotInput, PFMBrain
+from .p11_ipsas_compliance import IPSASComplianceReviewer, IPSASReviewInput
 from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
 from .p08_assessor import AssessmentInput, UseCaseAssessor
@@ -36,6 +37,8 @@ P01_DASHBOARD_PATH = Path(os.getenv("P01_DASHBOARD_PATH", Path(__file__).parent 
 P01_CONFIG_PATH = Path(os.getenv("P01_CONFIG_PATH", REPO_ROOT / "products" / "pfm-agentic-ai" / "config" / "pfm-agents.v1.json"))
 P02_DASHBOARD_PATH = Path(os.getenv("P02_DASHBOARD_PATH", Path(__file__).parent / "static" / "p02.html"))
 P02_CONFIG_PATH = Path(os.getenv("P02_CONFIG_PATH", REPO_ROOT / "products" / "pfm-brain" / "config" / "pfm-brain.v1.json"))
+P11_DASHBOARD_PATH = Path(os.getenv("P11_DASHBOARD_PATH", Path(__file__).parent / "static" / "p11.html"))
+P11_CONFIG_PATH = Path(os.getenv("P11_CONFIG_PATH", REPO_ROOT / "products" / "ipsas-compliance-ai" / "config" / "ipsas-review.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -46,6 +49,7 @@ p14_control_tower = AIGovernanceControlTower(P14_CONFIG_PATH)
 p09_performance = CorporatePerformanceReview(P09_CONFIG_PATH)
 p01_orchestrator = PFMAgenticOrchestrator(P01_CONFIG_PATH)
 p02_brain = PFMBrain(P02_CONFIG_PATH)
+p11_reviewer = IPSASComplianceReviewer(P11_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -327,6 +331,44 @@ class P02DatasetReadinessRequest(BaseModel):
     loaded_domains: list[str]
 
 
+class P11ReviewRequest(BaseModel):
+    case_id: str = Field(min_length=3, max_length=100)
+    review_type: str
+    reporting_period: str
+    entity_id: str
+    source_system: str
+    evidence_references: list[str]
+    applicable_policy_reference: str
+    requirement_reference: str
+    assumptions: list[str] = Field(default_factory=list)
+    confidence_score: float = Field(ge=0, le=1)
+    materiality_threshold: float = Field(ge=0)
+    reporting_impact: bool = False
+    human_approval_reference: str | None = None
+    journal_id: str | None = None
+    debit_total: float | None = None
+    credit_total: float | None = None
+    entry_date: str | None = None
+    period_start: str | None = None
+    period_end: str | None = None
+    account_code_valid: bool | None = None
+    supporting_document_present: bool | None = None
+    approval_status: str | None = None
+    preparer_role: str | None = None
+    approver_role: str | None = None
+    ledger_balance: float | None = None
+    external_balance: float | None = None
+    unreconciled_items: list[dict[str, Any]] = Field(default_factory=list)
+    disclosure_items: list[dict[str, Any]] = Field(default_factory=list)
+    comparative_current: str | None = None
+    comparative_prior: str | None = None
+    comparative_required: bool = False
+
+
+class P11ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -375,6 +417,11 @@ def p02_dashboard() -> FileResponse:
     return FileResponse(P02_DASHBOARD_PATH)
 
 
+@app.get("/p11", include_in_schema=False)
+def p11_dashboard() -> FileResponse:
+    return FileResponse(P11_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
@@ -384,7 +431,26 @@ def health() -> dict[str, Any]:
             "p14_config_version": p14_control_tower.config["config_version"],
             "p09_config_version": p09_performance.config["config_version"],
             "p01_config_version": p01_orchestrator.config["config_version"],
-            "p02_config_version": p02_brain.config["config_version"]}
+            "p02_config_version": p02_brain.config["config_version"],
+            "p11_config_version": p11_reviewer.config["config_version"]}
+
+
+@app.get("/p11/config")
+def p11_config() -> dict[str, Any]:
+    return p11_reviewer.config
+
+
+@app.post("/p11/review")
+def p11_review(request: P11ReviewRequest) -> dict[str, Any]:
+    try:
+        return p11_reviewer.review(IPSASReviewInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p11/actions/check")
+def p11_check_action(request: P11ActionRequest) -> dict[str, Any]:
+    return p11_reviewer.check_action(request.action)
 
 
 @app.get("/p02/config")
