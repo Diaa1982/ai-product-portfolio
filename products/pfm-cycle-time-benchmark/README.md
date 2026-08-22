@@ -1,46 +1,20 @@
 # PFM Cycle-Time Benchmark
 
-**Product ID:** P17  
-**Domain:** PFM operating efficiency and process performance  
-**Baseline maturity:** Product definition
+**Product ID:** P17 · **Stage:** Technical deployment candidate · **Data:** Synthetic only · **Production ready:** No
 
-## Public-value proposition
+P17 compares PFM and shared-service process cycle times only when the source, boundary, unit, scope and match are traceable. It distinguishes observed averages/medians, target SLAs, statutory deadlines, PFM performance thresholds, best-practice references and expert estimates.
 
-Compare process cycle times using transparent benchmark types appropriate to governance-heavy, period-end and high-volume transactional processes.
+## Executable scope
 
-## Intended users
+- A–D reliability, exact/nearest/proxy/no-data match and source-license metadata.
+- Median/average, gap, threshold interpretation, comparability and confidence calculation.
+- Citation enforcement: missing/unknown sources suppress benchmark values.
+- Sequential-sum, critical-path and volume-weighted aggregation controls.
+- Unbenchmarked queue, source QA, methodology QA and draft target package.
+- API/UI, synthetic fixture, 15 focused tests and hardened container.
 
-PFM reform, process excellence, finance operations and performance teams.
+Run `python -m unittest tests.test_p17_cycle_time_benchmark -v`, start the API and open `/p17`.
 
-## Core capabilities
+Benchmarks are diagnostic references. Practitioner ranges are not official tables; PEFA thresholds are not transaction benchmarks unless explicitly defined as such. Owners validate targets against law, controls, risk, complexity and criticality.
 
-- Process-type classification
-- Direct, derived and expert-estimated ranges
-- Evidence-confidence rating
-- Gap analysis and improvement scenarios
-
-## Human-accountability boundary
-
-Benchmarks are diagnostic references and do not establish mandatory service levels or staffing decisions without contextual validation.
-
-## Minimum product controls
-
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Encode benchmark schema
-- [ ] Create synthetic benchmark library
-- [ ] Implement confidence and comparability scoring
-- [ ] Build scenario dashboard
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+See the [checklist](GO-LIVE-CHECKLIST.md), [methodology](docs/BENCHMARK-METHODOLOGY.md), [comparability rules](docs/COMPARABILITY-STANDARD.md), [source standard](docs/SOURCE-AND-LICENSING-STANDARD.md), [scoring](docs/SCORING-METHODOLOGY.md), [API](docs/API.md) and [evidence](docs/GO-LIVE-EVIDENCE.md).

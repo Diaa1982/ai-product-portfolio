@@ -1,6 +1,6 @@
 # PFM Architecture, Benchmarking & Maturity
 
-PFM operating architecture, performance benchmarking, institutional maturity and reform assurance.\n\n**Status:** 1 of 3 products is a technical deployment candidate (P13); P17 and P18 remain product definitions.
+PFM operating architecture, performance benchmarking, institutional maturity and reform assurance.\n\n**Status:** 2 of 3 products are technical deployment candidates (P13 and P17); P18 remains a product definition.
 
 | ID | Project | Product document | Go-live checklist |
 |---|---|---|---|

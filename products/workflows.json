@@ -580,18 +580,22 @@
     },
     {
       "product_id": "P17",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
-        "business_outcome",
-        "process_name",
-        "process_type",
-        "observed_cycle_time"
+        "assessment_id",
+        "processes",
+        "benchmark_register",
+        "source_library"
       ],
-      "calculation_profile": "none",
+      "calculation_profile": "cycle_time_benchmark_v1",
       "approval_gate": "BENCHMARK_VALIDATION",
       "approval_role": "PROCESS_PERFORMANCE_AUTHORITY",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "minimum_internal_sample": 5,
+        "minimum_comparability": 0.75,
+        "confidence_sample_cap": 30
+      }
     },
     {
       "product_id": "P18",

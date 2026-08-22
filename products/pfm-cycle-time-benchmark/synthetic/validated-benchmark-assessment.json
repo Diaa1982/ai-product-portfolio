@@ -1,0 +1,29 @@
+{
+  "assessment_id": "P17-SYN-001",
+  "as_of_date": "2026-08-22",
+  "jurisdiction_profile": "Synthetic public-finance entity",
+  "processes": [
+    {
+      "process_id": "P-BUD-01", "process_name": "Budget circular response", "l1_domain": "Budget management",
+      "l2_group": "Budget formulation", "l3_process": "Prepare entity budget", "l4_process": "Complete detailed estimates",
+      "start_point": "Circular received", "end_point": "Detailed estimates completed", "scope_profile": "Standard entity",
+      "unit": "days", "actual_cycle_times": [35, 36, 38, 40, 41], "waiting_time": 8, "rework_rate": 0.05,
+      "priority": "high", "complexity": "standard", "aggregation_method": "single_process", "steps_consecutive": false, "volume_weights": []
+    }
+  ],
+  "benchmark_register": [
+    {
+      "process_id": "P-BUD-01", "matched_process": "Budget circular response", "match_type": "exact",
+      "match_rationale": "Synthetic exact match of boundary, unit and scope", "benchmark_type": "pfm_performance_threshold",
+      "reliability_class": "B", "benchmark_value": 42, "unit": "days", "start_point": "Circular received",
+      "end_point": "Detailed estimates completed", "scope_profile": "Standard entity", "source_id": "SRC-PEFA-SYN",
+      "source_url": "https://example.invalid/synthetic-pefa-reference",
+      "evidence_note": "Synthetic representation of a six-week budget-calendar threshold; not a transaction-processing benchmark",
+      "applicability_note": "Local validation and current official source required before any real use"
+    }
+  ],
+  "source_library": [
+    {"source_id": "SRC-PEFA-SYN", "publisher": "Synthetic authoritative-source placeholder", "title": "Budget-calendar threshold", "version": "synthetic", "retrieved_at": "2026-08-22", "license_status": "review_required"}
+  ],
+  "assumptions": ["All records and links are synthetic placeholders", "No official source or benchmark is asserted"]
+}

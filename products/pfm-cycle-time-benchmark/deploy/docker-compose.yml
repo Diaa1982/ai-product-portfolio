@@ -1,0 +1,11 @@
+services:
+  p17:
+    build: {context: ../../.., dockerfile: products/pfm-cycle-time-benchmark/deploy/Dockerfile}
+    ports: ["${P17_PORT:-8080}:8080"]
+    environment: {P17_CONFIG_PATH: /app/products/pfm-cycle-time-benchmark/config/cycle-time.v1.json, CASE_STORE_PATH: /app/data/runtime/cases.json}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes: [p17-runtime:/app/data/runtime]
+volumes: {p17-runtime: {}}

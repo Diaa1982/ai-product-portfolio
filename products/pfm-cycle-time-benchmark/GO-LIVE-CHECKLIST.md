@@ -1,51 +1,26 @@
 # PFM Cycle-Time Benchmark — Go-Live Readiness Checklist
 
-**Product ID:** P17  
-**Category:** [PFM Architecture, Benchmarking & Maturity](../../groups/02-pfm-architecture-benchmarking-maturity/README.md)  
-**Current stage:** Executable MVP foundation  
-**Go-live ready:** No
+**Product ID:** P17 · **Stage:** Technical deployment candidate · **Go-live ready:** No
 
-## What already exists in GitHub
+## Completed technical evidence
 
-- Benchmark methodology and governed workflow.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
+- [x] Versioned benchmark schema, A–D reliability and comparability controls.
+- [x] Evidence-controlled median/average, gap, confidence and queue engine.
+- [x] Protected-action checks, API/UI, fixture, container and 15 tests.
+- [ ] Record final GitHub Actions run in `docs/GO-LIVE-EVIDENCE.md`.
 
-## Product-specific critical blockers
-
-- [ ] Evidence-backed benchmark library.
-- [ ] comparability rules.
-- [ ] confidence scoring.
-- [ ] dashboard.
-- [ ] expert validation and licensing review.
-
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
+| Gate | Status | Required before production |
 |---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
+| L0 Strategy/ownership | Partial | Sponsor, owner, intended decisions, scope and benefits |
+| L1 Product/process | Partial | Approved methodology, boundaries, benchmark types and exclusions |
+| L2 Data/evidence | Not started | Operational data owners, lineage, quality, sources, licenses and retention |
+| L3 AI/knowledge | Partial | Source catalogue, matching rules, confidence calibration and rollback |
+| L4 Governance/compliance | Partial | Legal use, PEFA interpretation, publication and target decision rights |
+| L5 Security/privacy | Partial | IAM, classification, privacy, residency, secrets, logs and incidents |
+| L6 Architecture/integration | Partial | Process-mining/workflow adapters, canonical IDs and observability |
+| L7 Verification | Partial | Ground truth, calculation, security, load, resilience and accessibility tests |
+| L8 Operating model | Not started | Benchmark stewards, owners, QA, support, training and change control |
+| L9 Deployment/resilience | Partial | Environments, CI/CD, backup, recovery, continuity and rollback |
+| L10 Authority/value | Not started | Expert UAT, residual risk, publication/go-live and benefits approval |
 
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+Human-only decisions include benchmark acceptance, SLA/target changes, staffing, external publication, PEFA claims and production go-live.

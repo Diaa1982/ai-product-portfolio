@@ -1,0 +1,20 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P17",
+  "synthetic_data_only": true,
+  "benchmark_types": ["observed_average", "observed_median", "target_sla", "statutory_deadline", "best_practice_reference", "pfm_performance_threshold", "expert_estimate"],
+  "reliability_classes": {
+    "A": {"meaning": "Direct authoritative benchmark", "weight": 1.0},
+    "B": {"meaning": "Official SLA, statutory deadline or PFM threshold", "weight": 0.85},
+    "C": {"meaning": "Proxy for directional comparison only", "weight": 0.55},
+    "D": {"meaning": "No reliable public benchmark", "weight": 0.0}
+  },
+  "match_types": ["exact", "nearest", "proxy", "no_data"],
+  "match_weights": {"exact": 1.0, "nearest": 0.75, "proxy": 0.45, "no_data": 0.0},
+  "aggregation_methods": ["single_process", "sequential_sum", "critical_path", "volume_weighted_average"],
+  "minimum_internal_sample": 5,
+  "confidence_sample_cap": 30,
+  "minimum_comparability": 0.75,
+  "required_approvals": ["PROCESS_OWNER", "PROCESS_PERFORMANCE_AUTHORITY", "DATA_OWNER", "LEGAL_POLICY_OWNER"],
+  "protected_actions": ["approve_sla", "mandate_target", "change_staffing", "publish_external_benchmark", "declare_pefa_performance", "declare_best_practice", "approve_budget", "approve_go_live"]
+}

@@ -302,3 +302,21 @@ jobs:
             python -c "import json,sys; r=json.load(sys.stdin); assert r['assessment_status']=='TRACEABLE_DRAFT'; assert r['coverage']['coverage_percent']==100; assert r['value_chain']['missing_stages']==[]; assert r['alignment']['pefa']['compliance_conclusion'] is False; assert len(r['audit_digest'])==64"
           curl --fail --silent --header "Content-Type: application/json" --data '{"action":"approve operating model"}' http://127.0.0.1:8080/p13/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
+
+
+      - name: Build P17 deployment image
+        run: docker build -f products/pfm-cycle-time-benchmark/deploy/Dockerfile -t p17-cycle-time:ci .
+      - name: Smoke-test P17 evidence, comparability, threshold and protected-action controls
+        shell: bash
+        run: |
+          docker run -d --name p17-cycle-time-ci -p 8080:8080 p17-cycle-time:ci
+          trap 'docker logs p17-cycle-time-ci; docker rm -f p17-cycle-time-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p17 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" --data @products/pfm-cycle-time-benchmark/synthetic/validated-benchmark-assessment.json http://127.0.0.1:8080/p17/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); p=r['process_results'][0]; assert r['assessment_status']=='VALIDATED_SYNTHETIC_ANALYSIS'; assert p['actual_median']==38; assert p['gap']==-4; assert p['interpretation']=='WITHIN_THRESHOLD'; assert r['portfolio_summary']['official_target_count']==0; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" --data '{"action":"approve SLA"}' http://127.0.0.1:8080/p17/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
