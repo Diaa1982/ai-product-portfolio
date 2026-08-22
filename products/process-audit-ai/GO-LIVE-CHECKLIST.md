@@ -10,6 +10,7 @@
 - [x] Draft findings, CAPA verification, segregation of duties and protected-action enforcement.
 - [x] Bilingual studio, division dashboard API, synthetic fixture, 15 focused tests and hardened container.
 - [x] Product, methodology, governance, security, deployment, test and UAT documents.
+- [x] GitHub Portfolio Quality run 32548579885: 142 tests plus P06 image, audit/evidence and protected-action smoke checks passed.
 
 ## Production blockers
 
