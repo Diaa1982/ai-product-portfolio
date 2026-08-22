@@ -7,7 +7,7 @@
 - [x] Versioned 11-stage value chain, 15-domain configuration and traceable metamodel.
 - [x] Executable coverage, maturity-gap, heatmap, alignment and roadmap engine.
 - [x] Protected-action checks, API/UI, synthetic fixture, hardened container and 15 tests.
-- [ ] Record final GitHub Actions run in `docs/GO-LIVE-EVIDENCE.md`.
+- [x] GitHub Portfolio Quality run 32586199017 passed: 187 tests, P13 image build, value-chain/alignment assessment and protected-action smoke checks.
 
 | Gate | Status | Required before production |
 |---|---|---|

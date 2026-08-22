@@ -11,6 +11,6 @@
 
 ## GitHub Actions
 
-Pending the final branch run. Record immutable commit SHA, run URL, total tests, image build and smoke result here.
+Passed on implementation commit `8c5230333cb5bebff9f11ac3f124e7268e0ef2c1`: 187 tests; registry validation and compilation; P13 image build; `/health`, `/p13`, analysis and protected-action smoke checks.\n\nCI evidence: https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32586199017
 
 All organizational, data, legal, security, integration, UAT, operations, resilience, residual-risk and formal go-live approvals remain outstanding.
