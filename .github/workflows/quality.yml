@@ -183,3 +183,24 @@ jobs:
             --data '{"action":"publish financial statements"}' \
             http://127.0.0.1:8080/p11/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['decision']=='DENY_AUTONOMOUS_EXECUTION'; assert r['human_authority_required'] is True"
+
+      - name: Build P12 deployment image
+        run: docker build -f products/revenue-reconciliation-ai/deploy/Dockerfile -t p12-revenue-recon:ci .
+      - name: Smoke-test P12 reconciliation calculations and protected actions
+        shell: bash
+        run: |
+          docker run -d --name p12-revenue-recon-ci -p 8080:8080 p12-revenue-recon:ci
+          trap 'docker logs p12-revenue-recon-ci; docker rm -f p12-revenue-recon-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p12 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/revenue-reconciliation-ai/synthetic/reconciled-form-601.json \
+            http://127.0.0.1:8080/p12/reconcile |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['calculations']['settlement_amount']==850; assert r['calculations']['total_invoice']==105; assert r['calculations']['net_transfer']==745; assert r['match_status']=='MATCHED'; assert r['decision_status']=='RECONCILED_FOR_HUMAN_CONFIRMATION'"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data '{"action":"approve refund"}' \
+            http://127.0.0.1:8080/p12/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['decision']=='DENY_AUTONOMOUS_EXECUTION'; assert r['human_authority_required'] is True"

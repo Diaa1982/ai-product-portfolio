@@ -1,46 +1,36 @@
-# Revenue Reconciliation AI
+# P12 — Revenue Reconciliation AI
 
-**Product ID:** P12  
-**Domain:** Revenue, refunds, settlement and exception management  
-**Baseline maturity:** Product definition
+Revenue Reconciliation AI is a deterministic, evidence-led reconciliation product for revenue receipts, refunds, fraud adjustments, commissions, VAT components, settlement, bank matching and exception routing.
 
-## Public-value proposition
+**Status:** technical deployment candidate; dummy/sample data only; not approved for production, treasury transfer, tax determination or accounting posting.
 
-Match transactions across approved sources, identify breaks and prioritize exceptions using explainable rules and models.
+## Implemented MVP
 
-## Intended users
+- Original POC forms: `Frm.601.2025.01`, `Frm.172.2024.02`, `Frm.221.2018.01`.
+- Form 601: Settlement = Received − Refund − Fraud; Total invoice = Commission + VAT; Net transfer = Settlement − Total invoice.
+- Fixed AED 100, fixed AED 100 plus 5% VAT, and agreed-percentage patterns.
+- Form 172 agreed-percentage-only validation; Form 221 record coverage for all three configured types.
+- e-Pay/internal-to-bank exact, unmatched-reference, discount-variance and amount-variance classification.
+- Evidence, duplicate, period/currency, bank-account, SoD, materiality and expected-result controls.
+- Protected-action denial for refunds, write-offs, tax eligibility, fee/commission changes, journals and transfers.
+- API and Revenue Reconciliation Workbench at `/p12`.
 
-Revenue operations, accounting, treasury, control and audit teams.
+## Run
 
-## Core capabilities
+```bash
+docker compose -f products/revenue-reconciliation-ai/deploy/docker-compose.yml up --build
+```
 
-- Deterministic and probabilistic matching
-- Duplicate and anomaly detection
-- Exception classification and routing
-- Reconciliation evidence pack
+Open `http://localhost:8080/p12`.
 
-## Human-accountability boundary
+## Documentation
 
-The product does not write off differences, initiate refunds, adjust ledgers or close exceptions without authorized action.
+- [PRD](docs/PRD.md), [architecture](docs/ARCHITECTURE.md), [process and controls](docs/PROCESS-AND-CONTROLS.md)
+- [Calculation methodology](docs/CALCULATION-METHODOLOGY.md), [matching methodology](docs/MATCHING-METHODOLOGY.md), [form rules](docs/FORM-RULES.md)
+- [Governance matrix](docs/CONTROL-RISK-GOVERNANCE-MATRIX.md), [data model](docs/DATA-MODEL.md), [API](docs/API.md)
+- [Security](docs/SECURITY-PRIVACY.md), [deployment](docs/DEPLOYMENT.md), [runbook](docs/RUNBOOK.md)
+- [Test plan](docs/TEST-PLAN.md), [UAT](docs/UAT.md), [roadmap](docs/ROADMAP.md), [go-live evidence](docs/GO-LIVE-EVIDENCE.md)
 
-## Minimum product controls
+## Authority boundary
 
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Create synthetic transactions
-- [ ] Implement rule-based matching
-- [ ] Add explainable anomaly detection
-- [ ] Build reviewer queue and evidence export
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+The responsible employee validates the result and exceptions. Authorized revenue, treasury, tax and accounting officials retain all decisions. Configuration values are preserved from the synthetic POC and must be validated against current approved agreements, policies and delegations before any production use.
