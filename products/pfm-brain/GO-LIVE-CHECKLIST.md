@@ -2,6 +2,8 @@
 
 Status: **technical deployment candidate — synthetic-only; not production-approved or suitable for statutory reporting**.
 
+Technical verification: [Portfolio Quality run 66](https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32542947027) passed all 82 repository tests and all seven container/API smoke paths on 2026-08-22.
+
 | Gate | Technical candidate evidence | Requirement before go-live |
 |---|---|---|
 | L0 Strategy/ownership | Purpose, scope and roadmap documented | Approve sponsor, owners, business case, benefits and deployment scope |
