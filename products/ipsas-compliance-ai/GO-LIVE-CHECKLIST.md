@@ -2,6 +2,8 @@
 
 Status: **technical deployment candidate — synthetic-only; no formal IPSAS conclusion; not production-approved**.
 
+Technical verification: [Portfolio Quality run 68](https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32543590926) passed all 97 repository tests and all eight container/API smoke paths on 2026-08-22.
+
 | Gate | Technical candidate evidence | Requirement before go-live |
 |---|---|---|
 | L0 Strategy/ownership | Purpose, scope and roadmap | Approve sponsor, product/accounting owners, business case, benefits and scope |
