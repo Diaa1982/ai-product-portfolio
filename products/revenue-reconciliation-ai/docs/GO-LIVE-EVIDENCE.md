@@ -1,5 +1,10 @@
 # Go-Live Evidence Register
 
+## Verified technical evidence
+
+- GitHub Actions [Portfolio Quality run 70](https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32545755704) passed on 2026-08-22: 112 repository tests, registry/compilation/secret-file controls, nine container builds and nine live API smoke paths.
+- P12 code baseline: [`465d49f`](https://github.com/Diaa1982/ai-product-portfolio/commit/465d49fa08cc156be80604e2af5e4494083ec37a).
+
 ## Repository evidence
 
 - Versioned three-form, source-report, commission/VAT and protected-action configuration.

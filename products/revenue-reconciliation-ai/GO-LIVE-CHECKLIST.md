@@ -2,6 +2,8 @@
 
 Status: **technical deployment candidate — dummy/sample-only; not production-approved**.
 
+Technical verification: [Portfolio Quality run 70](https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32545755704) passed all 112 repository tests and all nine container/API smoke paths on 2026-08-22.
+
 | Gate | Technical candidate evidence | Requirement before go-live |
 |---|---|---|
 | L0 Strategy/ownership | Purpose, scope and roadmap | Approve sponsor, owners, case, benefits and deployment scope |
