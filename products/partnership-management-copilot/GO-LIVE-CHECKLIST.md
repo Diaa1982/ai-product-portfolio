@@ -10,6 +10,7 @@
 - [x] Obligations, expiry, user-initiated reminder/escalation drafts and two-stage change review.
 - [x] Bilingual studio/API, synthetic fixture, 15 focused tests and hardened container.
 - [x] Product, lifecycle, register, evidence, governance, security, deployment, test and UAT documents.
+- [x] GitHub Portfolio Quality run 32550547412: 157 tests plus P07 image, utilization/evidence and protected-action smoke checks passed.
 
 ## Production blockers
 
