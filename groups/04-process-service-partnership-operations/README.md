@@ -5,7 +5,7 @@ Enterprise processes, service design, operational assurance and partnership life
 | ID | Project | Product document | Go-live checklist | Status |
 |---|---|---|---|---|
 | P05 | Service Design AI | [README](../../products/service-design-ai/README.md) | [Checklist](../../products/service-design-ai/GO-LIVE-CHECKLIST.md) | Technical deployment candidate |
-| P06 | Process Audit AI | [README](../../products/process-audit-ai/README.md) | [Checklist](../../products/process-audit-ai/GO-LIVE-CHECKLIST.md) | MVP foundation |
+| P06 | Process Audit AI | [README](../../products/process-audit-ai/README.md) | [Checklist](../../products/process-audit-ai/GO-LIVE-CHECKLIST.md) | Technical deployment candidate |
 | P07 | Partnership Management Copilot | [README](../../products/partnership-management-copilot/README.md) | [Checklist](../../products/partnership-management-copilot/GO-LIVE-CHECKLIST.md) | MVP foundation |
 | P10 | Enterprise Process Intelligence | [README](../../products/enterprise-process-intelligence/README.md) | [Checklist](../../products/enterprise-process-intelligence/GO-LIVE-CHECKLIST.md) | MVP foundation |
 

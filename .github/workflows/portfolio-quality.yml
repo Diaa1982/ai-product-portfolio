@@ -225,3 +225,24 @@ jobs:
             --data '{"action":"launch service"}' \
             http://127.0.0.1:8080/p05/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_approval_required'] is True"
+
+      - name: Build P06 deployment image
+        run: docker build -f products/process-audit-ai/deploy/Dockerfile -t p06-process-audit:ci .
+      - name: Smoke-test P06 evidence, scoring, dashboard and protected assurance actions
+        shell: bash
+        run: |
+          docker run -d --name p06-process-audit-ci -p 8080:8080 p06-process-audit:ci
+          trap 'docker logs p06-process-audit-ci; docker rm -f p06-process-audit-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p06 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/process-audit-ai/synthetic/complete-process-audit.json \
+            http://127.0.0.1:8080/p06/audit |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['overall_score_percent']==80; assert r['conformance_percent']==100; assert r['evidence_assessment']['status']=='SUFFICIENT_FOR_MANAGEMENT_ASSURANCE'; assert r['gate_evaluation']['status']=='READY_FOR_RECORDED_HUMAN_DECISION'"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data '{"action":"issue formal audit opinion"}' \
+            http://127.0.0.1:8080/p06/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"

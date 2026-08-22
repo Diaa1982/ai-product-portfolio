@@ -1,46 +1,21 @@
 # Process Audit AI
 
 **Product ID:** P06  
-**Domain:** Process compliance, assurance and improvement  
-**Baseline maturity:** Product definition
+**Product:** Enterprise Process Audit & Assurance Management System  
+**Maturity:** Technical deployment candidate; not production or certification ready
 
-## Public-value proposition
+P06 assesses whether enterprise processes are current, approved, executed as documented, controlled, measured and continually improved. It operates across `Plan → Audit → Evidence → Assess → Find → Correct → Verify → Update → Monitor → Improve` using four assurance lenses: conformance, control, effectiveness and improvement.
 
-Assess whether operations are executed as documented, controlled, measured, updated and improved using traceable evidence.
+## Implemented
 
-## Intended users
+- Bilingual English/Arabic criterion library covering 15 domains A–O and ISO 9001/DGEP alignment metadata.
+- Deterministic 0–5 weighted scoring; unanswered, N/A and insufficiently evidenced criteria are excluded.
+- Documented-versus-actual comparison and transaction-sample conformance testing.
+- Evidence triangulation, auditor/owner segregation, draft finding severity and CAPA effectiveness controls.
+- Division dashboard aggregation and filters.
+- Human-only final ratings, findings, formal opinions, CAPA closure, publication and certification/compliance declarations.
+- `/p06` bilingual studio, API, 15 focused tests, synthetic fixture and hardened container.
 
-Process governance, quality, internal control, audit and division management.
+P06 supports evidence-based management assurance. It does not certify ISO 9001, declare DGEP compliance or issue a formal audit opinion.
 
-## Core capabilities
-
-- Bilingual audit questionnaire
-- Evidence-to-requirement comparison
-- Finding severity and root-cause support
-- Corrective-action and dashboard workflow
-
-## Human-accountability boundary
-
-The agent supports assurance work but does not issue formal audit opinions or close findings without authorized review.
-
-## Minimum product controls
-
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Digitize the audit checklist
-- [ ] Implement evidence extraction
-- [ ] Add division scoring dashboard
-- [ ] Validate ISO 9001 and excellence criteria mapping
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+Run `uvicorn src.portfolio_api.main:app --host 0.0.0.0 --port 8080`, then open `/p06`.

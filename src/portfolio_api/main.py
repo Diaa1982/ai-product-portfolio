@@ -15,6 +15,7 @@ from .p12_revenue_reconciliation import RevenueReconciler, RevenueReconciliation
 from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
 from .p05_service_design import ServiceDesignAI, ServiceDesignInput
+from .p06_process_audit import ProcessAuditAI, ProcessAuditInput
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -45,6 +46,8 @@ P12_DASHBOARD_PATH = Path(os.getenv("P12_DASHBOARD_PATH", Path(__file__).parent 
 P12_CONFIG_PATH = Path(os.getenv("P12_CONFIG_PATH", REPO_ROOT / "products" / "revenue-reconciliation-ai" / "config" / "reconciliation.v1.json"))
 P05_DASHBOARD_PATH = Path(os.getenv("P05_DASHBOARD_PATH", Path(__file__).parent / "static" / "p05.html"))
 P05_CONFIG_PATH = Path(os.getenv("P05_CONFIG_PATH", REPO_ROOT / "products" / "service-design-ai" / "config" / "service-design.v1.json"))
+P06_DASHBOARD_PATH = Path(os.getenv("P06_DASHBOARD_PATH", Path(__file__).parent / "static" / "p06.html"))
+P06_CONFIG_PATH = Path(os.getenv("P06_CONFIG_PATH", REPO_ROOT / "products" / "process-audit-ai" / "config" / "process-audit.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -58,6 +61,7 @@ p02_brain = PFMBrain(P02_CONFIG_PATH)
 p11_reviewer = IPSASComplianceReviewer(P11_CONFIG_PATH)
 p12_reconciler = RevenueReconciler(P12_CONFIG_PATH)
 p05_service_design = ServiceDesignAI(P05_CONFIG_PATH)
+p06_process_audit = ProcessAuditAI(P06_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -459,6 +463,49 @@ class P05ActionRequest(BaseModel):
     action: str = Field(min_length=3, max_length=200)
 
 
+class P06AuditRequest(BaseModel):
+    audit_id: str = Field(min_length=3, max_length=100)
+    period: str
+    division: str
+    unit: str
+    process_id: str
+    process_name: str
+    process_version: str
+    process_approved_at: str
+    process_owner_role: str
+    auditor_role: str
+    lead_auditor_role: str
+    audit_scope: str
+    criteria_version: str
+    documented_steps: list[str]
+    actual_steps: list[str]
+    criteria_results: list[dict[str, Any]]
+    evidence_items: list[dict[str, str]]
+    transaction_samples: list[dict[str, Any]]
+    sampling_plan_reference: str
+    evidence_plan_reference: str
+    finding_review_reference: str | None = None
+    human_approval_reference: str | None = None
+    assumptions: list[str] = Field(default_factory=list)
+
+
+class P06CAPAVerificationRequest(BaseModel):
+    finding_id: str
+    action_owner_role: str
+    verifier_role: str
+    closure_evidence: list[str]
+    effectiveness_passed: bool
+    approval_reference: str | None = None
+
+
+class P06DashboardRequest(BaseModel):
+    audits: list[dict[str, Any]]
+
+
+class P06ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -522,6 +569,11 @@ def p05_dashboard() -> FileResponse:
     return FileResponse(P05_DASHBOARD_PATH)
 
 
+@app.get("/p06", include_in_schema=False)
+def p06_dashboard() -> FileResponse:
+    return FileResponse(P06_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
@@ -534,7 +586,39 @@ def health() -> dict[str, Any]:
             "p02_config_version": p02_brain.config["config_version"],
             "p11_config_version": p11_reviewer.config["config_version"],
             "p12_config_version": p12_reconciler.config["config_version"],
-            "p05_config_version": p05_service_design.config["config_version"]}
+            "p05_config_version": p05_service_design.config["config_version"],
+            "p06_config_version": p06_process_audit.config["config_version"]}
+
+
+@app.get("/p06/config")
+def p06_config() -> dict[str, Any]:
+    return p06_process_audit.config
+
+
+@app.post("/p06/audit")
+def p06_audit(request: P06AuditRequest) -> dict[str, Any]:
+    try:
+        return p06_process_audit.audit(ProcessAuditInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p06/capa/verify")
+def p06_verify_capa(request: P06CAPAVerificationRequest) -> dict[str, Any]:
+    try:
+        return p06_process_audit.verify_capa(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p06/dashboard")
+def p06_division_dashboard(request: P06DashboardRequest) -> dict[str, Any]:
+    return p06_process_audit.division_dashboard(request.audits)
+
+
+@app.post("/p06/actions/check")
+def p06_check_action(request: P06ActionRequest) -> dict[str, Any]:
+    return p06_process_audit.check_action(request.action)
 
 
 @app.get("/p05/config")

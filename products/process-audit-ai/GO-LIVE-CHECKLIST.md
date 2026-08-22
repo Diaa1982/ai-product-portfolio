@@ -1,51 +1,27 @@
 # Process Audit AI — Go-Live Readiness Checklist
 
-**Product ID:** P06  
-**Category:** [Process, Service & Partnership Operations](../../groups/04-process-service-partnership-operations/README.md)  
-**Current stage:** Executable MVP foundation  
+**Current stage:** Technical deployment candidate  
 **Go-live ready:** No
 
-## What already exists in GitHub
+## Technical evidence complete
 
-- Assurance workflow, evidence controls and audit concept.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
+- [x] Versioned bilingual A–O criterion library, lifecycle, evidence, rating, severity and gate controls.
+- [x] Deterministic scoring, evidence triangulation, documented-versus-actual tests and management assurance reports.
+- [x] Draft findings, CAPA verification, segregation of duties and protected-action enforcement.
+- [x] Bilingual studio, division dashboard API, synthetic fixture, 15 focused tests and hardened container.
+- [x] Product, methodology, governance, security, deployment, test and UAT documents.
 
-## Product-specific critical blockers
+## Production blockers
 
-- [ ] Digital checklist.
-- [ ] evidence extraction.
-- [ ] scoring/dashboard.
-- [ ] criteria approval.
-- [ ] audit-role segregation and UAT.
+- [ ] Process-governance, quality and authorized assurance owners approve methodology, criterion library, weights, severity and sampling rules.
+- [ ] ISO 9001 and DGEP mappings receive independent local validation; no certification/compliance claim is implied.
+- [ ] Process register, process-owner, KPI, risk/control and authority master data are approved.
+- [ ] Evidence sources, classification, lineage, hashes, retention and legal/privacy rules are approved.
+- [ ] English/Arabic terminology, RTL, accessibility, reports and division dashboard pass UAT.
+- [ ] SSO/RBAC/SoD, DMS/repository, ERP, performance/risk and ARIS/BIC integration designs are approved and tested.
+- [ ] Security, privacy, performance, resilience, backup/recovery and incident exercises pass.
+- [ ] Authorized auditors pilot representative critical and non-critical processes and sign acceptance.
+- [ ] Operating RACI, audit programme, support, CAPA escalation and benefits monitoring are approved.
+- [ ] Formal residual-risk and production go-live decisions are recorded.
 
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
-|---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
-
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+`production_ready=false` and `go_live_ready=false` remain mandatory until all decision evidence exists.

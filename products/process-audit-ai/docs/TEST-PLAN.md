@@ -1,0 +1,3 @@
+# Test plan
+
+Run `python -m unittest discover -s tests -v` and `python -m compileall -q src tests`. P06 tests cover 15 bilingual domains, 0–5 ratings, deterministic weighting, N/A/unanswered exclusion, evidence triangulation, auditor overrides, segregation of duties, documented/actual deviations, sample conformance, severity drafts, human gates, independent CAPA verification, dashboards and protected assurance conclusions. CI must build and smoke-test the P06 container. Production adds methodology, bilingual/accessibility, security/privacy, integration, load, resilience and recovery assurance.

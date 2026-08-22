@@ -202,7 +202,7 @@
     },
     {
       "product_id": "P06",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
         "process_name",
@@ -213,7 +213,75 @@
       "approval_gate": "ASSURANCE_REVIEW",
       "approval_role": "AUTHORIZED_ASSURANCE_REVIEWER",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {},
+      "process_audit_required_inputs": [
+        "audit_id",
+        "period",
+        "division",
+        "unit",
+        "process_id",
+        "process_version",
+        "process_owner_role",
+        "auditor_role",
+        "lead_auditor_role",
+        "audit_scope",
+        "criteria_version",
+        "documented_steps",
+        "actual_steps",
+        "criteria_results",
+        "evidence_items",
+        "transaction_samples",
+        "sampling_plan_reference",
+        "evidence_plan_reference"
+      ],
+      "process_audit_profile": "enterprise_process_assurance",
+      "process_audit_lifecycle": [
+        "plan",
+        "audit",
+        "evidence",
+        "assess",
+        "find",
+        "correct",
+        "verify",
+        "update",
+        "monitor",
+        "improve"
+      ],
+      "process_audit_domains": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O"
+      ],
+      "process_audit_rating_scale": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "process_audit_calculation_profile": "auditor_rating_weighted_application_calculation",
+      "process_audit_evidence_triangulation_minimum_types": 2,
+      "process_audit_gates": [
+        "G1_PLAN",
+        "G2_FIELDWORK",
+        "G3_FINDINGS",
+        "G4_CAPA",
+        "G5_CLOSURE"
+      ],
+      "process_audit_protected_actions": true
     },
     {
       "product_id": "P07",
