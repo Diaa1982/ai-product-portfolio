@@ -234,7 +234,7 @@
       "id": "P07",
       "slug": "partnership-management-copilot",
       "name": "Partnership Management Copilot",
-      "maturity": "requirements",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -244,11 +244,33 @@
       },
       "documents": {
         "product_readme": "products/partnership-management-copilot/README.md",
-        "go_live_checklist": "products/partnership-management-copilot/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/partnership-management-copilot/GO-LIVE-CHECKLIST.md",
+        "prd": "products/partnership-management-copilot/docs/PRD.md",
+        "architecture": "products/partnership-management-copilot/docs/ARCHITECTURE.md",
+        "partnership_lifecycle": "products/partnership-management-copilot/docs/PARTNERSHIP-LIFECYCLE.md",
+        "register_standard": "products/partnership-management-copilot/docs/REGISTER-DATA-STANDARD.md",
+        "agreement_extraction": "products/partnership-management-copilot/docs/AGREEMENT-EXTRACTION-STANDARD.md",
+        "evidence_utilization": "products/partnership-management-copilot/docs/EVIDENCE-AND-UTILIZATION.md",
+        "obligations_expiry": "products/partnership-management-copilot/docs/OBLIGATIONS-AND-EXPIRY.md",
+        "notification_standard": "products/partnership-management-copilot/docs/NOTIFICATION-STANDARD.md",
+        "governance_decisions": "products/partnership-management-copilot/docs/GOVERNANCE-AND-DECISIONS.md",
+        "reporting_standard": "products/partnership-management-copilot/docs/REPORTING-STANDARD.md",
+        "m365_copilot_design": "products/partnership-management-copilot/docs/M365-COPILOT-DESIGN.md",
+        "data_model": "products/partnership-management-copilot/docs/DATA-MODEL.md",
+        "api": "products/partnership-management-copilot/docs/API.md",
+        "security_privacy_legal": "products/partnership-management-copilot/docs/SECURITY-PRIVACY-LEGAL.md",
+        "deployment": "products/partnership-management-copilot/docs/DEPLOYMENT.md",
+        "runbook": "products/partnership-management-copilot/docs/RUNBOOK.md",
+        "test_plan": "products/partnership-management-copilot/docs/TEST-PLAN.md",
+        "uat": "products/partnership-management-copilot/docs/UAT.md",
+        "roadmap": "products/partnership-management-copilot/docs/ROADMAP.md",
+        "go_live_evidence": "products/partnership-management-copilot/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

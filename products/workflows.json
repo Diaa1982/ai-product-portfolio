@@ -285,7 +285,7 @@
     },
     {
       "product_id": "P07",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
         "partner_name",
@@ -296,7 +296,48 @@
       "approval_gate": "PARTNERSHIP_REVIEW",
       "approval_role": "PARTNERSHIP_OWNER",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {},
+      "partnership_required_inputs": [
+        "case_id",
+        "partner_id",
+        "partnership_id",
+        "partner_name",
+        "start_date",
+        "end_date",
+        "partnership_status",
+        "partnership_owner_role",
+        "agreement_source_id",
+        "agreement_version",
+        "agreement_items",
+        "claims",
+        "evidence_items",
+        "evaluation_cycle",
+        "as_of_date"
+      ],
+      "partnership_profile": "m365_copilot_user_initiated",
+      "partnership_statuses": [
+        "ACTIVE",
+        "TEMPORARY",
+        "PERMANENT",
+        "COMPLETED"
+      ],
+      "realization_statuses": [
+        "Realized",
+        "Partially Realized",
+        "Not Realized",
+        "Not Yet Due",
+        "Insufficient Evidence"
+      ],
+      "partnership_register_count": 9,
+      "owner_response_days": 3,
+      "maximum_reminders": 3,
+      "escalation_role": "SECTOR_DIRECTOR",
+      "first_review_role": "STRATEGY_EMPLOYEE_1",
+      "final_approval_role": "STRATEGY_EMPLOYEE_2",
+      "custom_orchestrator": false,
+      "background_triggers": false,
+      "autonomous_workflow": false,
+      "protected_actions": true
     },
     {
       "product_id": "P08",

@@ -246,3 +246,24 @@ jobs:
             --data '{"action":"issue formal audit opinion"}' \
             http://127.0.0.1:8080/p06/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
+
+      - name: Build P07 deployment image
+        run: docker build -f products/partnership-management-copilot/deploy/Dockerfile -t p07-partnership:ci .
+      - name: Smoke-test P07 evidence, utilization and protected legal actions
+        shell: bash
+        run: |
+          docker run -d --name p07-partnership-ci -p 8080:8080 p07-partnership:ci
+          trap 'docker logs p07-partnership-ci; docker rm -f p07-partnership-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p07 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/partnership-management-copilot/synthetic/complete-partnership.json \
+            http://127.0.0.1:8080/p07/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['claim_evidence_assessments'][0]['assessed_status']=='Realized'; assert r['utilization']['utilization_percent']==100; assert r['notification_draft']['send_permitted'] is False; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data '{"action":"terminate agreement"}' \
+            http://127.0.0.1:8080/p07/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"

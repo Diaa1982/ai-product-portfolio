@@ -16,6 +16,7 @@ from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
 from .p05_service_design import ServiceDesignAI, ServiceDesignInput
 from .p06_process_audit import ProcessAuditAI, ProcessAuditInput
+from .p07_partnership import PartnershipInput, PartnershipManagementCopilot
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -48,6 +49,8 @@ P05_DASHBOARD_PATH = Path(os.getenv("P05_DASHBOARD_PATH", Path(__file__).parent 
 P05_CONFIG_PATH = Path(os.getenv("P05_CONFIG_PATH", REPO_ROOT / "products" / "service-design-ai" / "config" / "service-design.v1.json"))
 P06_DASHBOARD_PATH = Path(os.getenv("P06_DASHBOARD_PATH", Path(__file__).parent / "static" / "p06.html"))
 P06_CONFIG_PATH = Path(os.getenv("P06_CONFIG_PATH", REPO_ROOT / "products" / "process-audit-ai" / "config" / "process-audit.v1.json"))
+P07_DASHBOARD_PATH = Path(os.getenv("P07_DASHBOARD_PATH", Path(__file__).parent / "static" / "p07.html"))
+P07_CONFIG_PATH = Path(os.getenv("P07_CONFIG_PATH", REPO_ROOT / "products" / "partnership-management-copilot" / "config" / "partnership.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -62,6 +65,7 @@ p11_reviewer = IPSASComplianceReviewer(P11_CONFIG_PATH)
 p12_reconciler = RevenueReconciler(P12_CONFIG_PATH)
 p05_service_design = ServiceDesignAI(P05_CONFIG_PATH)
 p06_process_audit = ProcessAuditAI(P06_CONFIG_PATH)
+p07_partnership = PartnershipManagementCopilot(P07_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -506,6 +510,55 @@ class P06ActionRequest(BaseModel):
     action: str = Field(min_length=3, max_length=200)
 
 
+class P07AnalysisRequest(BaseModel):
+    case_id: str = Field(min_length=3, max_length=100)
+    partner_id: str
+    partnership_id: str
+    partner_name: str
+    entity_name: str
+    responsible_person: str
+    contact: str
+    email: str
+    start_date: str
+    end_date: str
+    partnership_status: str
+    strategic_classification: str
+    geographic_classification: str
+    initiative: str
+    innovation: str
+    expected_value: str
+    objectives: list[str]
+    notes: str
+    partnership_owner_role: str
+    agreement_source_id: str
+    agreement_version: str
+    agreement_items: list[dict[str, Any]]
+    claims: list[dict[str, Any]]
+    evidence_items: list[dict[str, Any]]
+    evaluation_cycle: str
+    as_of_date: str
+    response_requested_at: str
+    owner_responded: bool
+    reminders_recorded: int = Field(ge=0)
+    assumptions: list[str] = Field(default_factory=list)
+
+
+class P07ChangeReviewRequest(BaseModel):
+    partnership_id: str
+    action: str
+    requester_role: str
+    first_reviewer_role: str
+    first_decision: str
+    final_approver_role: str
+    final_decision: str
+    override_reason: str = ""
+    change_reference: str
+
+
+class P07ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -574,6 +627,11 @@ def p06_dashboard() -> FileResponse:
     return FileResponse(P06_DASHBOARD_PATH)
 
 
+@app.get("/p07", include_in_schema=False)
+def p07_dashboard() -> FileResponse:
+    return FileResponse(P07_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
@@ -587,7 +645,34 @@ def health() -> dict[str, Any]:
             "p11_config_version": p11_reviewer.config["config_version"],
             "p12_config_version": p12_reconciler.config["config_version"],
             "p05_config_version": p05_service_design.config["config_version"],
-            "p06_config_version": p06_process_audit.config["config_version"]}
+            "p06_config_version": p06_process_audit.config["config_version"],
+            "p07_config_version": p07_partnership.config["config_version"]}
+
+
+@app.get("/p07/config")
+def p07_config() -> dict[str, Any]:
+    return p07_partnership.config
+
+
+@app.post("/p07/analyze")
+def p07_analyze(request: P07AnalysisRequest) -> dict[str, Any]:
+    try:
+        return p07_partnership.analyze(PartnershipInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p07/changes/review")
+def p07_review_change(request: P07ChangeReviewRequest) -> dict[str, Any]:
+    try:
+        return p07_partnership.review_change(**request.model_dump())
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p07/actions/check")
+def p07_check_action(request: P07ActionRequest) -> dict[str, Any]:
+    return p07_partnership.check_action(request.action)
 
 
 @app.get("/p06/config")

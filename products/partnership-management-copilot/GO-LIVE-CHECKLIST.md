@@ -1,51 +1,27 @@
 # Partnership Management Copilot — Go-Live Readiness Checklist
 
-**Product ID:** P07  
-**Category:** [Process, Service & Partnership Operations](../../groups/04-process-service-partnership-operations/README.md)  
-**Current stage:** Executable MVP foundation  
+**Current stage:** Technical deployment candidate  
 **Go-live ready:** No
 
-## What already exists in GitHub
+## Technical evidence complete
 
-- Requirements, case workflow and evidence model.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
+- [x] Versioned statuses, nine-register model, evidence states, reminder policy, review roles and protected actions.
+- [x] Agreement-item extraction schema, exception flags, claims-versus-evidence and deterministic utilization engine.
+- [x] Obligations, expiry, user-initiated reminder/escalation drafts and two-stage change review.
+- [x] Bilingual studio/API, synthetic fixture, 15 focused tests and hardened container.
+- [x] Product, lifecycle, register, evidence, governance, security, deployment, test and UAT documents.
 
-## Product-specific critical blockers
+## Production blockers
 
-- [ ] Agreement extraction.
-- [ ] obligations/expiry engine.
-- [ ] privacy/legal review.
-- [ ] notifications.
-- [ ] register integration and UAT.
+- [ ] Strategy, business-owner and Legal approve lifecycle, statuses, fields, evidence, scoring/utilization and decision rights.
+- [ ] Current signed agreements, amendments, approved plans, roles, minutes/evidence and KPI definitions receive owner/data approval.
+- [ ] SharePoint metadata lists, document indexing, Partner_ID/Partnership_ID integrity, version history and retention are implemented.
+- [ ] Microsoft 365 Copilot access, grounding, permissions, sensitivity labels, DLP and audit logging are approved.
+- [ ] External recipient/templates and any future notification automation receive legal/privacy/security and communications approval.
+- [ ] English/Arabic terminology, RTL, accessibility, evaluation/utilization/exception reports pass UAT.
+- [ ] Security, privacy, integration, performance, resilience, backup and recovery testing pass.
+- [ ] Representative partnerships complete owner, Strategy Employee 1, Strategy Employee 2 and Legal UAT.
+- [ ] Operating RACI, support, quarterly/configurable cycles, escalation and benefits monitoring are approved.
+- [ ] Formal residual-risk and production go-live decisions are recorded.
 
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
-|---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
-
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+The product remains synthetic-only and not live.

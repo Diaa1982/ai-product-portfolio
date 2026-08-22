@@ -1,0 +1,3 @@
+# Test plan
+
+Run `python -m unittest discover -s tests -v` and `python -m compileall -q src tests`. P07 tests cover bilingual lifecycle statuses, no-orchestrator/background constraint, linked IDs, draft extraction, missing fields/ambiguous dates, submission-versus-acceptance, weak evidence, realized/partial utilization, expiry, reminders/escalation, two-stage changes, protected legal actions and bilingual reports. CI must build and smoke-test the P07 container. Production adds Microsoft 365 permission/DLP, extraction accuracy, bilingual/accessibility, security/privacy/legal, integration, resilience and recovery tests.
