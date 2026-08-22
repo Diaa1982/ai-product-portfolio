@@ -48,7 +48,7 @@
     },
     {
       "product_id": "P02",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
         "business_outcome",
         "budget",
@@ -62,7 +62,34 @@
       "thresholds": {
         "high_utilization": 0.9,
         "commitment_pressure": 0.25
-      }
+      },
+      "brain_required_inputs": [
+        "reporting_period",
+        "currency",
+        "division_id",
+        "cost_center",
+        "account_code",
+        "source_record_id",
+        "source_system",
+        "evidence_references",
+        "master_data_status",
+        "approved_budget_status",
+        "budget_execution",
+        "revenue",
+        "cash",
+        "kpi",
+        "risk_control",
+        "authority"
+      ],
+      "brain_calculation_profile": "canonical_pfm_reconciliation",
+      "brain_approval_gate": "RECONCILIATION_SOD_AUTHORITY_AND_HUMAN_REVIEW",
+      "brain_thresholds": {
+        "reconciliation_tolerance": 0.01,
+        "critical_action_amount": 420000000,
+        "control_effective_percent": 80,
+        "control_partial_percent": 50
+      },
+      "protected_autonomous_actions": true
     },
     {
       "product_id": "P03",

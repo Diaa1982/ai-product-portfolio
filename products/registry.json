@@ -43,7 +43,7 @@
       "id": "P02",
       "slug": "pfm-brain",
       "name": "PFM Brain",
-      "maturity": "concept",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -53,11 +53,27 @@
       },
       "documents": {
         "product_readme": "products/pfm-brain/README.md",
-        "go_live_checklist": "products/pfm-brain/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/pfm-brain/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-brain/docs/PRD.md",
+        "architecture": "products/pfm-brain/docs/ARCHITECTURE.md",
+        "canonical_data_standard": "products/pfm-brain/docs/CANONICAL-PFM-DATA-STANDARD.md",
+        "calculation_methodology": "products/pfm-brain/docs/CALCULATION-METHODOLOGY.md",
+        "insight_reconciliation_standard": "products/pfm-brain/docs/INSIGHT-AND-RECONCILIATION-STANDARD.md",
+        "control_governance_matrix": "products/pfm-brain/docs/CONTROL-AND-GOVERNANCE-MATRIX.md",
+        "pfm_pefa_ipsas_alignment": "products/pfm-brain/docs/PFM-PEFA-IPSAS-ALIGNMENT.md",
+        "security_privacy": "products/pfm-brain/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-brain/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-brain/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-brain/docs/TEST-PLAN.md",
+        "uat": "products/pfm-brain/docs/UAT.md",
+        "roadmap": "products/pfm-brain/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-brain/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

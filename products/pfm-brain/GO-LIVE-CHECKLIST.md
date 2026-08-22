@@ -1,51 +1,19 @@
-# PFM Brain — Go-Live Readiness Checklist
+# P02 — PFM Brain Go-Live Checklist
 
-**Product ID:** P02  
-**Category:** [PFM Intelligence & Financial Operations](../../groups/01-pfm-intelligence-financial-operations/README.md)  
-**Current stage:** Executable MVP foundation  
-**Go-live ready:** No
+Status: **technical deployment candidate — synthetic-only; not production-approved or suitable for statutory reporting**.
 
-## What already exists in GitHub
-
-- Governed analytical workflow and PFM calculation baseline.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
-
-## Product-specific critical blockers
-
-- [ ] Canonical fiscal data layer.
-- [ ] governed retrieval.
-- [ ] financial lineage.
-- [ ] forecasting validation.
-- [ ] enterprise integrations.
-
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
+| Gate | Technical candidate evidence | Requirement before go-live |
 |---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
+| L0 Strategy/ownership | Purpose, scope and roadmap documented | Approve sponsor, owners, business case, benefits and deployment scope |
+| L1 Product/process | PRD, boundaries and acceptance defined | Approve AS-IS/TO-BE workflows, services, SLA and excluded decisions |
+| L2 Data/evidence | Canonical standard, load order and synthetic profile | Approve sources, owners, fields, quality, lineage, evidence, retention and report reconciliation |
+| L3 Intelligence/models | Deterministic engine, formulas and versioned config | Approve retrieval/forecast/model approach and evaluations if introduced |
+| L4 Governance/compliance | SoD, authority, protected actions and control matrix | Map current applicable PFM/legal/accounting/audit requirements and delegations |
+| L5 Security/privacy | Security baseline documented | Implement SSO/RBAC, encryption, secrets, privacy, testing and incident controls |
+| L6 Architecture/integration | API, workbench and container | Build owner-approved production adapters, stores, queues, observability and errors |
+| L7 Verification | 15 focused tests and CI design | Pass independent calculation, contract, scale, resilience, security and UAT assurance |
+| L8 Operating model | Runbook and monitoring requirements | Approve RACI, support/SLA, training, release/model/data governance and manual fallback |
+| L9 Deployment/resilience | Non-root hardened container baseline | Provision approved environments, CI/CD, signing/scanning, backup/DR and rollback |
+| L10 Go-live/value | Evidence register and pilot roadmap | Complete pilot, residual-risk acceptance, formal authorization and benefits monitoring |
 
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+No technical result or checklist item constitutes a budget, treasury, revenue, accounting, audit or statutory approval.

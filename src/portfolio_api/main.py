@@ -9,6 +9,7 @@ from pydantic import BaseModel, Field
 
 from .engine import JsonCaseStore, PortfolioEngine
 from .p01_pfm_agentic import PFMCaseInput, PFMAgenticOrchestrator
+from .p02_pfm_brain import FiscalSnapshotInput, PFMBrain
 from .p03_radar import SignalInput, StrategicRadar
 from .p04_detector import DetectionInput, SignalDetector
 from .p08_assessor import AssessmentInput, UseCaseAssessor
@@ -33,6 +34,8 @@ P09_DASHBOARD_PATH = Path(os.getenv("P09_DASHBOARD_PATH", Path(__file__).parent 
 P09_CONFIG_PATH = Path(os.getenv("P09_CONFIG_PATH", REPO_ROOT / "products" / "corporate-performance-review-ai" / "config" / "performance.v1.json"))
 P01_DASHBOARD_PATH = Path(os.getenv("P01_DASHBOARD_PATH", Path(__file__).parent / "static" / "p01.html"))
 P01_CONFIG_PATH = Path(os.getenv("P01_CONFIG_PATH", REPO_ROOT / "products" / "pfm-agentic-ai" / "config" / "pfm-agents.v1.json"))
+P02_DASHBOARD_PATH = Path(os.getenv("P02_DASHBOARD_PATH", Path(__file__).parent / "static" / "p02.html"))
+P02_CONFIG_PATH = Path(os.getenv("P02_CONFIG_PATH", REPO_ROOT / "products" / "pfm-brain" / "config" / "pfm-brain.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -42,6 +45,7 @@ p04_detector = SignalDetector(P04_CONFIG_PATH)
 p14_control_tower = AIGovernanceControlTower(P14_CONFIG_PATH)
 p09_performance = CorporatePerformanceReview(P09_CONFIG_PATH)
 p01_orchestrator = PFMAgenticOrchestrator(P01_CONFIG_PATH)
+p02_brain = PFMBrain(P02_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -276,6 +280,53 @@ class P01ApprovalRequest(BaseModel):
     reason: str = Field(min_length=3, max_length=1000)
 
 
+class P02AnalysisRequest(BaseModel):
+    case_id: str = Field(min_length=3, max_length=100)
+    reporting_period: str
+    currency: str
+    division_id: str
+    cost_center: str
+    account_code: str
+    source_record_id: str
+    source_system: str
+    evidence_references: list[str]
+    assumptions: list[str] = Field(default_factory=list)
+    organization_master_loaded: bool
+    chart_of_accounts_loaded: bool
+    approved_budget_loaded: bool
+    original_budget: float = Field(ge=0)
+    supplementary_budget: float = Field(ge=0)
+    transfer_amount: float
+    period_plan: float = Field(ge=0)
+    actual_expenditure: float = Field(ge=0)
+    commitments: float = Field(ge=0)
+    revenue_target: float = Field(ge=0)
+    revenue_actual: float = Field(ge=0)
+    opening_cash: float = Field(ge=0)
+    cash_inflow: float = Field(ge=0)
+    cash_outflow: float = Field(ge=0)
+    minimum_cash_buffer: float = Field(ge=0)
+    kpi_direction: str
+    kpi_target: float
+    kpi_actual: float
+    kpi_attention_tolerance_percent: float = Field(ge=0, le=100)
+    inherent_risk_score: float = Field(ge=0, le=100)
+    control_effectiveness_percent: float = Field(ge=0, le=100)
+    requester_role: str
+    approver_role: str
+    proposed_action_amount: float = Field(ge=0)
+    maximum_authority_amount: float = Field(ge=0)
+    action_type: str
+    duplicate_transaction: bool = False
+    expected_revised_budget: float | None = None
+    expected_closing_cash: float | None = None
+    human_approval_reference: str | None = None
+
+
+class P02DatasetReadinessRequest(BaseModel):
+    loaded_domains: list[str]
+
+
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
         return HTTPException(status_code=404, detail="Case not found")
@@ -319,6 +370,11 @@ def p01_dashboard() -> FileResponse:
     return FileResponse(P01_DASHBOARD_PATH)
 
 
+@app.get("/p02", include_in_schema=False)
+def p02_dashboard() -> FileResponse:
+    return FileResponse(P02_DASHBOARD_PATH)
+
+
 @app.get("/health")
 def health() -> dict[str, Any]:
     return {"status": "ok", "version": app.version, "product_count": len(engine.workflows),
@@ -327,7 +383,26 @@ def health() -> dict[str, Any]:
             "p04_config_version": p04_detector.config["config_version"],
             "p14_config_version": p14_control_tower.config["config_version"],
             "p09_config_version": p09_performance.config["config_version"],
-            "p01_config_version": p01_orchestrator.config["config_version"]}
+            "p01_config_version": p01_orchestrator.config["config_version"],
+            "p02_config_version": p02_brain.config["config_version"]}
+
+
+@app.get("/p02/config")
+def p02_config() -> dict[str, Any]:
+    return p02_brain.config
+
+
+@app.post("/p02/analyze")
+def p02_analyze(request: P02AnalysisRequest) -> dict[str, Any]:
+    try:
+        return p02_brain.analyze(FiscalSnapshotInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc:
+        raise as_http_error(exc) from exc
+
+
+@app.post("/p02/dataset/readiness")
+def p02_dataset_readiness(request: P02DatasetReadinessRequest) -> dict[str, Any]:
+    return p02_brain.dataset_readiness(request.loaded_domains)
 
 
 @app.get("/p01/config")

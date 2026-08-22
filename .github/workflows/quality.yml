@@ -141,3 +141,24 @@ jobs:
             --data '{"action":"authorize payment"}' \
             http://127.0.0.1:8080/p01/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['decision']=='DENY_AUTONOMOUS_EXECUTION'; assert r['human_authority_required'] is True"
+
+      - name: Build P02 deployment image
+        run: docker build -f products/pfm-brain/deploy/Dockerfile -t p02-pfm-brain:ci .
+      - name: Smoke-test P02 governed fiscal intelligence API
+        shell: bash
+        run: |
+          docker run -d --name p02-pfm-brain-ci -p 8080:8080 p02-pfm-brain:ci
+          trap 'docker logs p02-pfm-brain-ci; docker rm -f p02-pfm-brain-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p02 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/pfm-brain/synthetic/reconciled-fiscal-snapshot.json \
+            http://127.0.0.1:8080/p02/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['calculations']['revised_budget']==105; assert r['calculations']['closing_cash']==70; assert r['reconciliation_status']=='Reconciled'; assert r['decision_status']=='ANALYSIS_READY_FOR_HUMAN_USE'"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/pfm-brain/synthetic/dataset-readiness.json \
+            http://127.0.0.1:8080/p02/dataset/readiness |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['ready_for_analysis'] is True; assert r['sequence_valid'] is True"
