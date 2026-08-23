@@ -8,7 +8,7 @@
 - [x] Repository QA, dependency impact, application portfolio and debt engine.
 - [x] Draft ADR, change routing and protected-action denial.
 - [x] API/UI, synthetic graph, hardened container and 15 tests.
-- [ ] Record final GitHub Actions run in `docs/GO-LIVE-EVIDENCE.md`.
+- [x] GitHub Portfolio Quality run 32616612607 passed: 232 tests, P15 image build, traceability/impact/ADR and protected-action smoke checks.
 
 | Gate | Status | Required before production |
 |---|---|---|
