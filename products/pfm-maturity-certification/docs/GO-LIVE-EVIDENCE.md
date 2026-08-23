@@ -11,6 +11,6 @@
 
 ## GitHub Actions
 
-Pending final branch run. Record commit, workflow URL, total tests, image build and smoke result here.
+Passed on implementation commit `99114ba82c74be76f5814cfbfe5aa4840fe808ae`: 217 tests; registry validation and compilation; P18 image build; health, UI, evidenced-maturity/moderation and certificate-denial smoke checks.\n\nCI evidence: https://github.com/Diaa1982/ai-product-portfolio/actions/runs/32616063656
 
 Adopted scheme, legal authority, competent assessors, evidence repository, calibration, IAM/security/privacy, UAT, operations, residual risk and formal production approval remain outstanding.

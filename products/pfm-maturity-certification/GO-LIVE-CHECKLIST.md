@@ -8,7 +8,7 @@
 - [x] Evidence caps, mandatory principles, moderation/segregation and improvement logic.
 - [x] Candidate-only recognition and hard denial of certificate actions.
 - [x] API/UI, synthetic fixture, hardened container and 15 tests.
-- [ ] Record final GitHub Actions run in `docs/GO-LIVE-EVIDENCE.md`.
+- [x] GitHub Portfolio Quality run 32616063656 passed: 217 tests, P18 image build, evidenced maturity/moderation and certificate-denial smoke checks.
 
 | Gate | Status | Required before production |
 |---|---|---|
