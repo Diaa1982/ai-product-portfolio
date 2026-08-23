@@ -22,6 +22,7 @@ from .p13_pfm_business_architecture import PFMBusinessArchitecture, PFMArchitect
 from .p17_cycle_time_benchmark import CycleTimeBenchmarkInput, PFMCycleTimeBenchmark
 from .p18_maturity_certification import PFMMaturityCertification, PFMMaturityInput
 from .p15_enterprise_architecture import EnterpriseArchitectureInput, EnterpriseArchitectureIntelligence
+from .p16_it_management import IntegratedITManagementAI, ITManagementInput
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -66,6 +67,8 @@ P18_DASHBOARD_PATH = Path(os.getenv("P18_DASHBOARD_PATH", Path(__file__).parent 
 P18_CONFIG_PATH = Path(os.getenv("P18_CONFIG_PATH", REPO_ROOT / "products" / "pfm-maturity-certification" / "config" / "maturity.v1.json"))
 P15_DASHBOARD_PATH = Path(os.getenv("P15_DASHBOARD_PATH", Path(__file__).parent / "static" / "p15.html"))
 P15_CONFIG_PATH = Path(os.getenv("P15_CONFIG_PATH", REPO_ROOT / "products" / "enterprise-architecture-intelligence" / "config" / "enterprise-architecture.v1.json"))
+P16_DASHBOARD_PATH = Path(os.getenv("P16_DASHBOARD_PATH", Path(__file__).parent / "static" / "p16.html"))
+P16_CONFIG_PATH = Path(os.getenv("P16_CONFIG_PATH", REPO_ROOT / "products" / "integrated-it-management-ai" / "config" / "it-management.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -86,6 +89,7 @@ p13_pfm_architecture = PFMBusinessArchitecture(P13_CONFIG_PATH)
 p17_cycle_time = PFMCycleTimeBenchmark(P17_CONFIG_PATH)
 p18_maturity = PFMMaturityCertification(P18_CONFIG_PATH)
 p15_enterprise_architecture = EnterpriseArchitectureIntelligence(P15_CONFIG_PATH)
+p16_it_management = IntegratedITManagementAI(P16_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -650,6 +654,22 @@ class P15ChangeRequest(BaseModel):
 class P15ActionRequest(BaseModel):
     action: str = Field(min_length=3, max_length=200)
 
+class P16AnalysisRequest(BaseModel):
+    assessment_id: str = Field(min_length=3, max_length=100)
+    as_of_date: str
+    operating_scope: str
+    services: list[dict[str, Any]]
+    work_items: list[dict[str, Any]]
+    configuration_items: list[dict[str, Any]]
+    portfolio_items: list[dict[str, Any]]
+    risks_controls: list[dict[str, Any]]
+    evidence_register: list[dict[str, Any]]
+    proposed_action: dict[str, Any]
+    assumptions: list[str] = Field(default_factory=list)
+
+class P16ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
 
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
@@ -738,6 +758,9 @@ def p18_dashboard() -> FileResponse: return FileResponse(P18_DASHBOARD_PATH)
 @app.get("/p15", include_in_schema=False)
 def p15_dashboard() -> FileResponse: return FileResponse(P15_DASHBOARD_PATH)
 
+@app.get("/p16", include_in_schema=False)
+def p16_dashboard() -> FileResponse: return FileResponse(P16_DASHBOARD_PATH)
+
 
 @app.get("/health")
 def health() -> dict[str, Any]:
@@ -757,7 +780,19 @@ def health() -> dict[str, Any]:
             "p13_config_version": p13_pfm_architecture.config["config_version"],
             "p17_config_version": p17_cycle_time.config["config_version"],
             "p18_config_version": p18_maturity.config["config_version"],
-            "p15_config_version": p15_enterprise_architecture.config["config_version"]}
+            "p15_config_version": p15_enterprise_architecture.config["config_version"],
+            "p16_config_version": p16_it_management.config["config_version"]}
+
+@app.get("/p16/config")
+def p16_config() -> dict[str, Any]: return p16_it_management.config
+
+@app.post("/p16/analyze")
+def p16_analyze(request: P16AnalysisRequest) -> dict[str, Any]:
+    try: return p16_it_management.analyze(ITManagementInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc: raise as_http_error(exc) from exc
+
+@app.post("/p16/actions/check")
+def p16_check_action(request: P16ActionRequest) -> dict[str, Any]: return p16_it_management.check_action(request.action)
 
 @app.get("/p15/config")
 def p15_config() -> dict[str, Any]: return p15_enterprise_architecture.config

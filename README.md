@@ -2,7 +2,7 @@
 
 Private monorepo for converting a portfolio of public finance management, enterprise operations, process, service, governance, assurance, and strategic decision-support initiatives into governed AI products.
 
-## Executable portfolio MVP
+## Portfolio productization status\n\nAll 18 products now have technical deployment-candidate baselines. This means documented, tested, synthetic-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.\n\n## Executable portfolio MVP
 
 The platform now provides:
 

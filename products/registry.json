@@ -1,6 +1,6 @@
 {
   "schema_version": "1.1.0",
-  "updated_at": "2026-08-22",
+  "updated_at": "2026-08-23",
   "products": [
     {
       "id": "P01",
@@ -574,7 +574,7 @@
       "id": "P16",
       "slug": "integrated-it-management-ai",
       "name": "Integrated IT Management AI",
-      "maturity": "product-definition",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -584,11 +584,29 @@
       },
       "documents": {
         "product_readme": "products/integrated-it-management-ai/README.md",
-        "go_live_checklist": "products/integrated-it-management-ai/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/integrated-it-management-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/integrated-it-management-ai/docs/PRD.md",
+        "architecture": "products/integrated-it-management-ai/docs/ARCHITECTURE.md",
+        "canonical_data_model": "products/integrated-it-management-ai/docs/CANONICAL-DATA-MODEL.md",
+        "operating_model": "products/integrated-it-management-ai/docs/OPERATING-MODEL.md",
+        "service_change_standard": "products/integrated-it-management-ai/docs/SERVICE-CHANGE-STANDARD.md",
+        "portfolio_control_standard": "products/integrated-it-management-ai/docs/PORTFOLIO-CONTROL-STANDARD.md",
+        "framework_alignment": "products/integrated-it-management-ai/docs/FRAMEWORK-ALIGNMENT.md",
+        "integration_event_standard": "products/integrated-it-management-ai/docs/INTEGRATION-EVENT-STANDARD.md",
+        "api": "products/integrated-it-management-ai/docs/API.md",
+        "security_privacy": "products/integrated-it-management-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/integrated-it-management-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/integrated-it-management-ai/docs/RUNBOOK.md",
+        "test_plan": "products/integrated-it-management-ai/docs/TEST-PLAN.md",
+        "uat": "products/integrated-it-management-ai/docs/UAT.md",
+        "roadmap": "products/integrated-it-management-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/integrated-it-management-ai/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

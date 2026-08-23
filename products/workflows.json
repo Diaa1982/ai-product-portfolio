@@ -571,18 +571,35 @@
     },
     {
       "product_id": "P16",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
-        "business_outcome",
-        "service_name",
-        "risk_rating",
-        "change_type"
+        "assessment_id",
+        "as_of_date",
+        "operating_scope",
+        "services",
+        "work_items",
+        "configuration_items",
+        "portfolio_items",
+        "risks_controls",
+        "evidence_register",
+        "proposed_action"
       ],
-      "calculation_profile": "none",
-      "approval_gate": "IT_CHANGE_RISK_REVIEW",
-      "approval_role": "CHANGE_AUTHORITY",
+      "calculation_profile": "integrated_it_management_v1",
+      "approval_gate": "INTEGRATED_IT_MANAGEMENT_DECISION",
+      "approval_role": "NAMED_IT_ACCOUNTABLE_AUTHORITIES",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "high_delivery_risk": 4,
+        "high_residual_risk": 15
+      },
+      "management_domains": [
+        "service",
+        "change",
+        "configuration",
+        "portfolio",
+        "risk_control"
+      ],
+      "protected_autonomous_actions": true
     },
     {
       "product_id": "P17",

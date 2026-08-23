@@ -1,0 +1,11 @@
+services:
+  p16:
+    build: {context: ../../.., dockerfile: products/integrated-it-management-ai/deploy/Dockerfile}
+    ports: ["${P16_PORT:-8080}:8080"]
+    environment: {P16_CONFIG_PATH: /app/products/integrated-it-management-ai/config/it-management.v1.json, CASE_STORE_PATH: /app/data/runtime/cases.json}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes: [p16-runtime:/app/data/runtime]
+volumes: {p16-runtime: {}}

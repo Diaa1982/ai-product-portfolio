@@ -1,51 +1,28 @@
 # Integrated IT Management AI — Go-Live Readiness Checklist
 
-**Product ID:** P16  
-**Category:** [Enterprise Architecture & Technology Management](../../groups/05-enterprise-architecture-technology/README.md)  
-**Current stage:** Executable MVP foundation  
-**Go-live ready:** No
+**Current stage:** Technical deployment candidate  
+**Go-live ready:** No  
+**Data policy:** Synthetic only
 
-## What already exists in GitHub
+## Implemented and evidenced
 
-- Integrated IT-management product definition.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
+- [x] Vendor-neutral canonical model and versioned configuration.
+- [x] Deterministic service, incident, change, CMDB, portfolio and control calculations.
+- [x] Evidence/linkage validation, decision package, audit digest and limitations.
+- [x] Protected-action checks and explicit human accountability.
+- [x] Dashboard, API, synthetic fixture, focused tests and hardened container baseline.
+- [x] Product, architecture, operating, security, deployment, test and UAT documentation.
 
-## Product-specific critical blockers
+## Required before production
 
-- [ ] ITSM/GRC/PM/audit/ITOM adapters.
-- [ ] common data model.
-- [ ] event ingestion.
-- [ ] change controls.
-- [ ] service-support readiness.
+- [ ] Approve sponsor, product owner, scope, funding, outcomes and benefits baseline.
+- [ ] Approve process definitions, KPI formulas, thresholds, service levels and decision rights.
+- [ ] Approve production data owners, sources, classification, lineage, retention and quality rules.
+- [ ] Build and validate ITSM/GRC/PMO/audit/ITOM/CMDB/IAM adapters and event ingestion.
+- [ ] Complete threat model, privacy assessment, least privilege, secrets, encryption and security testing.
+- [ ] Provision segregated environments, observability, backup, continuity, recovery and rollback.
+- [ ] Pass integration, performance, resilience, accessibility and user-acceptance testing.
+- [ ] Approve RACI, support model, service levels, training, change/release governance and incident response.
+- [ ] Record residual-risk acceptance and formal go-live authorization.
 
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
-|---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
-
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+Technical implementation evidence is recorded in [GO-LIVE-EVIDENCE.md](docs/GO-LIVE-EVIDENCE.md). This checklist does not represent organizational or production approval.

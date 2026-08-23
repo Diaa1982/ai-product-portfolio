@@ -1,0 +1,13 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P16",
+  "synthetic_data_only": true,
+  "framework_alignment": ["ITIL 4", "COBIT", "ISO 20000", "ISO 27001", "ISO 22301", "ISO 31000", "TOGAF", "PMBOK"],
+  "management_domains": ["strategy_governance", "demand_intake", "portfolio_project", "enterprise_architecture", "service_catalog", "incident_request_problem", "change_release_deployment", "configuration_asset", "availability_capacity_continuity", "security_risk_compliance_audit", "vendor_contract_financial", "workforce_knowledge", "performance_benefits_improvement"],
+  "canonical_entities": ["service", "work_item", "configuration_item", "portfolio_item", "risk", "control", "evidence", "decision"],
+  "work_item_types": ["incident", "request", "problem", "change", "release", "deployment"],
+  "health_weights": {"service": 0.25, "change": 0.2, "configuration": 0.15, "portfolio": 0.2, "control": 0.2},
+  "thresholds": {"high_delivery_risk": 4, "high_residual_risk": 15},
+  "decision_roles": ["CIO_ACCOUNTABLE_EXECUTIVE", "SERVICE_OWNER", "CHANGE_AUTHORITY", "PORTFOLIO_AUTHORITY", "RISK_OWNER", "CONTROL_OWNER", "DESIGN_AUTHORITY"],
+  "protected_actions": ["deploy_production", "approve_change", "close_incident", "accept_risk", "approve_sla", "sign_contract", "select_vendor", "approve_budget", "retire_service", "retire_asset", "disable_control", "approve_go_live"]
+}
