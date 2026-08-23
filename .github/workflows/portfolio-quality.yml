@@ -356,3 +356,20 @@ jobs:
             python -c "import json,sys; r=json.load(sys.stdin); assert r['repository_status']=='VALID'; assert r['traceability']['coverage_percent']==100; assert len(r['impact_analysis'][0]['affected'])>3; assert r['decision_record']['status']=='DRAFT_FOR_DESIGN_AUTHORITY'; assert r['application_portfolio'][0]['decommission_authorized'] is False; assert len(r['audit_digest'])==64"
           curl --fail --silent --header "Content-Type: application/json" --data '{"action":"decommission application"}' http://127.0.0.1:8080/p15/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
+
+      - name: Build P16 deployment image
+        run: docker build -f products/integrated-it-management-ai/deploy/Dockerfile -t p16-it-management:ci .
+      - name: Smoke-test P16 integrated health, evidence and protected IT actions
+        shell: bash
+        run: |
+          docker run -d --name p16-it-management-ci -p 8080:8080 p16-it-management:ci
+          trap 'docker logs p16-it-management-ci; docker rm -f p16-it-management-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p16 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" --data @products/integrated-it-management-ai/synthetic/integrated-it-operations.json http://127.0.0.1:8080/p16/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['assessment_status']=='VALID'; assert r['integrated_health']['score_percent']==100; assert r['service_management']['sla_attainment_percent']==100; assert r['change_management']['autonomous_production_change_permitted'] is False; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" --data '{"action":"accept risk"}' http://127.0.0.1:8080/p16/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
