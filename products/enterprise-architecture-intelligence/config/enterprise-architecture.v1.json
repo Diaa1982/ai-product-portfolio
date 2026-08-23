@@ -1,0 +1,9 @@
+{
+  "config_version":"1.0.0","product_id":"P15","synthetic_data_only":true,"vendor_neutral":true,"framework_alignment":"TOGAF-informed",
+  "architecture_layers":["business","information","data","application","integration","technology","security","operations"],
+  "element_types":["strategy_outcome","law_policy","standard","capability","organization_unit","role","stakeholder","process","service","form","kpi","risk","control","application","interface","data_object","database","technology"],
+  "relationship_types":["supports","governs","owns","performs","realizes","serves","measures","mitigates","controls","uses","produces","consumes","integrates_with","stores","runs_on","depends_on","replaces"],
+  "required_traceability":{"capability":["strategy_outcome","process"],"process":["capability","service","application","kpi","risk","control"],"service":["process","application"],"application":["process","interface","data_object","technology"],"data_object":["application","database"],"technology":["application"]},
+  "change_routes":{"minor":["ELEMENT_OWNER","EA_GOVERNANCE_TEAM"],"moderate":["ELEMENT_OWNER","DOMAIN_ARCHITECT","SECURITY_DATA_REVIEW","EA_GOVERNANCE_TEAM"],"major":["ELEMENT_OWNER","DOMAIN_ARCHITECTS","LEGAL_RISK_SECURITY","INVESTMENT_AUTHORITY","DESIGN_AUTHORITY"]},
+  "protected_actions":["approve_architecture","publish_architecture","decommission_application","select_vendor","sign_contract","approve_investment","migrate_repository","delete_element","accept_architecture_risk","authorize_production_integration","approve_go_live"]
+}

@@ -338,3 +338,21 @@ jobs:
             python -c "import json,sys; r=json.load(sys.stdin); assert r['assessment_status']=='MODERATION_READY'; assert r['overall_maturity']['evidenced_level']==3; assert r['recognition']['candidate_class']=='Gold candidate'; assert r['recognition']['certificate_issued'] is False; assert r['overall_maturity']['formal_rating'] is False; assert len(r['audit_digest'])==64"
           curl --fail --silent --header "Content-Type: application/json" --data '{"action":"issue certificate"}' http://127.0.0.1:8080/p18/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
+
+
+      - name: Build P15 deployment image
+        run: docker build -f products/enterprise-architecture-intelligence/deploy/Dockerfile -t p15-enterprise-architecture:ci .
+      - name: Smoke-test P15 traceability, impact, ADR and protected-action controls
+        shell: bash
+        run: |
+          docker run -d --name p15-enterprise-architecture-ci -p 8080:8080 p15-enterprise-architecture:ci
+          trap 'docker logs p15-enterprise-architecture-ci; docker rm -f p15-enterprise-architecture-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p15 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" --data @products/enterprise-architecture-intelligence/synthetic/connected-enterprise-model.json http://127.0.0.1:8080/p15/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['repository_status']=='VALID'; assert r['traceability']['coverage_percent']==100; assert len(r['impact_analysis'][0]['affected'])>3; assert r['decision_record']['status']=='DRAFT_FOR_DESIGN_AUTHORITY'; assert r['application_portfolio'][0]['decommission_authorized'] is False; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" --data '{"action":"decommission application"}' http://127.0.0.1:8080/p15/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"

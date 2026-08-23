@@ -21,6 +21,7 @@ from .p10_process_intelligence import EnterpriseProcessIntelligence, ProcessPort
 from .p13_pfm_business_architecture import PFMBusinessArchitecture, PFMArchitectureInput
 from .p17_cycle_time_benchmark import CycleTimeBenchmarkInput, PFMCycleTimeBenchmark
 from .p18_maturity_certification import PFMMaturityCertification, PFMMaturityInput
+from .p15_enterprise_architecture import EnterpriseArchitectureInput, EnterpriseArchitectureIntelligence
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -63,6 +64,8 @@ P17_DASHBOARD_PATH = Path(os.getenv("P17_DASHBOARD_PATH", Path(__file__).parent 
 P17_CONFIG_PATH = Path(os.getenv("P17_CONFIG_PATH", REPO_ROOT / "products" / "pfm-cycle-time-benchmark" / "config" / "cycle-time.v1.json"))
 P18_DASHBOARD_PATH = Path(os.getenv("P18_DASHBOARD_PATH", Path(__file__).parent / "static" / "p18.html"))
 P18_CONFIG_PATH = Path(os.getenv("P18_CONFIG_PATH", REPO_ROOT / "products" / "pfm-maturity-certification" / "config" / "maturity.v1.json"))
+P15_DASHBOARD_PATH = Path(os.getenv("P15_DASHBOARD_PATH", Path(__file__).parent / "static" / "p15.html"))
+P15_CONFIG_PATH = Path(os.getenv("P15_CONFIG_PATH", REPO_ROOT / "products" / "enterprise-architecture-intelligence" / "config" / "enterprise-architecture.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -82,6 +85,7 @@ p10_process_intelligence = EnterpriseProcessIntelligence(P10_CONFIG_PATH)
 p13_pfm_architecture = PFMBusinessArchitecture(P13_CONFIG_PATH)
 p17_cycle_time = PFMCycleTimeBenchmark(P17_CONFIG_PATH)
 p18_maturity = PFMMaturityCertification(P18_CONFIG_PATH)
+p15_enterprise_architecture = EnterpriseArchitectureIntelligence(P15_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -624,6 +628,28 @@ class P18AssessmentRequest(BaseModel):
 class P18ActionRequest(BaseModel):
     action: str = Field(min_length=3, max_length=200)
 
+class P15AnalysisRequest(BaseModel):
+    assessment_id: str = Field(min_length=3, max_length=100)
+    repository_name: str
+    repository_version: str
+    as_of_date: str
+    elements: list[dict[str, Any]]
+    relationships: list[dict[str, Any]]
+    evidence_register: list[dict[str, Any]]
+    impact_targets: list[str]
+    proposed_change: dict[str, Any]
+    assumptions: list[str] = Field(default_factory=list)
+
+class P15ChangeRequest(BaseModel):
+    legal: bool = False
+    security: bool = False
+    cross_layer: bool = False
+    high_criticality: bool = False
+    metadata_only: bool = False
+
+class P15ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
 
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
@@ -709,6 +735,9 @@ def p17_dashboard() -> FileResponse: return FileResponse(P17_DASHBOARD_PATH)
 @app.get("/p18", include_in_schema=False)
 def p18_dashboard() -> FileResponse: return FileResponse(P18_DASHBOARD_PATH)
 
+@app.get("/p15", include_in_schema=False)
+def p15_dashboard() -> FileResponse: return FileResponse(P15_DASHBOARD_PATH)
+
 
 @app.get("/health")
 def health() -> dict[str, Any]:
@@ -727,7 +756,22 @@ def health() -> dict[str, Any]:
             "p07_config_version": p07_partnership.config["config_version"],"p10_config_version":p10_process_intelligence.config["config_version"],
             "p13_config_version": p13_pfm_architecture.config["config_version"],
             "p17_config_version": p17_cycle_time.config["config_version"],
-            "p18_config_version": p18_maturity.config["config_version"]}
+            "p18_config_version": p18_maturity.config["config_version"],
+            "p15_config_version": p15_enterprise_architecture.config["config_version"]}
+
+@app.get("/p15/config")
+def p15_config() -> dict[str, Any]: return p15_enterprise_architecture.config
+
+@app.post("/p15/analyze")
+def p15_analyze(request: P15AnalysisRequest) -> dict[str, Any]:
+    try: return p15_enterprise_architecture.analyze(EnterpriseArchitectureInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc: raise as_http_error(exc) from exc
+
+@app.post("/p15/changes/classify")
+def p15_classify_change(request: P15ChangeRequest) -> dict[str, Any]: return p15_enterprise_architecture.classify_change(**request.model_dump())
+
+@app.post("/p15/actions/check")
+def p15_check_action(request: P15ActionRequest) -> dict[str, Any]: return p15_enterprise_architecture.check_action(request.action)
 
 @app.get("/p18/config")
 def p18_config() -> dict[str, Any]: return p18_maturity.config

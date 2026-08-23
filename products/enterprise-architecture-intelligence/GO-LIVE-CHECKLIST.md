@@ -1,52 +1,27 @@
 # Enterprise Architecture Intelligence — Go-Live Readiness Checklist
 
-**Product ID:** P15  
-**Category:** [Enterprise Architecture & Technology Management](../../groups/05-enterprise-architecture-technology/README.md)  
-**Current stage:** Executable MVP foundation  
-**Go-live ready:** No
+**Product ID:** P15 · **Stage:** Technical deployment candidate · **Go-live ready:** No
 
-## What already exists in GitHub
+## Completed technical evidence
 
-- Integrated architecture product definition.
-- Configured case, evidence, evaluation and approval workflow.
-- Human-accountability boundary and synthetic-data restriction.
-- Shared API, dashboard, schemas, audit-chain controls, Docker baseline and CI tests.
-- Product definition and initial backlog in the [product README](README.md).
+- [x] Versioned integrated metamodel, relationships and traceability rules.
+- [x] Repository QA, dependency impact, application portfolio and debt engine.
+- [x] Draft ADR, change routing and protected-action denial.
+- [x] API/UI, synthetic graph, hardened container and 15 tests.
+- [ ] Record final GitHub Actions run in `docs/GO-LIVE-EVIDENCE.md`.
 
-## Product-specific critical blockers
-
-- [ ] Approved metamodel.
-- [ ] graph repository.
-- [ ] source adapters.
-- [ ] dependency analysis.
-- [ ] decision records.
-- [ ] design-authority acceptance.
-
-## Go-live gate assessment
-
-| Gate | Status | What this project must complete |
+| Gate | Status | Required before production |
 |---|---|---|
-| L0 — Strategy and ownership | Partial | Approve sponsor, product owner, target users, deployment scope, funding, measurable outcome and benefits baseline |
-| L1 — Product and process | Partial | Approve the project PRD, AS-IS/TO-BE process, AI-versus-human tasks, acceptance criteria, excluded decisions and service levels |
-| L2 — Data and evidence | Not started | Approve production data owners, sources, fields, classification, quality thresholds, lineage, retention and evidence rules |
-| L3 — AI and knowledge | Partial | Implement and validate the product-specific models, rules, prompts, retrieval sources, thresholds, versioning and rollback |
-| L4 — Governance and compliance | Partial | Confirm risk tier, decision rights, human oversight, legal/policy obligations and applicable standards |
-| L5 — Security and privacy | Partial | Complete threat model, IAM design, least privilege, encryption, secret management, vulnerability tests, privacy controls and incident plan |
-| L6 — Architecture and integration | Partial | Approve target architecture and build production APIs/events, system adapters, environments, observability and error handling |
-| L7 — Verification and assurance | Partial | Pass functional, calculation/model, security, performance, accessibility, resilience and user-acceptance tests |
-| L8 — Operating model | Not started | Approve RACI, support ownership, SLAs, monitoring, training, user procedures, change management and release governance |
-| L9 — Deployment and resilience | Partial | Provision production infrastructure, CI/CD, backup, recovery, capacity, continuity, rollback and environment segregation |
-| L10 — Go-live authority and value | Not started | Obtain formal go-live and residual-risk approvals; activate KPI monitoring, benefits realization and post-implementation review |
+| L0 Strategy/ownership | Partial | Sponsor, product owner, architecture outcomes, scope, funding and benefits |
+| L1 Product/process | Partial | Metamodel, conventions, lifecycle, change workflow and acceptance criteria |
+| L2 Data/evidence | Not started | Repository owners, sources, lineage, quality, classification and retention |
+| L3 AI/knowledge | Partial | Rules, matching, confidence, versioning, explainability and rollback |
+| L4 Governance/compliance | Partial | Design Authority, decision rights, law/policy and framework claims |
+| L5 Security/privacy | Partial | SSO/MFA/RBAC/PAM/SoD, encryption, DLP, SIEM and incidents |
+| L6 Architecture/integration | Partial | Approved target architecture, adapters, APIs/events and migration proof |
+| L7 Verification | Partial | Functional, graph, security, load, resilience, accessibility and UAT |
+| L8 Operating model | Not started | Owners, architects/designers, stewards, governance, support and training |
+| L9 Deployment/resilience | Partial | Environments, CI/CD, export/exit, backup, DR and rollback |
+| L10 Authority/value | Not started | Design-authority UAT, residual risk, migration and formal go-live approval |
 
-## Mandatory decision package
-
-- [ ] Approved product/business case.
-- [ ] Signed data and integration approvals.
-- [ ] Security, privacy and responsible-AI assessment.
-- [ ] Test summary and UAT acceptance.
-- [ ] Operating and support model.
-- [ ] Deployment, continuity and rollback plan.
-- [ ] Residual-risk register.
-- [ ] Formal go-live decision by accountable authorities.
-
-See the [portfolio go-live standard](../../docs/GO-LIVE-GATE-STANDARD.md) and [categorized readiness matrix](../../docs/PROJECT-CATALOG.md).
+Architecture approval/publication, vendor selection, investment, migration, deletion, risk acceptance, decommissioning and go-live are human-only.

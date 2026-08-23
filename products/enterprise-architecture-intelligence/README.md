@@ -1,46 +1,21 @@
 # Enterprise Architecture Intelligence
 
-**Product ID:** P15  
-**Domain:** Business, data, application and technology alignment  
-**Baseline maturity:** Product definition
+**Product ID:** P15 · **Stage:** Technical deployment candidate · **Data:** Synthetic only · **Production ready:** No
 
-## Public-value proposition
+P15 provides a vendor-neutral connected architecture model from strategy and governing rules through capabilities, organization, processes, services, KPIs, risks and controls to applications, interfaces, data and technology.
 
-Link strategy, capabilities, processes, services, data, applications and technology to support evidence-based transformation decisions.
+## Executable scope
 
-## Intended users
+- TOGAF-informed business, data, application and technology alignment.
+- Eighteen element types, governed relationships and evidence validation.
+- Required-link coverage, orphan/duplicate detection and architecture debt.
+- Transitive change-impact and dependency analysis.
+- Draft application tolerate/modernize/duplication/retirement investigations.
+- Governed change classification and draft Architecture Decision Record.
+- API/UI, synthetic graph, 15 focused tests and hardened container.
 
-Enterprise architects, transformation leaders, business owners and technology teams.
+Run `python -m unittest tests.test_p15_enterprise_architecture -v`, start the API and open `/p15`.
 
-## Core capabilities
+ARIS, BIC, ERP, performance, risk, HR, Microsoft 365 and Power BI connections are future adapters—not present integrations or vendor endorsements. Design Authority retains all approval and publication rights.
 
-- Integrated architecture metamodel
-- Capability and dependency analysis
-- Application rationalization support
-- Target-state gaps and roadmap recommendations
-
-## Human-accountability boundary
-
-Recommendations do not authorize investments, decommission systems or change approved architectures without governance decisions.
-
-## Minimum product controls
-
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Encode integrated metamodel
-- [ ] Create synthetic enterprise repository
-- [ ] Implement dependency analysis
-- [ ] Add architecture decision records
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+See the [checklist](GO-LIVE-CHECKLIST.md), [metamodel](docs/ENTERPRISE-METAMODEL.md), [traceability](docs/TRACEABILITY-STANDARD.md), [impact methodology](docs/IMPACT-ANALYSIS.md), [rationalization](docs/APPLICATION-RATIONALIZATION.md), [ADR standard](docs/ARCHITECTURE-DECISION-RECORDS.md), [API](docs/API.md) and [evidence](docs/GO-LIVE-EVIDENCE.md).

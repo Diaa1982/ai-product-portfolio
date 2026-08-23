@@ -532,7 +532,7 @@
       "id": "P15",
       "slug": "enterprise-architecture-intelligence",
       "name": "Enterprise Architecture Intelligence",
-      "maturity": "product-definition",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -542,11 +542,32 @@
       },
       "documents": {
         "product_readme": "products/enterprise-architecture-intelligence/README.md",
-        "go_live_checklist": "products/enterprise-architecture-intelligence/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/enterprise-architecture-intelligence/GO-LIVE-CHECKLIST.md",
+        "prd": "products/enterprise-architecture-intelligence/docs/PRD.md",
+        "architecture": "products/enterprise-architecture-intelligence/docs/ARCHITECTURE.md",
+        "enterprise_metamodel": "products/enterprise-architecture-intelligence/docs/ENTERPRISE-METAMODEL.md",
+        "traceability_standard": "products/enterprise-architecture-intelligence/docs/TRACEABILITY-STANDARD.md",
+        "impact_analysis": "products/enterprise-architecture-intelligence/docs/IMPACT-ANALYSIS.md",
+        "application_rationalization": "products/enterprise-architecture-intelligence/docs/APPLICATION-RATIONALIZATION.md",
+        "architecture_debt": "products/enterprise-architecture-intelligence/docs/ARCHITECTURE-DEBT.md",
+        "architecture_decision_records": "products/enterprise-architecture-intelligence/docs/ARCHITECTURE-DECISION-RECORDS.md",
+        "governance_roles": "products/enterprise-architecture-intelligence/docs/GOVERNANCE-AND-ROLES.md",
+        "migration_exit": "products/enterprise-architecture-intelligence/docs/MIGRATION-AND-EXIT.md",
+        "data_model": "products/enterprise-architecture-intelligence/docs/DATA-MODEL.md",
+        "api": "products/enterprise-architecture-intelligence/docs/API.md",
+        "security_privacy": "products/enterprise-architecture-intelligence/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/enterprise-architecture-intelligence/docs/DEPLOYMENT.md",
+        "runbook": "products/enterprise-architecture-intelligence/docs/RUNBOOK.md",
+        "test_plan": "products/enterprise-architecture-intelligence/docs/TEST-PLAN.md",
+        "uat": "products/enterprise-architecture-intelligence/docs/UAT.md",
+        "roadmap": "products/enterprise-architecture-intelligence/docs/ROADMAP.md",
+        "go_live_evidence": "products/enterprise-architecture-intelligence/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     },
     {

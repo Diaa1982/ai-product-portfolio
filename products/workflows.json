@@ -550,18 +550,24 @@
     },
     {
       "product_id": "P15",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
-        "business_outcome",
-        "capability_name",
-        "application_name",
-        "target_state"
+        "assessment_id",
+        "repository_name",
+        "repository_version",
+        "elements",
+        "relationships",
+        "evidence_register",
+        "impact_targets",
+        "proposed_change"
       ],
-      "calculation_profile": "none",
+      "calculation_profile": "enterprise_architecture_v1",
       "approval_gate": "ENTERPRISE_ARCHITECTURE_DECISION",
       "approval_role": "DESIGN_AUTHORITY",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "required_traceability_target_percent": 100
+      }
     },
     {
       "product_id": "P16",
