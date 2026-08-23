@@ -1,0 +1,17 @@
+services:
+  p06-process-audit:
+    build:
+      context: ../../..
+      dockerfile: products/process-audit-ai/deploy/Dockerfile
+    ports: ["${P06_PORT:-8080}:8080"]
+    environment:
+      CASE_STORE_PATH: /app/data/runtime/cases.json
+      P06_CONFIG_PATH: /app/products/process-audit-ai/config/process-audit.v1.json
+    volumes: ["p06-runtime:/app/data/runtime"]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    restart: unless-stopped
+volumes:
+  p06-runtime:

@@ -1,0 +1,21 @@
+{
+  "config_version": "1.0.0",
+  "materiality_criteria": [
+    {"id": "jurisdictional_scope", "weight": 0.16},
+    {"id": "industry_breadth", "weight": 0.16},
+    {"id": "time_sensitivity", "weight": 0.18},
+    {"id": "evidence_strength", "weight": 0.20},
+    {"id": "novelty", "weight": 0.14},
+    {"id": "stakeholder_relevance", "weight": 0.16}
+  ],
+  "thresholds": {"auto_alert": 0.82, "analyst_review": 0.55, "executive_confidence": 0.75},
+  "audiences": ["government", "business", "both"],
+  "approved_industries": ["Financial Services/Fintech", "Logistics & Trade", "Healthcare/Healthtech"],
+  "onboarded_jurisdictions": ["UAE", "UK", "EU", "USA", "Singapore"],
+  "pfm_categories": ["Fiscal studies and policies", "Budget", "Treasury", "Public revenues", "Central accounts", "Digital financial services", "Public debt", "Financial control", "Performance reporting", "Fiscal sustainability", "Commitments", "Public expenditure", "Other"],
+  "human_approver_role": "STRATEGY_RISK_AUTHORITY",
+  "advisory_disclaimer": "ADVISORY: This output supports analysis only and does not constitute policy, legal, fiscal or investment authority.",
+  "source_registry": [
+    {"source_id": "SYN-OFFICIAL-001", "name": "Synthetic official-source simulation", "official": true, "approved": true, "active": true, "environment": "synthetic-demo", "allowed_domains": ["official.example"], "owner_role": "SOURCE_REGISTRY_OWNER"}
+  ]
+}

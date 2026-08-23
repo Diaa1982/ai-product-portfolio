@@ -1,0 +1,695 @@
+{
+  "schema_version": "1.1.0",
+  "updated_at": "2026-08-23",
+  "products": [
+    {
+      "id": "P01",
+      "slug": "pfm-agentic-ai",
+      "name": "PFM Agentic AI",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/pfm-agentic-ai/README.md",
+        "go_live_checklist": "products/pfm-agentic-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-agentic-ai/docs/PRD.md",
+        "operating_blueprint": "products/pfm-agentic-ai/docs/OPERATING-BLUEPRINT.md",
+        "agent_cards": "products/pfm-agentic-ai/docs/AGENT-CARDS.md",
+        "workflow": "products/pfm-agentic-ai/docs/WORKFLOW.md",
+        "control_risk_governance_matrix": "products/pfm-agentic-ai/docs/CONTROL-RISK-GOVERNANCE-MATRIX.md",
+        "calculation_methodology": "products/pfm-agentic-ai/docs/PFM-CALCULATION-METHODOLOGY.md",
+        "pefa_ipsas_alignment": "products/pfm-agentic-ai/docs/PFM-PEFA-IPSAS-ALIGNMENT.md",
+        "security_privacy": "products/pfm-agentic-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-agentic-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-agentic-ai/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-agentic-ai/docs/TEST-PLAN.md",
+        "uat": "products/pfm-agentic-ai/docs/UAT.md",
+        "roadmap": "products/pfm-agentic-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-agentic-ai/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P02",
+      "slug": "pfm-brain",
+      "name": "PFM Brain",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/pfm-brain/README.md",
+        "go_live_checklist": "products/pfm-brain/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-brain/docs/PRD.md",
+        "architecture": "products/pfm-brain/docs/ARCHITECTURE.md",
+        "canonical_data_standard": "products/pfm-brain/docs/CANONICAL-PFM-DATA-STANDARD.md",
+        "calculation_methodology": "products/pfm-brain/docs/CALCULATION-METHODOLOGY.md",
+        "insight_reconciliation_standard": "products/pfm-brain/docs/INSIGHT-AND-RECONCILIATION-STANDARD.md",
+        "control_governance_matrix": "products/pfm-brain/docs/CONTROL-AND-GOVERNANCE-MATRIX.md",
+        "pfm_pefa_ipsas_alignment": "products/pfm-brain/docs/PFM-PEFA-IPSAS-ALIGNMENT.md",
+        "security_privacy": "products/pfm-brain/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-brain/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-brain/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-brain/docs/TEST-PLAN.md",
+        "uat": "products/pfm-brain/docs/UAT.md",
+        "roadmap": "products/pfm-brain/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-brain/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P03",
+      "slug": "strategic-radar",
+      "name": "Strategic Radar",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/strategic-radar/README.md",
+        "go_live_checklist": "products/strategic-radar/GO-LIVE-CHECKLIST.md",
+        "prd": "products/strategic-radar/docs/PRD.md",
+        "architecture": "products/strategic-radar/docs/ARCHITECTURE.md",
+        "pfm_alignment": "products/strategic-radar/docs/PFM-ALIGNMENT.md",
+        "source_governance": "products/strategic-radar/docs/SOURCE-GOVERNANCE.md",
+        "materiality": "products/strategic-radar/docs/MATERIALITY-METHODOLOGY.md",
+        "security_privacy": "products/strategic-radar/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/strategic-radar/docs/DEPLOYMENT.md",
+        "runbook": "products/strategic-radar/docs/RUNBOOK.md",
+        "test_plan": "products/strategic-radar/docs/TEST-PLAN.md",
+        "uat": "products/strategic-radar/docs/UAT.md",
+        "go_live_evidence": "products/strategic-radar/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P04",
+      "slug": "signal-detection-agent",
+      "name": "Signal Detection Agent",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/signal-detection-agent/README.md",
+        "go_live_checklist": "products/signal-detection-agent/GO-LIVE-CHECKLIST.md",
+        "prd": "products/signal-detection-agent/docs/PRD.md",
+        "architecture": "products/signal-detection-agent/docs/ARCHITECTURE.md",
+        "pfm_alignment": "products/signal-detection-agent/docs/PFM-ALIGNMENT.md",
+        "evidence_standard": "products/signal-detection-agent/docs/EVIDENCE-STANDARD.md",
+        "detection_methodology": "products/signal-detection-agent/docs/DETECTION-METHODOLOGY.md",
+        "security_privacy": "products/signal-detection-agent/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/signal-detection-agent/docs/DEPLOYMENT.md",
+        "runbook": "products/signal-detection-agent/docs/RUNBOOK.md",
+        "test_plan": "products/signal-detection-agent/docs/TEST-PLAN.md",
+        "uat": "products/signal-detection-agent/docs/UAT.md",
+        "go_live_evidence": "products/signal-detection-agent/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P05",
+      "slug": "service-design-ai",
+      "name": "Service Design AI",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/service-design-ai/README.md",
+        "go_live_checklist": "products/service-design-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/service-design-ai/docs/PRD.md",
+        "architecture": "products/service-design-ai/docs/ARCHITECTURE.md",
+        "methodology": "products/service-design-ai/docs/SERVICE-DESIGN-METHODOLOGY.md",
+        "classification_standard": "products/service-design-ai/docs/CLASSIFICATION-STANDARD.md",
+        "service_card_standard": "products/service-design-ai/docs/SERVICE-CARD-STANDARD.md",
+        "journey_mapping_standard": "products/service-design-ai/docs/JOURNEY-MAPPING-STANDARD.md",
+        "service_blueprint_standard": "products/service-design-ai/docs/SERVICE-BLUEPRINT-STANDARD.md",
+        "methodology_tools": "products/service-design-ai/docs/METHODOLOGY-TOOLS.md",
+        "evidence_reporting": "products/service-design-ai/docs/EVIDENCE-AND-REPORTING-STANDARD.md",
+        "gates_governance": "products/service-design-ai/docs/GATES-AND-GOVERNANCE.md",
+        "dubai_service_alignment": "products/service-design-ai/docs/DUBAI-SERVICE-ALIGNMENT.md",
+        "data_model": "products/service-design-ai/docs/DATA-MODEL.md",
+        "api": "products/service-design-ai/docs/API.md",
+        "security_privacy": "products/service-design-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/service-design-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/service-design-ai/docs/RUNBOOK.md",
+        "test_plan": "products/service-design-ai/docs/TEST-PLAN.md",
+        "uat": "products/service-design-ai/docs/UAT.md",
+        "roadmap": "products/service-design-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/service-design-ai/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P06",
+      "slug": "process-audit-ai",
+      "name": "Process Audit AI",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/process-audit-ai/README.md",
+        "go_live_checklist": "products/process-audit-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/process-audit-ai/docs/PRD.md",
+        "architecture": "products/process-audit-ai/docs/ARCHITECTURE.md",
+        "audit_methodology": "products/process-audit-ai/docs/AUDIT-METHODOLOGY.md",
+        "criterion_library": "products/process-audit-ai/docs/CRITERION-LIBRARY-STANDARD.md",
+        "scoring_methodology": "products/process-audit-ai/docs/SCORING-METHODOLOGY.md",
+        "evidence_standard": "products/process-audit-ai/docs/EVIDENCE-STANDARD.md",
+        "documented_actual_standard": "products/process-audit-ai/docs/DOCUMENTED-VS-ACTUAL-STANDARD.md",
+        "findings_capa": "products/process-audit-ai/docs/FINDINGS-AND-CAPA.md",
+        "governance_roles": "products/process-audit-ai/docs/GOVERNANCE-AND-ROLES.md",
+        "iso_dgep_alignment": "products/process-audit-ai/docs/ISO-DGEP-ALIGNMENT.md",
+        "bilingual_accessibility": "products/process-audit-ai/docs/BILINGUAL-ACCESSIBILITY.md",
+        "data_model": "products/process-audit-ai/docs/DATA-MODEL.md",
+        "api": "products/process-audit-ai/docs/API.md",
+        "security_privacy": "products/process-audit-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/process-audit-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/process-audit-ai/docs/RUNBOOK.md",
+        "test_plan": "products/process-audit-ai/docs/TEST-PLAN.md",
+        "uat": "products/process-audit-ai/docs/UAT.md",
+        "roadmap": "products/process-audit-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/process-audit-ai/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P07",
+      "slug": "partnership-management-copilot",
+      "name": "Partnership Management Copilot",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/partnership-management-copilot/README.md",
+        "go_live_checklist": "products/partnership-management-copilot/GO-LIVE-CHECKLIST.md",
+        "prd": "products/partnership-management-copilot/docs/PRD.md",
+        "architecture": "products/partnership-management-copilot/docs/ARCHITECTURE.md",
+        "partnership_lifecycle": "products/partnership-management-copilot/docs/PARTNERSHIP-LIFECYCLE.md",
+        "register_standard": "products/partnership-management-copilot/docs/REGISTER-DATA-STANDARD.md",
+        "agreement_extraction": "products/partnership-management-copilot/docs/AGREEMENT-EXTRACTION-STANDARD.md",
+        "evidence_utilization": "products/partnership-management-copilot/docs/EVIDENCE-AND-UTILIZATION.md",
+        "obligations_expiry": "products/partnership-management-copilot/docs/OBLIGATIONS-AND-EXPIRY.md",
+        "notification_standard": "products/partnership-management-copilot/docs/NOTIFICATION-STANDARD.md",
+        "governance_decisions": "products/partnership-management-copilot/docs/GOVERNANCE-AND-DECISIONS.md",
+        "reporting_standard": "products/partnership-management-copilot/docs/REPORTING-STANDARD.md",
+        "m365_copilot_design": "products/partnership-management-copilot/docs/M365-COPILOT-DESIGN.md",
+        "data_model": "products/partnership-management-copilot/docs/DATA-MODEL.md",
+        "api": "products/partnership-management-copilot/docs/API.md",
+        "security_privacy_legal": "products/partnership-management-copilot/docs/SECURITY-PRIVACY-LEGAL.md",
+        "deployment": "products/partnership-management-copilot/docs/DEPLOYMENT.md",
+        "runbook": "products/partnership-management-copilot/docs/RUNBOOK.md",
+        "test_plan": "products/partnership-management-copilot/docs/TEST-PLAN.md",
+        "uat": "products/partnership-management-copilot/docs/UAT.md",
+        "roadmap": "products/partnership-management-copilot/docs/ROADMAP.md",
+        "go_live_evidence": "products/partnership-management-copilot/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P08",
+      "slug": "ai-use-case-assessor",
+      "name": "AI Use Case Assessor",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/ai-use-case-assessor/README.md",
+        "go_live_checklist": "products/ai-use-case-assessor/GO-LIVE-CHECKLIST.md",
+        "prd": "products/ai-use-case-assessor/docs/PRD.md",
+        "architecture": "products/ai-use-case-assessor/docs/ARCHITECTURE.md",
+        "scoring_methodology": "products/ai-use-case-assessor/docs/SCORING-METHODOLOGY.md",
+        "security_privacy": "products/ai-use-case-assessor/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/ai-use-case-assessor/docs/DEPLOYMENT.md",
+        "runbook": "products/ai-use-case-assessor/docs/RUNBOOK.md",
+        "test_plan": "products/ai-use-case-assessor/docs/TEST-PLAN.md",
+        "uat": "products/ai-use-case-assessor/docs/UAT.md",
+        "go_live_evidence": "products/ai-use-case-assessor/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P09",
+      "slug": "corporate-performance-review-ai",
+      "name": "Corporate Performance Review AI",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/corporate-performance-review-ai/README.md",
+        "go_live_checklist": "products/corporate-performance-review-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/corporate-performance-review-ai/docs/PRD.md",
+        "kpi_data_standard": "products/corporate-performance-review-ai/docs/KPI-DATA-STANDARD.md",
+        "calculation_methodology": "products/corporate-performance-review-ai/docs/CALCULATION-METHODOLOGY.md",
+        "review_methodology": "products/corporate-performance-review-ai/docs/REVIEW-METHODOLOGY.md",
+        "pfm_alignment": "products/corporate-performance-review-ai/docs/PFM-ALIGNMENT.md",
+        "security_privacy": "products/corporate-performance-review-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/corporate-performance-review-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/corporate-performance-review-ai/docs/RUNBOOK.md",
+        "test_plan": "products/corporate-performance-review-ai/docs/TEST-PLAN.md",
+        "uat": "products/corporate-performance-review-ai/docs/UAT.md",
+        "go_live_evidence": "products/corporate-performance-review-ai/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P10",
+      "slug": "enterprise-process-intelligence",
+      "name": "Enterprise Process Intelligence",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Process, Service & Partnership Operations",
+        "slug": "04-process-service-partnership-operations"
+      },
+      "documents": {
+        "product_readme": "products/enterprise-process-intelligence/README.md",
+        "go_live_checklist": "products/enterprise-process-intelligence/GO-LIVE-CHECKLIST.md",
+        "prd": "products/enterprise-process-intelligence/docs/PRD.md",
+        "architecture": "products/enterprise-process-intelligence/docs/ARCHITECTURE.md",
+        "metamodel": "products/enterprise-process-intelligence/docs/PROCESS-METAMODEL.md",
+        "governance": "products/enterprise-process-intelligence/docs/GOVERNANCE.md",
+        "validation": "products/enterprise-process-intelligence/docs/VALIDATION-STANDARD.md",
+        "maturity_analytics": "products/enterprise-process-intelligence/docs/MATURITY-ANALYTICS.md",
+        "migration_readiness": "products/enterprise-process-intelligence/docs/MIGRATION-READINESS.md",
+        "api": "products/enterprise-process-intelligence/docs/API.md",
+        "security_privacy": "products/enterprise-process-intelligence/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/enterprise-process-intelligence/docs/DEPLOYMENT.md",
+        "runbook": "products/enterprise-process-intelligence/docs/RUNBOOK.md",
+        "test_plan": "products/enterprise-process-intelligence/docs/TEST-PLAN.md",
+        "uat": "products/enterprise-process-intelligence/docs/UAT.md",
+        "roadmap": "products/enterprise-process-intelligence/docs/ROADMAP.md",
+        "go_live_evidence": "products/enterprise-process-intelligence/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P11",
+      "slug": "ipsas-compliance-ai",
+      "name": "IPSAS Compliance AI",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/ipsas-compliance-ai/README.md",
+        "go_live_checklist": "products/ipsas-compliance-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/ipsas-compliance-ai/docs/PRD.md",
+        "architecture": "products/ipsas-compliance-ai/docs/ARCHITECTURE.md",
+        "accounting_review_methodology": "products/ipsas-compliance-ai/docs/ACCOUNTING-REVIEW-METHODOLOGY.md",
+        "controlled_knowledge_standard": "products/ipsas-compliance-ai/docs/CONTROLLED-KNOWLEDGE-STANDARD.md",
+        "review_controls": "products/ipsas-compliance-ai/docs/REVIEW-CONTROLS.md",
+        "control_risk_governance_matrix": "products/ipsas-compliance-ai/docs/CONTROL-RISK-GOVERNANCE-MATRIX.md",
+        "security_privacy": "products/ipsas-compliance-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/ipsas-compliance-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/ipsas-compliance-ai/docs/RUNBOOK.md",
+        "test_plan": "products/ipsas-compliance-ai/docs/TEST-PLAN.md",
+        "uat": "products/ipsas-compliance-ai/docs/UAT.md",
+        "roadmap": "products/ipsas-compliance-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/ipsas-compliance-ai/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P12",
+      "slug": "revenue-reconciliation-ai",
+      "name": "Revenue Reconciliation AI",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "PFM Intelligence & Financial Operations",
+        "slug": "01-pfm-intelligence-financial-operations"
+      },
+      "documents": {
+        "product_readme": "products/revenue-reconciliation-ai/README.md",
+        "go_live_checklist": "products/revenue-reconciliation-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/revenue-reconciliation-ai/docs/PRD.md",
+        "architecture": "products/revenue-reconciliation-ai/docs/ARCHITECTURE.md",
+        "process_controls": "products/revenue-reconciliation-ai/docs/PROCESS-AND-CONTROLS.md",
+        "calculation_methodology": "products/revenue-reconciliation-ai/docs/CALCULATION-METHODOLOGY.md",
+        "matching_methodology": "products/revenue-reconciliation-ai/docs/MATCHING-METHODOLOGY.md",
+        "form_rules": "products/revenue-reconciliation-ai/docs/FORM-RULES.md",
+        "control_risk_governance_matrix": "products/revenue-reconciliation-ai/docs/CONTROL-RISK-GOVERNANCE-MATRIX.md",
+        "security_privacy": "products/revenue-reconciliation-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/revenue-reconciliation-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/revenue-reconciliation-ai/docs/RUNBOOK.md",
+        "test_plan": "products/revenue-reconciliation-ai/docs/TEST-PLAN.md",
+        "uat": "products/revenue-reconciliation-ai/docs/UAT.md",
+        "roadmap": "products/revenue-reconciliation-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/revenue-reconciliation-ai/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P13",
+      "slug": "pfm-business-architecture",
+      "name": "PFM Business Architecture",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "PFM Architecture, Benchmarking & Maturity",
+        "slug": "02-pfm-architecture-benchmarking-maturity"
+      },
+      "documents": {
+        "product_readme": "products/pfm-business-architecture/README.md",
+        "go_live_checklist": "products/pfm-business-architecture/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-business-architecture/docs/PRD.md",
+        "architecture": "products/pfm-business-architecture/docs/ARCHITECTURE.md",
+        "pfm_operating_cycle": "products/pfm-business-architecture/docs/PFM-OPERATING-CYCLE.md",
+        "capability_metamodel": "products/pfm-business-architecture/docs/CAPABILITY-METAMODEL.md",
+        "scoring_methodology": "products/pfm-business-architecture/docs/SCORING-METHODOLOGY.md",
+        "roadmap_standard": "products/pfm-business-architecture/docs/ROADMAP-STANDARD.md",
+        "pefa_alignment": "products/pfm-business-architecture/docs/PEFA-ALIGNMENT.md",
+        "ipsas_alignment": "products/pfm-business-architecture/docs/IPSAS-ALIGNMENT.md",
+        "data_model": "products/pfm-business-architecture/docs/DATA-MODEL.md",
+        "api": "products/pfm-business-architecture/docs/API.md",
+        "security_privacy": "products/pfm-business-architecture/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-business-architecture/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-business-architecture/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-business-architecture/docs/TEST-PLAN.md",
+        "uat": "products/pfm-business-architecture/docs/UAT.md",
+        "roadmap": "products/pfm-business-architecture/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-business-architecture/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P14",
+      "slug": "ai-governance-control-tower",
+      "name": "AI Governance Control Tower",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Strategy, Performance & AI Governance",
+        "slug": "03-strategy-performance-ai-governance"
+      },
+      "documents": {
+        "product_readme": "products/ai-governance-control-tower/README.md",
+        "go_live_checklist": "products/ai-governance-control-tower/GO-LIVE-CHECKLIST.md",
+        "prd": "products/ai-governance-control-tower/docs/PRD.md",
+        "architecture": "products/ai-governance-control-tower/docs/ARCHITECTURE.md",
+        "risk_methodology": "products/ai-governance-control-tower/docs/RISK-METHODOLOGY.md",
+        "gate_standard": "products/ai-governance-control-tower/docs/GATE-STANDARD.md",
+        "control_catalog": "products/ai-governance-control-tower/docs/CONTROL-CATALOG.md",
+        "registers": "products/ai-governance-control-tower/docs/REGISTERS.md",
+        "iso_42001_alignment": "products/ai-governance-control-tower/docs/ISO-42001-ALIGNMENT.md",
+        "pfm_alignment": "products/ai-governance-control-tower/docs/PFM-ALIGNMENT.md",
+        "board_procedure": "products/ai-governance-control-tower/docs/BOARD-OPERATING-PROCEDURE.md",
+        "security_privacy": "products/ai-governance-control-tower/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/ai-governance-control-tower/docs/DEPLOYMENT.md",
+        "runbook": "products/ai-governance-control-tower/docs/RUNBOOK.md",
+        "test_plan": "products/ai-governance-control-tower/docs/TEST-PLAN.md",
+        "uat": "products/ai-governance-control-tower/docs/UAT.md",
+        "go_live_evidence": "products/ai-governance-control-tower/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P15",
+      "slug": "enterprise-architecture-intelligence",
+      "name": "Enterprise Architecture Intelligence",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Enterprise Architecture & Technology Management",
+        "slug": "05-enterprise-architecture-technology"
+      },
+      "documents": {
+        "product_readme": "products/enterprise-architecture-intelligence/README.md",
+        "go_live_checklist": "products/enterprise-architecture-intelligence/GO-LIVE-CHECKLIST.md",
+        "prd": "products/enterprise-architecture-intelligence/docs/PRD.md",
+        "architecture": "products/enterprise-architecture-intelligence/docs/ARCHITECTURE.md",
+        "enterprise_metamodel": "products/enterprise-architecture-intelligence/docs/ENTERPRISE-METAMODEL.md",
+        "traceability_standard": "products/enterprise-architecture-intelligence/docs/TRACEABILITY-STANDARD.md",
+        "impact_analysis": "products/enterprise-architecture-intelligence/docs/IMPACT-ANALYSIS.md",
+        "application_rationalization": "products/enterprise-architecture-intelligence/docs/APPLICATION-RATIONALIZATION.md",
+        "architecture_debt": "products/enterprise-architecture-intelligence/docs/ARCHITECTURE-DEBT.md",
+        "architecture_decision_records": "products/enterprise-architecture-intelligence/docs/ARCHITECTURE-DECISION-RECORDS.md",
+        "governance_roles": "products/enterprise-architecture-intelligence/docs/GOVERNANCE-AND-ROLES.md",
+        "migration_exit": "products/enterprise-architecture-intelligence/docs/MIGRATION-AND-EXIT.md",
+        "data_model": "products/enterprise-architecture-intelligence/docs/DATA-MODEL.md",
+        "api": "products/enterprise-architecture-intelligence/docs/API.md",
+        "security_privacy": "products/enterprise-architecture-intelligence/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/enterprise-architecture-intelligence/docs/DEPLOYMENT.md",
+        "runbook": "products/enterprise-architecture-intelligence/docs/RUNBOOK.md",
+        "test_plan": "products/enterprise-architecture-intelligence/docs/TEST-PLAN.md",
+        "uat": "products/enterprise-architecture-intelligence/docs/UAT.md",
+        "roadmap": "products/enterprise-architecture-intelligence/docs/ROADMAP.md",
+        "go_live_evidence": "products/enterprise-architecture-intelligence/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P16",
+      "slug": "integrated-it-management-ai",
+      "name": "Integrated IT Management AI",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "Enterprise Architecture & Technology Management",
+        "slug": "05-enterprise-architecture-technology"
+      },
+      "documents": {
+        "product_readme": "products/integrated-it-management-ai/README.md",
+        "go_live_checklist": "products/integrated-it-management-ai/GO-LIVE-CHECKLIST.md",
+        "prd": "products/integrated-it-management-ai/docs/PRD.md",
+        "architecture": "products/integrated-it-management-ai/docs/ARCHITECTURE.md",
+        "canonical_data_model": "products/integrated-it-management-ai/docs/CANONICAL-DATA-MODEL.md",
+        "operating_model": "products/integrated-it-management-ai/docs/OPERATING-MODEL.md",
+        "service_change_standard": "products/integrated-it-management-ai/docs/SERVICE-CHANGE-STANDARD.md",
+        "portfolio_control_standard": "products/integrated-it-management-ai/docs/PORTFOLIO-CONTROL-STANDARD.md",
+        "framework_alignment": "products/integrated-it-management-ai/docs/FRAMEWORK-ALIGNMENT.md",
+        "integration_event_standard": "products/integrated-it-management-ai/docs/INTEGRATION-EVENT-STANDARD.md",
+        "api": "products/integrated-it-management-ai/docs/API.md",
+        "security_privacy": "products/integrated-it-management-ai/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/integrated-it-management-ai/docs/DEPLOYMENT.md",
+        "runbook": "products/integrated-it-management-ai/docs/RUNBOOK.md",
+        "test_plan": "products/integrated-it-management-ai/docs/TEST-PLAN.md",
+        "uat": "products/integrated-it-management-ai/docs/UAT.md",
+        "roadmap": "products/integrated-it-management-ai/docs/ROADMAP.md",
+        "go_live_evidence": "products/integrated-it-management-ai/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P17",
+      "slug": "pfm-cycle-time-benchmark",
+      "name": "PFM Cycle-Time Benchmark",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "PFM Architecture, Benchmarking & Maturity",
+        "slug": "02-pfm-architecture-benchmarking-maturity"
+      },
+      "documents": {
+        "product_readme": "products/pfm-cycle-time-benchmark/README.md",
+        "go_live_checklist": "products/pfm-cycle-time-benchmark/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-cycle-time-benchmark/docs/PRD.md",
+        "architecture": "products/pfm-cycle-time-benchmark/docs/ARCHITECTURE.md",
+        "benchmark_methodology": "products/pfm-cycle-time-benchmark/docs/BENCHMARK-METHODOLOGY.md",
+        "comparability_standard": "products/pfm-cycle-time-benchmark/docs/COMPARABILITY-STANDARD.md",
+        "source_licensing_standard": "products/pfm-cycle-time-benchmark/docs/SOURCE-AND-LICENSING-STANDARD.md",
+        "reliability_classification": "products/pfm-cycle-time-benchmark/docs/RELIABILITY-CLASSIFICATION.md",
+        "scoring_methodology": "products/pfm-cycle-time-benchmark/docs/SCORING-METHODOLOGY.md",
+        "pefa_boundary": "products/pfm-cycle-time-benchmark/docs/PEFA-BOUNDARY.md",
+        "data_model": "products/pfm-cycle-time-benchmark/docs/DATA-MODEL.md",
+        "api": "products/pfm-cycle-time-benchmark/docs/API.md",
+        "security_privacy": "products/pfm-cycle-time-benchmark/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-cycle-time-benchmark/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-cycle-time-benchmark/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-cycle-time-benchmark/docs/TEST-PLAN.md",
+        "uat": "products/pfm-cycle-time-benchmark/docs/UAT.md",
+        "roadmap": "products/pfm-cycle-time-benchmark/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-cycle-time-benchmark/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    },
+    {
+      "id": "P18",
+      "slug": "pfm-maturity-certification",
+      "name": "PFM Maturity & Certification",
+      "maturity": "technical-deployment-candidate",
+      "classification": "PORTFOLIO-INTERNAL",
+      "data_policy": "synthetic-only",
+      "production_ready": false,
+      "category": {
+        "name": "PFM Architecture, Benchmarking & Maturity",
+        "slug": "02-pfm-architecture-benchmarking-maturity"
+      },
+      "documents": {
+        "product_readme": "products/pfm-maturity-certification/README.md",
+        "go_live_checklist": "products/pfm-maturity-certification/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-maturity-certification/docs/PRD.md",
+        "architecture": "products/pfm-maturity-certification/docs/ARCHITECTURE.md",
+        "assessment_methodology": "products/pfm-maturity-certification/docs/ASSESSMENT-METHODOLOGY.md",
+        "domain_model": "products/pfm-maturity-certification/docs/DOMAIN-MODEL.md",
+        "evidence_standard": "products/pfm-maturity-certification/docs/EVIDENCE-STANDARD.md",
+        "scoring_calibration": "products/pfm-maturity-certification/docs/SCORING-AND-CALIBRATION.md",
+        "moderation_appeals": "products/pfm-maturity-certification/docs/MODERATION-AND-APPEALS.md",
+        "certification_governance": "products/pfm-maturity-certification/docs/CERTIFICATION-GOVERNANCE.md",
+        "framework_boundaries": "products/pfm-maturity-certification/docs/FRAMEWORK-BOUNDARIES.md",
+        "surveillance_renewal": "products/pfm-maturity-certification/docs/SURVEILLANCE-RENEWAL.md",
+        "data_model": "products/pfm-maturity-certification/docs/DATA-MODEL.md",
+        "api": "products/pfm-maturity-certification/docs/API.md",
+        "security_privacy": "products/pfm-maturity-certification/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-maturity-certification/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-maturity-certification/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-maturity-certification/docs/TEST-PLAN.md",
+        "uat": "products/pfm-maturity-certification/docs/UAT.md",
+        "roadmap": "products/pfm-maturity-certification/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-maturity-certification/docs/GO-LIVE-EVIDENCE.md"
+      },
+      "readiness": {
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
+      }
+    }
+  ]
+}

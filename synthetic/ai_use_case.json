@@ -1,0 +1,10 @@
+{
+  "product_id": "P08",
+  "title": "Synthetic AI use-case assessment",
+  "owner_role": "AI_PORTFOLIO_ANALYST",
+  "inputs": {
+    "business_outcome": "Reduce manual review time while preserving accountability",
+    "value_score": 4.3,
+    "feasibility_score": 3.7
+  }
+}

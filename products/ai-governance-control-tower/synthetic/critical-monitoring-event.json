@@ -1,0 +1,4 @@
+{
+  "use_case_id":"UC-SYN-001",
+  "metrics":{"security_breach":true,"privacy_breach":false,"unauthorized_action":false,"financial_control_breach":false,"audit_log_failure":false,"drift_score":0.1}
+}

@@ -1,0 +1,24 @@
+{
+  "assessment_id":"P15-SYN-001","repository_name":"Synthetic Enterprise Architecture","repository_version":"1.0","as_of_date":"2026-08-23",
+  "elements":[
+    {"element_id":"S1","name":"Public value outcome","element_type":"strategy_outcome","owner_role":"STRATEGY_OWNER","lifecycle_status":"ACTIVE","criticality":5,"evidence_refs":["EV-1"]},
+    {"element_id":"C1","name":"Financial planning capability","element_type":"capability","owner_role":"CAPABILITY_OWNER","lifecycle_status":"ACTIVE","criticality":5,"evidence_refs":["EV-1"]},
+    {"element_id":"P1","name":"Prepare financial plan","element_type":"process","owner_role":"PROCESS_OWNER","lifecycle_status":"ACTIVE","criticality":5,"evidence_refs":["EV-1"]},
+    {"element_id":"SV1","name":"Planning service","element_type":"service","owner_role":"SERVICE_OWNER","lifecycle_status":"ACTIVE","criticality":4,"evidence_refs":["EV-1"]},
+    {"element_id":"K1","name":"Plan timeliness","element_type":"kpi","owner_role":"PERFORMANCE_OWNER","lifecycle_status":"ACTIVE","criticality":3,"evidence_refs":["EV-1"]},
+    {"element_id":"R1","name":"Planning delay","element_type":"risk","owner_role":"RISK_OWNER","lifecycle_status":"ACTIVE","criticality":4,"evidence_refs":["EV-1"]},
+    {"element_id":"CT1","name":"Plan approval control","element_type":"control","owner_role":"CONTROL_OWNER","lifecycle_status":"ACTIVE","criticality":4,"evidence_refs":["EV-1"]},
+    {"element_id":"A1","name":"Reference planning application","element_type":"application","owner_role":"APPLICATION_OWNER","lifecycle_status":"ACTIVE","criticality":4,"business_fit":4,"technical_health":4,"evidence_refs":["EV-1"]},
+    {"element_id":"I1","name":"Reference integration interface","element_type":"interface","owner_role":"INTEGRATION_OWNER","lifecycle_status":"ACTIVE","criticality":4,"security_control_refs":["SC-1"],"evidence_refs":["EV-1"]},
+    {"element_id":"D1","name":"Financial plan","element_type":"data_object","owner_role":"DATA_OWNER","lifecycle_status":"ACTIVE","criticality":5,"data_classification":"INTERNAL","evidence_refs":["EV-1"]},
+    {"element_id":"DB1","name":"Reference data store","element_type":"database","owner_role":"DATA_PLATFORM_OWNER","lifecycle_status":"ACTIVE","criticality":4,"evidence_refs":["EV-1"]},
+    {"element_id":"T1","name":"Reference technology platform","element_type":"technology","owner_role":"TECHNOLOGY_OWNER","lifecycle_status":"ACTIVE","criticality":4,"support_status":"supported","evidence_refs":["EV-1"]}
+  ],
+  "relationships":[
+    {"relationship_id":"L1","from_id":"C1","to_id":"S1","relationship_type":"supports","evidence_refs":["EV-1"]},{"relationship_id":"L2","from_id":"C1","to_id":"P1","relationship_type":"realizes","evidence_refs":["EV-1"]},{"relationship_id":"L3","from_id":"P1","to_id":"SV1","relationship_type":"realizes","evidence_refs":["EV-1"]},{"relationship_id":"L4","from_id":"P1","to_id":"A1","relationship_type":"uses","evidence_refs":["EV-1"]},{"relationship_id":"L5","from_id":"P1","to_id":"K1","relationship_type":"measures","evidence_refs":["EV-1"]},{"relationship_id":"L6","from_id":"P1","to_id":"R1","relationship_type":"depends_on","evidence_refs":["EV-1"]},{"relationship_id":"L7","from_id":"P1","to_id":"CT1","relationship_type":"controls","evidence_refs":["EV-1"]},{"relationship_id":"L8","from_id":"SV1","to_id":"A1","relationship_type":"uses","evidence_refs":["EV-1"]},{"relationship_id":"L9","from_id":"A1","to_id":"I1","relationship_type":"integrates_with","evidence_refs":["EV-1"]},{"relationship_id":"L10","from_id":"A1","to_id":"D1","relationship_type":"uses","evidence_refs":["EV-1"]},{"relationship_id":"L11","from_id":"A1","to_id":"T1","relationship_type":"runs_on","evidence_refs":["EV-1"]},{"relationship_id":"L12","from_id":"D1","to_id":"DB1","relationship_type":"stores","evidence_refs":["EV-1"]}
+  ],
+  "evidence_register":[{"evidence_id":"EV-1","valid":true,"source":"synthetic approved model snapshot"}],
+  "impact_targets":["A1"],
+  "proposed_change":{"adr_id":"ADR-SYN-001","title":"Evaluate planning-platform change","cross_layer":true,"legal":false,"security":false,"high_criticality":false,"metadata_only":false,"alternatives":["Retain","Modernize","Replace after gates"],"principle_refs":["INTEROPERABILITY","SECURITY"],"risk_refs":["R1"],"evidence_refs":["EV-1"]},
+  "assumptions":["All elements are synthetic","Application and platform names are reference patterns, not live integrations or vendor endorsements"]
+}

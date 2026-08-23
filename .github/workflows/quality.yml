@@ -1,0 +1,223 @@
+name: Portfolio Quality
+
+on:
+  pull_request:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+      - name: Install application dependencies
+        run: python -m pip install -r requirements.txt
+      - name: Validate product registry
+        run: python scripts/validate_portfolio.py
+      - name: Run unit and control tests
+        run: python -m unittest discover -s tests -v
+      - name: Compile Python
+        run: python -m compileall -q src scripts tests
+      - name: Reject common secret files
+        shell: bash
+        run: |
+          if find . -type f \( -name ".env" -o -name "*.pem" -o -name "*.key" \) | grep -q .; then
+            echo "Potential secret file committed."
+            exit 1
+          fi
+      - name: Build P08 deployment image
+        run: docker build -f products/ai-use-case-assessor/deploy/Dockerfile -t p08-assessor:ci .
+      - name: Smoke-test P08 health, interface and assessment API
+        shell: bash
+        run: |
+          docker run -d --name p08-assessor-ci -p 8080:8080 p08-assessor:ci
+          trap 'docker logs p08-assessor-ci; docker rm -f p08-assessor-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then
+              break
+            fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/health >/dev/null
+          curl --fail --silent http://127.0.0.1:8080/p08 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ai-use-case-assessor/synthetic/complete-assessment.json \
+            http://127.0.0.1:8080/p08/assess |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['portfolio_classification']=='Quick Win'; assert r['required_gate']=='PRIORITIZATION'"
+      - name: Build P03 deployment image
+        run: docker build -f products/strategic-radar/deploy/Dockerfile -t p03-radar:ci .
+      - name: Smoke-test P03 evidence and materiality API
+        shell: bash
+        run: |
+          docker run -d --name p03-radar-ci -p 8080:8080 p03-radar:ci
+          trap 'docker logs p03-radar-ci; docker rm -f p03-radar-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p03 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/strategic-radar/synthetic/verified-signal.json \
+            http://127.0.0.1:8080/p03/signals/assess |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['evidence_status']=='verified'; assert r['materiality_route']=='auto_alert_eligible'"
+      - name: Build P04 deployment image
+        run: docker build -f products/signal-detection-agent/deploy/Dockerfile -t p04-detector:ci .
+      - name: Smoke-test P04 governed detection API
+        shell: bash
+        run: |
+          docker run -d --name p04-detector-ci -p 8080:8080 p04-detector:ci
+          trap 'docker logs p04-detector-ci; docker rm -f p04-detector-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p04 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/signal-detection-agent/synthetic/verified-change.json \
+            http://127.0.0.1:8080/p04/detect |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['evidence_status']=='verified'; assert r['review_route']=='priority_analyst_review'; assert r['publication_status']=='not_published_analyst_review_required'"
+      - name: Build P14 deployment image
+        run: docker build -f products/ai-governance-control-tower/deploy/Dockerfile -t p14-control-tower:ci .
+      - name: Smoke-test P14 risk and incident controls
+        shell: bash
+        run: |
+          docker run -d --name p14-control-tower-ci -p 8080:8080 p14-control-tower:ci
+          trap 'docker logs p14-control-tower-ci; docker rm -f p14-control-tower-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p14 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ai-governance-control-tower/synthetic/low-risk-profile.json \
+            http://127.0.0.1:8080/p14/risk/classify |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['risk_tier']=='Low'; assert r['deployment_blocked'] is False"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ai-governance-control-tower/synthetic/critical-monitoring-event.json \
+            http://127.0.0.1:8080/p14/monitor |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['severity']=='Critical'; assert r['required_action']=='safe_shutdown_and_incident_command'"
+      - name: Build P09 deployment image
+        run: docker build -f products/corporate-performance-review-ai/deploy/Dockerfile -t p09-performance:ci .
+      - name: Smoke-test P09 governed KPI review API
+        shell: bash
+        run: |
+          docker run -d --name p09-performance-ci -p 8080:8080 p09-performance:ci
+          trap 'docker logs p09-performance-ci; docker rm -f p09-performance-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p09 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/corporate-performance-review-ai/synthetic/kpi-review.json \
+            http://127.0.0.1:8080/p09/review |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['data_quality_status']=='Valid'; assert r['performance_status']=='Exceeded'; assert r['proposed_target_status']=='Not Proposed'"
+
+      - name: Build P01 deployment image
+        run: docker build -f products/pfm-agentic-ai/deploy/Dockerfile -t p01-pfm-agentic:ci .
+      - name: Smoke-test P01 controlled PFM orchestration API
+        shell: bash
+        run: |
+          docker run -d --name p01-pfm-agentic-ci -p 8080:8080 p01-pfm-agentic:ci
+          trap 'docker logs p01-pfm-agentic-ci; docker rm -f p01-pfm-agentic-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p01 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/pfm-agentic-ai/synthetic/pfm-case.json \
+            http://127.0.0.1:8080/p01/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['available_balance']==450; assert r['liquidity_gap']==50; assert r['handoff_status']=='READY'"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data '{"action":"authorize payment"}' \
+            http://127.0.0.1:8080/p01/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['decision']=='DENY_AUTONOMOUS_EXECUTION'; assert r['human_authority_required'] is True"
+
+      - name: Build P02 deployment image
+        run: docker build -f products/pfm-brain/deploy/Dockerfile -t p02-pfm-brain:ci .
+      - name: Smoke-test P02 governed fiscal intelligence API
+        shell: bash
+        run: |
+          docker run -d --name p02-pfm-brain-ci -p 8080:8080 p02-pfm-brain:ci
+          trap 'docker logs p02-pfm-brain-ci; docker rm -f p02-pfm-brain-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p02 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/pfm-brain/synthetic/reconciled-fiscal-snapshot.json \
+            http://127.0.0.1:8080/p02/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['calculations']['revised_budget']==105; assert r['calculations']['closing_cash']==70; assert r['reconciliation_status']=='Reconciled'; assert r['decision_status']=='ANALYSIS_READY_FOR_HUMAN_USE'"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/pfm-brain/synthetic/dataset-readiness.json \
+            http://127.0.0.1:8080/p02/dataset/readiness |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['ready_for_analysis'] is True; assert r['sequence_valid'] is True"
+
+      - name: Build P11 deployment image
+        run: docker build -f products/ipsas-compliance-ai/deploy/Dockerfile -t p11-ipsas-review:ci .
+      - name: Smoke-test P11 accounting review and protected actions
+        shell: bash
+        run: |
+          docker run -d --name p11-ipsas-review-ci -p 8080:8080 p11-ipsas-review:ci
+          trap 'docker logs p11-ipsas-review-ci; docker rm -f p11-ipsas-review-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p11 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/ipsas-compliance-ai/synthetic/clean-journal-review.json \
+            http://127.0.0.1:8080/p11/review |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['review_status']=='REVIEW_READY'; assert r['calculations']['debit_credit_difference']==0; assert r['exceptions']==[]; assert 'formal compliance determination not performed' in r['compliance_conclusion']"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data '{"action":"publish financial statements"}' \
+            http://127.0.0.1:8080/p11/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['decision']=='DENY_AUTONOMOUS_EXECUTION'; assert r['human_authority_required'] is True"
+
+      - name: Build P12 deployment image
+        run: docker build -f products/revenue-reconciliation-ai/deploy/Dockerfile -t p12-revenue-recon:ci .
+      - name: Smoke-test P12 reconciliation calculations and protected actions
+        shell: bash
+        run: |
+          docker run -d --name p12-revenue-recon-ci -p 8080:8080 p12-revenue-recon:ci
+          trap 'docker logs p12-revenue-recon-ci; docker rm -f p12-revenue-recon-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p12 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data @products/revenue-reconciliation-ai/synthetic/reconciled-form-601.json \
+            http://127.0.0.1:8080/p12/reconcile |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['calculations']['settlement_amount']==850; assert r['calculations']['total_invoice']==105; assert r['calculations']['net_transfer']==745; assert r['match_status']=='MATCHED'; assert r['decision_status']=='RECONCILED_FOR_HUMAN_CONFIRMATION'"
+          curl --fail --silent --header "Content-Type: application/json" \
+            --data '{"action":"approve refund"}' \
+            http://127.0.0.1:8080/p12/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['decision']=='DENY_AUTONOMOUS_EXECUTION'; assert r['human_authority_required'] is True"
+
+      - name: Build P16 deployment image
+        run: docker build -f products/integrated-it-management-ai/deploy/Dockerfile -t p16-it-management:ci .
+      - name: Smoke-test P16 integrated health, evidence and protected IT actions
+        shell: bash
+        run: |
+          docker run -d --name p16-it-management-ci -p 8080:8080 p16-it-management:ci
+          trap 'docker logs p16-it-management-ci; docker rm -f p16-it-management-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p16 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" --data @products/integrated-it-management-ai/synthetic/integrated-it-operations.json http://127.0.0.1:8080/p16/analyze |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['assessment_status']=='VALID'; assert r['integrated_health']['score_percent']==100; assert r['service_management']['sla_attainment_percent']==100; assert r['change_management']['autonomous_production_change_permitted'] is False; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" --data '{"action":"accept risk"}' http://127.0.0.1:8080/p16/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"

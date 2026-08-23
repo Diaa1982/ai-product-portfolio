@@ -1,0 +1,646 @@
+{
+  "schema_version": "1.0.0",
+  "workflows": [
+    {
+      "product_id": "P01",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "budget",
+        "actual",
+        "commitments"
+      ],
+      "calculation_profile": "pfm_execution",
+      "approval_gate": "G3_MVP_REVIEW",
+      "approval_role": "PFM_ACCOUNTABLE_OFFICER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_utilization": 0.9,
+        "commitment_pressure": 0.25
+      },
+      "protected_autonomous_actions": true,
+      "agentic_required_inputs": [
+        "business_outcome",
+        "workflow_type",
+        "current_agent",
+        "next_agent",
+        "handoff_payload",
+        "success_criteria",
+        "evidence_references",
+        "approved_budget",
+        "revised_budget",
+        "period_plan",
+        "actuals",
+        "commitments",
+        "cash_available",
+        "obligations_due",
+        "validation_status"
+      ],
+      "agentic_calculation_profile": "pfm_agentic_execution_and_liquidity",
+      "agentic_approval_gate": "VALIDATED_HANDOFF_AND_HIGH_RISK_HUMAN_GATE",
+      "agentic_approval_role": "PFM_PROCESS_OWNER_OR_CONFIGURED_AUTHORITY",
+      "agentic_thresholds": {
+        "variance_percent": 20,
+        "utilization_percent": 95,
+        "negative_available_balance": 0,
+        "negative_liquidity_gap": 0
+      }
+    },
+    {
+      "product_id": "P02",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "budget",
+        "actual",
+        "commitments"
+      ],
+      "calculation_profile": "pfm_execution",
+      "approval_gate": "ANALYTICAL_REVIEW",
+      "approval_role": "PFM_ANALYTICS_LEAD",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_utilization": 0.9,
+        "commitment_pressure": 0.25
+      },
+      "brain_required_inputs": [
+        "reporting_period",
+        "currency",
+        "division_id",
+        "cost_center",
+        "account_code",
+        "source_record_id",
+        "source_system",
+        "evidence_references",
+        "master_data_status",
+        "approved_budget_status",
+        "budget_execution",
+        "revenue",
+        "cash",
+        "kpi",
+        "risk_control",
+        "authority"
+      ],
+      "brain_calculation_profile": "canonical_pfm_reconciliation",
+      "brain_approval_gate": "RECONCILIATION_SOD_AUTHORITY_AND_HUMAN_REVIEW",
+      "brain_thresholds": {
+        "reconciliation_tolerance": 0.01,
+        "critical_action_amount": 420000000,
+        "control_effective_percent": 80,
+        "control_partial_percent": 50
+      },
+      "protected_autonomous_actions": true
+    },
+    {
+      "product_id": "P03",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "signal_statement",
+        "official_source_id",
+        "source_url",
+        "source_version",
+        "evidence_hash",
+        "change_summary",
+        "materiality_scores",
+        "confidence_score"
+      ],
+      "calculation_profile": "strategic_radar_materiality",
+      "approval_gate": "SIGNAL_PUBLICATION",
+      "approval_role": "STRATEGY_RISK_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "auto_alert": 0.82,
+        "analyst_review": 0.55,
+        "executive_confidence": 0.75
+      }
+    },
+    {
+      "product_id": "P04",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "source_id",
+        "source_version",
+        "evidence_hash",
+        "exact_citations",
+        "change_summary",
+        "materiality_scores",
+        "confidence_scores"
+      ],
+      "calculation_profile": "signal_detection_materiality_confidence",
+      "approval_gate": "HIGH_IMPACT_SIGNAL_REVIEW",
+      "approval_role": "STRATEGY_RISK_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "priority_review": 0.82,
+        "standard_review": 0.55
+      }
+    },
+    {
+      "product_id": "P05",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "service_name",
+        "customer_type",
+        "request_type"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "SERVICE_DESIGN_APPROVAL",
+      "approval_role": "SERVICE_OWNER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {},
+      "service_design_required_inputs": [
+        "case_id",
+        "service_id",
+        "service_name",
+        "explicit_request",
+        "customer_type",
+        "service_owner_role",
+        "legal_mandate_reference",
+        "evidence_references",
+        "objective",
+        "beneficiary_groups",
+        "inputs",
+        "outputs",
+        "stages",
+        "evidence_items",
+        "selected_methods",
+        "gate"
+      ],
+      "service_design_profile": "dof_institutional_service_methodology",
+      "service_design_classifications": [
+        "PUBLIC_BENEFIT",
+        "G2G",
+        "G2B"
+      ],
+      "service_design_journey_stages": [
+        "Awareness & Reach",
+        "Engagement & Access",
+        "Service Delivery",
+        "Post-Service",
+        "Continuous Experience"
+      ],
+      "service_design_evidence_classifications": [
+        "fact",
+        "assumption",
+        "ai_inference",
+        "decision"
+      ],
+      "service_design_deliverable_count": 54,
+      "service_design_register_count": 8,
+      "service_design_gates": [
+        "G1",
+        "G2",
+        "G3",
+        "G4",
+        "G5",
+        "G6"
+      ],
+      "service_design_protected_actions": true
+    },
+    {
+      "product_id": "P06",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "process_name",
+        "documented_version",
+        "audit_scope"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "ASSURANCE_REVIEW",
+      "approval_role": "AUTHORIZED_ASSURANCE_REVIEWER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {},
+      "process_audit_required_inputs": [
+        "audit_id",
+        "period",
+        "division",
+        "unit",
+        "process_id",
+        "process_version",
+        "process_owner_role",
+        "auditor_role",
+        "lead_auditor_role",
+        "audit_scope",
+        "criteria_version",
+        "documented_steps",
+        "actual_steps",
+        "criteria_results",
+        "evidence_items",
+        "transaction_samples",
+        "sampling_plan_reference",
+        "evidence_plan_reference"
+      ],
+      "process_audit_profile": "enterprise_process_assurance",
+      "process_audit_lifecycle": [
+        "plan",
+        "audit",
+        "evidence",
+        "assess",
+        "find",
+        "correct",
+        "verify",
+        "update",
+        "monitor",
+        "improve"
+      ],
+      "process_audit_domains": [
+        "A",
+        "B",
+        "C",
+        "D",
+        "E",
+        "F",
+        "G",
+        "H",
+        "I",
+        "J",
+        "K",
+        "L",
+        "M",
+        "N",
+        "O"
+      ],
+      "process_audit_rating_scale": [
+        0,
+        1,
+        2,
+        3,
+        4,
+        5
+      ],
+      "process_audit_calculation_profile": "auditor_rating_weighted_application_calculation",
+      "process_audit_evidence_triangulation_minimum_types": 2,
+      "process_audit_gates": [
+        "G1_PLAN",
+        "G2_FIELDWORK",
+        "G3_FINDINGS",
+        "G4_CAPA",
+        "G5_CLOSURE"
+      ],
+      "process_audit_protected_actions": true
+    },
+    {
+      "product_id": "P07",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "partner_name",
+        "agreement_status",
+        "expiry_date"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "PARTNERSHIP_REVIEW",
+      "approval_role": "PARTNERSHIP_OWNER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {},
+      "partnership_required_inputs": [
+        "case_id",
+        "partner_id",
+        "partnership_id",
+        "partner_name",
+        "start_date",
+        "end_date",
+        "partnership_status",
+        "partnership_owner_role",
+        "agreement_source_id",
+        "agreement_version",
+        "agreement_items",
+        "claims",
+        "evidence_items",
+        "evaluation_cycle",
+        "as_of_date"
+      ],
+      "partnership_profile": "m365_copilot_user_initiated",
+      "partnership_statuses": [
+        "ACTIVE",
+        "TEMPORARY",
+        "PERMANENT",
+        "COMPLETED"
+      ],
+      "realization_statuses": [
+        "Realized",
+        "Partially Realized",
+        "Not Realized",
+        "Not Yet Due",
+        "Insufficient Evidence"
+      ],
+      "partnership_register_count": 9,
+      "owner_response_days": 3,
+      "maximum_reminders": 3,
+      "escalation_role": "SECTOR_DIRECTOR",
+      "first_review_role": "STRATEGY_EMPLOYEE_1",
+      "final_approval_role": "STRATEGY_EMPLOYEE_2",
+      "custom_orchestrator": false,
+      "background_triggers": false,
+      "autonomous_workflow": false,
+      "protected_actions": true
+    },
+    {
+      "product_id": "P08",
+      "version": "1.0",
+      "required_inputs": [
+        "business_outcome",
+        "value_score",
+        "feasibility_score"
+      ],
+      "calculation_profile": "weighted_score",
+      "approval_gate": "AI_USE_CASE_GATE",
+      "approval_role": "AI_GOVERNANCE_BOARD",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "minimum_score": 3
+      }
+    },
+    {
+      "product_id": "P09",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "kpi_master",
+        "period_result",
+        "source_row_hash",
+        "data_cutoff",
+        "evidence_reference",
+        "review_calendar"
+      ],
+      "calculation_profile": "corporate_kpi_review",
+      "approval_gate": "PERFORMANCE_AND_EXECUTIVE_REVIEW",
+      "approval_role": "PERFORMANCE_OWNER_OR_EXECUTIVE_APPROVER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "exceeded": 105,
+        "achieved": 100,
+        "attention": 90
+      }
+    },
+    {
+      "product_id": "P10",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "process_name",
+        "process_owner",
+        "lifecycle_stage"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "PROCESS_PUBLICATION",
+      "approval_role": "PROCESS_GOVERNANCE_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {},
+      "process_intelligence_required_inputs": [
+        "assessment_id",
+        "repository_name",
+        "repository_version",
+        "processes",
+        "maturity_evidence",
+        "migration_evidence"
+      ],
+      "hierarchy": [
+        "L1_CATEGORY",
+        "L2_GROUP",
+        "L3_PROCESS",
+        "L4_ACTIVITY",
+        "L5_TASK"
+      ],
+      "notation_profile": "VAC_L1_L2_BPMN_L3_L5_FAD_LINKS",
+      "process_intelligence_profile": "vendor_neutral_repository_graph",
+      "review_profile": "annual_and_triggered",
+      "change_routes": [
+        "minor",
+        "moderate",
+        "major"
+      ],
+      "migration_control_count": 17,
+      "protected_actions": true
+    },
+    {
+      "product_id": "P11",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "accounting_issue",
+        "reporting_period",
+        "materiality"
+      ],
+      "calculation_profile": "none",
+      "approval_gate": "ACCOUNTING_REVIEW",
+      "approval_role": "AUTHORIZED_ACCOUNTING_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {},
+      "ipsas_review_types": [
+        "journal_quality",
+        "reconciliation",
+        "disclosure_checklist"
+      ],
+      "ipsas_required_inputs": [
+        "entity",
+        "reporting_period",
+        "source_system",
+        "evidence_references",
+        "approved_policy_reference",
+        "requirement_reference",
+        "confidence",
+        "materiality",
+        "review_type_payload"
+      ],
+      "ipsas_control_profile": "accounting_quality_exception_review",
+      "ipsas_human_gate": "ACCOUNTING_MANAGER_OR_EQUIVALENT",
+      "ipsas_thresholds": {
+        "balance_tolerance": 0.01,
+        "reconciliation_tolerance": 0.01,
+        "aging_days": 30,
+        "minimum_confidence": 0.7
+      },
+      "formal_compliance_determination_allowed": false,
+      "protected_autonomous_actions": true
+    },
+    {
+      "product_id": "P12",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "budget",
+        "actual",
+        "commitments"
+      ],
+      "calculation_profile": "pfm_execution",
+      "approval_gate": "RECONCILIATION_EXCEPTION_REVIEW",
+      "approval_role": "REVENUE_CONTROL_OFFICER",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_utilization": 0.95,
+        "commitment_pressure": 0.3
+      },
+      "reconciliation_forms": [
+        "Frm.601.2025.01",
+        "Frm.172.2024.02",
+        "Frm.221.2018.01"
+      ],
+      "reconciliation_required_inputs": [
+        "form_id",
+        "reporting_period",
+        "currency",
+        "service_provider",
+        "bank_accounts",
+        "responsible_employee",
+        "source_system",
+        "evidence_references",
+        "receipt_refund_fraud",
+        "commission_vat",
+        "internal_bank_references_amounts",
+        "sod_roles",
+        "expected_results"
+      ],
+      "reconciliation_calculation_profile": "revenue_settlement_commission_vat_and_bank_matching",
+      "reconciliation_human_gate": "RESPONSIBLE_EMPLOYEE_AND_AUTHORIZED_FINANCIAL_REVIEW",
+      "reconciliation_thresholds": {
+        "matching_tolerance": 0.01,
+        "reconciliation_tolerance": 0.01
+      },
+      "protected_autonomous_actions": true
+    },
+    {
+      "product_id": "P13",
+      "version": "1.1",
+      "required_inputs": [
+        "assessment_id",
+        "jurisdiction_profile",
+        "public_value_outcomes",
+        "mandates",
+        "capabilities",
+        "evidence"
+      ],
+      "calculation_profile": "pfm_architecture_v1",
+      "approval_gate": "DESIGN_AUTHORITY_APPROVAL",
+      "approval_role": "PFM_ARCHITECTURE_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "maturity_min": 1,
+        "maturity_max": 5,
+        "wave_1_priority_min": 12,
+        "wave_2_priority_min": 6
+      }
+    },
+    {
+      "product_id": "P14",
+      "version": "1.1",
+      "required_inputs": [
+        "business_outcome",
+        "use_case_id",
+        "purpose",
+        "owners",
+        "data_classification",
+        "autonomy_level",
+        "risk_factors",
+        "control_evidence",
+        "lifecycle_gate"
+      ],
+      "calculation_profile": "ai_governance_risk_and_gate",
+      "approval_gate": "G0_G4_AI_LIFECYCLE",
+      "approval_role": "HUMAN_GOVERNANCE_AUTHORITIES",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_drift": 0.35,
+        "critical_drift": 0.6
+      }
+    },
+    {
+      "product_id": "P15",
+      "version": "1.1",
+      "required_inputs": [
+        "assessment_id",
+        "repository_name",
+        "repository_version",
+        "elements",
+        "relationships",
+        "evidence_register",
+        "impact_targets",
+        "proposed_change"
+      ],
+      "calculation_profile": "enterprise_architecture_v1",
+      "approval_gate": "ENTERPRISE_ARCHITECTURE_DECISION",
+      "approval_role": "DESIGN_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "required_traceability_target_percent": 100
+      }
+    },
+    {
+      "product_id": "P16",
+      "version": "1.1",
+      "required_inputs": [
+        "assessment_id",
+        "as_of_date",
+        "operating_scope",
+        "services",
+        "work_items",
+        "configuration_items",
+        "portfolio_items",
+        "risks_controls",
+        "evidence_register",
+        "proposed_action"
+      ],
+      "calculation_profile": "integrated_it_management_v1",
+      "approval_gate": "INTEGRATED_IT_MANAGEMENT_DECISION",
+      "approval_role": "NAMED_IT_ACCOUNTABLE_AUTHORITIES",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "high_delivery_risk": 4,
+        "high_residual_risk": 15
+      },
+      "management_domains": [
+        "service",
+        "change",
+        "configuration",
+        "portfolio",
+        "risk_control"
+      ],
+      "protected_autonomous_actions": true
+    },
+    {
+      "product_id": "P17",
+      "version": "1.1",
+      "required_inputs": [
+        "assessment_id",
+        "processes",
+        "benchmark_register",
+        "source_library"
+      ],
+      "calculation_profile": "cycle_time_benchmark_v1",
+      "approval_gate": "BENCHMARK_VALIDATION",
+      "approval_role": "PROCESS_PERFORMANCE_AUTHORITY",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "minimum_internal_sample": 5,
+        "minimum_comparability": 0.75,
+        "confidence_sample_cap": 30
+      }
+    },
+    {
+      "product_id": "P18",
+      "version": "1.1",
+      "required_inputs": [
+        "assessment_id",
+        "assessment_mode",
+        "criteria_results",
+        "evidence_register",
+        "assessors",
+        "moderation"
+      ],
+      "calculation_profile": "pfm_maturity_v1",
+      "approval_gate": "ASSESSMENT_MODERATION",
+      "approval_role": "AUTHORIZED_ASSESSMENT_MODERATOR",
+      "evidence_required_for_material_findings": true,
+      "thresholds": {
+        "maturity_min": 1,
+        "maturity_max": 6,
+        "level_5_sustained_quarters": 4,
+        "level_6_sustained_quarters": 8
+      }
+    }
+  ]
+}

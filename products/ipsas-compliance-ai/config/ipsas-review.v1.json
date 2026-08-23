@@ -1,0 +1,49 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P11",
+  "product_name": "IPSAS Compliance AI",
+  "scope_label": "IPSAS-oriented accounting quality and reporting exception review",
+  "formal_compliance_determination_allowed": false,
+  "knowledge_status": "synthetic design baseline; organization-approved policy and requirement library not yet connected",
+  "review_types": ["journal_quality", "reconciliation", "disclosure_checklist"],
+  "principle_categories": [
+    "accrual_and_recognition",
+    "presentation_reliability",
+    "financial_statement_disclosure",
+    "comparative_information",
+    "financial_data_integrity",
+    "annual_report_quality"
+  ],
+  "journal_approval_statuses": ["Draft", "Submitted", "Approved", "Rejected", "Returned"],
+  "disclosure_statuses": ["Complete", "Partial", "Missing", "Not Applicable"],
+  "thresholds": {
+    "balance_tolerance": 0.01,
+    "reconciliation_tolerance": 0.01,
+    "aging_days": 30,
+    "minimum_confidence": 0.7
+  },
+  "protected_autonomous_actions": [
+    "approve accounting treatment",
+    "post correction",
+    "post journal",
+    "approve journal",
+    "close accounting period",
+    "certify balance",
+    "approve financial statements",
+    "publish financial statements",
+    "make legal commitment",
+    "change budget",
+    "authorize payment",
+    "enforce finding",
+    "issue audit opinion"
+  ],
+  "outputs": [
+    "journal_exception_report",
+    "correction_recommendation",
+    "reconciliation_aging_and_escalation_list",
+    "disclosure_gap_checklist_draft",
+    "evidence_and_audit_record"
+  ],
+  "implementation_assumption": "Manual PDF/Excel intake may be used during a controlled pilot. SharePoint, email, ledger, reconciliation and reporting-system integrations require later owner-approved design, security and data contracts.",
+  "standards_note": "No IPSAS edition, paragraph or accounting treatment is encoded as an authoritative requirement. Production content must be selected, licensed where applicable, versioned and approved by qualified accounting owners."
+}

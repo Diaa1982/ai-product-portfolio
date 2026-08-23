@@ -1,0 +1,11 @@
+{
+  "product_id": "P06",
+  "title": "Synthetic process conformance audit",
+  "owner_role": "PROCESS_AUDITOR",
+  "inputs": {
+    "business_outcome": "Confirm execution conforms to the approved process",
+    "process_name": "Synthetic budget amendment process",
+    "documented_version": "1.0",
+    "audit_scope": "Design and operating effectiveness"
+  }
+}

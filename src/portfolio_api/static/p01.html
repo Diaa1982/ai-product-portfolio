@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>PFM Agent Command Center</title>
+  <style>
+    :root{--ink:#102a43;--blue:#0b5cab;--pale:#eaf3fb;--line:#cbd5e1;--ok:#087f5b;--warn:#b45309;--bad:#b42318}*{box-sizing:border-box}body{margin:0;font:15px/1.45 system-ui;color:var(--ink);background:#f5f7fa}header{padding:28px max(4vw,24px);background:linear-gradient(120deg,#0a3158,#0b5cab);color:white}header p{max-width:900px}.tag{display:inline-block;padding:4px 9px;border-radius:99px;background:#d9efff;color:#073b66;font-weight:700}.wrap{max-width:1240px;margin:24px auto;padding:0 20px}.notice{padding:14px;border-left:5px solid var(--warn);background:#fff7ed}.agents{display:grid;grid-template-columns:repeat(3,1fr);gap:9px;margin:18px 0}.agent{padding:12px;background:white;border:1px solid var(--line);border-radius:8px}.agent b{display:block}.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.card{background:white;padding:20px;border:1px solid var(--line);border-radius:10px}label{display:block;margin-top:11px;font-weight:650}input,select,textarea{width:100%;padding:9px;border:1px solid #9aa8b6;border-radius:6px}textarea{min-height:70px}button{margin-top:16px;padding:10px 16px;border:0;border-radius:6px;background:var(--blue);color:#fff;font-weight:700;cursor:pointer}.metrics{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.metric{padding:12px;background:var(--pale);border-radius:7px}.metric span{display:block;font-size:22px;font-weight:750}pre{white-space:pre-wrap;word-break:break-word;background:#0c2238;color:#d8efff;padding:14px;border-radius:7px;min-height:160px}.ok{color:var(--ok)}.bad{color:var(--bad)}@media(max-width:800px){.grid,.agents{grid-template-columns:1fr}.metrics{grid-template-columns:1fr 1fr}}
+  </style>
+</head>
+<body>
+<header><span class="tag">P01 · synthetic data only</span><h1>PFM Agent Command Center</h1><p>Evidence-led decision support across the PFM cycle. AI prepares analysis and controlled handoffs; authorized people retain all legal, financial, accounting, audit and publication decisions.</p></header>
+<main class="wrap">
+  <div class="notice"><strong>Control boundary:</strong> this deployment candidate does not approve budgets, release funds, authorize payments, approve journals, publish statements, issue audit opinions, or close findings.</div>
+  <section class="agents" id="agents"></section>
+  <div class="grid">
+    <form class="card" id="form"><h2>Analyze a synthetic PFM case</h2>
+      <label>Workflow<select id="workflow"></select></label>
+      <label>Current agent<select id="current"></select></label>
+      <label>Next agent<select id="next"></select></label>
+      <label>Revised budget<input id="revised" type="number" min="0" value="1200"></label>
+      <label>Period plan<input id="plan" type="number" min="0" value="500"></label>
+      <label>Actuals<input id="actuals" type="number" min="0" value="450"></label>
+      <label>Commitments<input id="commitments" type="number" min="0" value="300"></label>
+      <label>Cash available<input id="cash" type="number" min="0" value="400"></label>
+      <label>Obligations due<input id="due" type="number" min="0" value="350"></label>
+      <label>Evidence references<textarea id="evidence">synthetic://budget-ledger-v1</textarea></label>
+      <label>Assumptions<textarea id="assumptions">Values are synthetic and currency-neutral.</textarea></label>
+      <button>Run controlled analysis</button>
+    </form>
+    <section class="card"><h2>Decision-support output</h2><div class="metrics">
+      <div class="metric">Available balance<span id="available">—</span></div><div class="metric">Utilization<span id="utilization">—</span></div>
+      <div class="metric">Variance<span id="variance">—</span></div><div class="metric">Liquidity gap<span id="liquidity">—</span></div>
+    </div><h3 id="state">Awaiting analysis</h3><pre id="output">Evidence, alerts, validation issues and audit event will appear here.</pre></section>
+  </div>
+</main>
+<script>
+let cfg; const $=id=>document.getElementById(id); const lines=id=>$(id).value.split(/\n/).map(x=>x.trim()).filter(Boolean);
+async function init(){cfg=await fetch('/p01/config').then(r=>r.json()); $('workflow').innerHTML=cfg.workflow_types.map(x=>`<option>${x}</option>`).join(''); const opts=cfg.agents.map(a=>`<option value="${a.agent_id}">${a.name}</option>`).join(''); $('current').innerHTML=opts;$('next').innerHTML=opts;$('current').value='budget_execution_commitments';$('next').value='treasury_cash';$('agents').innerHTML=cfg.agents.map(a=>`<div class="agent"><b>${a.name}</b><small>Human gate: ${a.human_gate}</small></div>`).join('')}
+$('form').addEventListener('submit',async e=>{e.preventDefault();const n=id=>Number($(id).value);const body={case_id:'PFM-SYN-UI-001',workflow_type:$('workflow').value,current_agent:$('current').value,next_agent:$('next').value,business_outcome:'Identify PFM exceptions for authorized human review.',payload:{source:'command-center',period:'SYNTHETIC-Q2'},success_criteria:['validated balances','documented alerts'],evidence_references:lines('evidence'),assumptions:lines('assumptions'),approved_budget:n('revised'),revised_budget:n('revised'),period_plan:n('plan'),actuals:n('actuals'),commitments:n('commitments'),cash_available:n('cash'),obligations_due:n('due'),due_date:'2030-06-30',validation_passed:true,high_risk:false,human_approval_reference:null};const r=await fetch('/p01/analyze',{method:'POST',headers:{'content-type':'application/json'},body:JSON.stringify(body)});const x=await r.json();$('available').textContent=x.available_balance??'—';$('utilization').textContent=x.utilization_percent==null?'—':x.utilization_percent+'%';$('variance').textContent=x.variance_percent==null?'special review':x.variance_percent+'%';$('liquidity').textContent=x.liquidity_gap??'—';$('state').textContent=`${x.handoff_status||'ERROR'} · ${x.risk_rating||''}`;$('state').className=x.handoff_status==='READY'?'ok':'bad';$('output').textContent=JSON.stringify(x,null,2)});init();
+</script></body></html>

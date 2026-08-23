@@ -1,0 +1,40 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P12",
+  "product_name": "Revenue Reconciliation AI",
+  "synthetic_profile": {
+    "reporting_period": "FY2026",
+    "currency": "AED",
+    "data_classification": "dummy-sample-only"
+  },
+  "source_reports": ["e-Pay Dashboard Report", "Settlement Report", "bank statement", "commission bank data"],
+  "forms": ["Frm.601.2025.01", "Frm.172.2024.02", "Frm.221.2018.01"],
+  "form_scope": {
+    "Frm.601.2025.01": "service provider, bank accounts, receipt, refund, fraud, settlement, invoice and net transfer calculation",
+    "Frm.172.2024.02": "agreed-percentage commission calculation only",
+    "Frm.221.2018.01": "record invoices for all service providers and the three configured types; tax-refund eligibility remains a human determination"
+  },
+  "commission_types": ["fixed_100", "fixed_100_vat_5", "agreed_percentage"],
+  "vat_types": ["zero_percent", "fixed_100_vat_5", "agreed_percentage"],
+  "fixed_commission_amount": 100,
+  "fixed_vat_rate_percent": 5,
+  "matching_tolerance": 0.01,
+  "reconciliation_tolerance": 0.01,
+  "protected_autonomous_actions": [
+    "approve refund",
+    "initiate refund",
+    "write off receivable",
+    "change fee",
+    "determine tax eligibility",
+    "issue tax determination",
+    "post journal",
+    "adjust ledger",
+    "close reconciliation exception",
+    "transfer funds",
+    "authorize payment",
+    "change commission agreement",
+    "confirm fraud"
+  ],
+  "integration_assumption": "The MVP uses structured synthetic records representing manual Excel/report intake. Live e-payment, bank, treasury, revenue, accounting, SharePoint or email integrations require later owner-approved data contracts, security and control design.",
+  "authority_note": "Commission, VAT, refund, fraud, tax and transfer rules must be validated against the current approved agreement, policy and authority before production; this synthetic configuration is not a legal, tax or accounting determination."
+}

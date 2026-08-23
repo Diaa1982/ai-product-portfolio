@@ -1,0 +1,11 @@
+{
+  "product_id": "P01",
+  "title": "Synthetic commitment pressure review",
+  "owner_role": "BUDGET_ANALYST",
+  "inputs": {
+    "business_outcome": "Protect fiscal discipline and service continuity",
+    "budget": 1000000,
+    "actual": 880000,
+    "commitments": 180000
+  }
+}

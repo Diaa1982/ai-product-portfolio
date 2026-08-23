@@ -1,0 +1,22 @@
+{
+  "case_id": "PFM-SYN-001",
+  "workflow_type": "budget_variance_review",
+  "current_agent": "budget_execution_commitments",
+  "next_agent": "treasury_cash",
+  "business_outcome": "Identify execution and liquidity exceptions for authorized human review.",
+  "payload": {"period": "SYNTHETIC-Q2", "classification": "synthetic"},
+  "success_criteria": ["validated balances", "documented alerts"],
+  "evidence_references": ["synthetic://budget-ledger-v1"],
+  "assumptions": ["Values are synthetic and currency-neutral."],
+  "approved_budget": 1000,
+  "revised_budget": 1200,
+  "period_plan": 500,
+  "actuals": 450,
+  "commitments": 300,
+  "cash_available": 400,
+  "obligations_due": 350,
+  "due_date": "2030-06-30",
+  "validation_passed": true,
+  "high_risk": false,
+  "human_approval_reference": null
+}

@@ -1,0 +1,33 @@
+{
+  "config_version": "1.0.0",
+  "product_id": "P07",
+  "profile": "M365_COPILOT_USER_INITIATED_MVP",
+  "synthetic_data_only": true,
+  "architecture_constraints": {
+    "custom_orchestrator": false,
+    "autonomous_orchestration": false,
+    "power_automate_approvals": false,
+    "background_triggers": false,
+    "autonomous_workflow": false,
+    "interaction_mode": "user_initiated"
+  },
+  "languages": ["en", "ar"],
+  "partnership_statuses": [
+    {"code":"ACTIVE","en":"Active","ar":"فعّالة"},
+    {"code":"TEMPORARY","en":"Temporary","ar":"مؤقتة"},
+    {"code":"PERMANENT","en":"Permanent","ar":"دائمة"},
+    {"code":"COMPLETED","en":"Completed","ar":"تم الانتهاء منها"}
+  ],
+  "realization_statuses": ["Realized", "Partially Realized", "Not Realized", "Not Yet Due", "Insufficient Evidence"],
+  "registers": ["Partner_Master", "Partnership_Register", "Document_Index", "Evaluation_Cycles", "Evaluation_Criteria", "Utilization_Register", "Lifecycle_Actions", "Lists_and_Config", "Copilot_Review_Log"],
+  "document_sources": ["signed_agreement", "current_agreement", "approved_amendment", "approved_plan", "approved_roles", "accepted_minutes", "accepted_evidence", "approved_kpi_definition"],
+  "evidence_submission_statuses": ["SUBMITTED", "ACCEPTED", "REJECTED", "SUPERSEDED"],
+  "accepted_file_types": ["email", "pdf", "excel", "image", "report", "word", "link", "other"],
+  "minimum_relevance_score": 0.6,
+  "evaluation_cycle": "quarterly_configurable",
+  "response_policy": {"owner_response_days":3,"maximum_reminders":3,"reminder_interval_days":1,"escalation_role":"SECTOR_DIRECTOR"},
+  "review_roles": {"first_review":"STRATEGY_EMPLOYEE_1","final_approval":"STRATEGY_EMPLOYEE_2"},
+  "protected_actions": ["sign_agreement", "amend_agreement", "terminate_agreement", "send_termination_notice", "make_legal_commitment", "issue_legal_opinion", "accept_evidence", "approve_partnership", "approve_change", "send_external_message", "close_obligation"],
+  "recommendation_types": ["increase_utilization", "increase_awareness", "reassign_owner", "renegotiate", "continue", "develop", "recognize", "prepare_closure_review"],
+  "expiry_threshold_days": [90, 60, 30, 0]
+}

@@ -1,0 +1,11 @@
+services:
+  p18:
+    build: {context: ../../.., dockerfile: products/pfm-maturity-certification/deploy/Dockerfile}
+    ports: ["${P18_PORT:-8080}:8080"]
+    environment: {P18_CONFIG_PATH: /app/products/pfm-maturity-certification/config/maturity.v1.json, CASE_STORE_PATH: /app/data/runtime/cases.json}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes: [p18-runtime:/app/data/runtime]
+volumes: {p18-runtime: {}}

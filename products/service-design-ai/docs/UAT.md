@@ -1,0 +1,3 @@
+# User acceptance testing
+
+Service owners and institutional users execute at least one representative G2G, G2B and public-benefit case using approved non-production evidence. They confirm classification, service-card semantics, all five journey stages, blueprint handoffs, method usefulness, missing-input prompts, evidence labels, phase/element/end-to-end reports, Arabic/English terminology, accessibility and gate decision records. Costing, launch and stop decisions remain out of AI scope. Acceptance needs signed findings, defects, residual risks and go-live recommendation; synthetic developer tests are not UAT.

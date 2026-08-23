@@ -1,0 +1,11 @@
+services:
+  p15:
+    build: {context: ../../.., dockerfile: products/enterprise-architecture-intelligence/deploy/Dockerfile}
+    ports: ["${P15_PORT:-8080}:8080"]
+    environment: {P15_CONFIG_PATH: /app/products/enterprise-architecture-intelligence/config/enterprise-architecture.v1.json, CASE_STORE_PATH: /app/data/runtime/cases.json}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes: [p15-runtime:/app/data/runtime]
+volumes: {p15-runtime: {}}

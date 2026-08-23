@@ -1,0 +1,2 @@
+# Process metamodel
+Levels are L1 Category, L2 Group, L3 complete Process, L4 Activity and L5 Task. L1–L2 use VAC; L3–L5 use BPMN 2.0 swimlanes; FAD links roles, systems, data, risks, controls, policies and requirements where applicable. Minimum fields are ID, GUID, name, level, parent, owner, status and version. Required semantic links cover objective, trigger, outputs, policy, service, system, KPI, risk and control.

@@ -1,0 +1,29 @@
+{
+  "config_version": "1.0.0",
+  "dimension_weights": {"value": 0.6, "feasibility": 0.4},
+  "portfolio_threshold": 3.5,
+  "decision_thresholds": {"prioritize": 3.5},
+  "risk_thresholds": {"medium": 2.5, "high": 3.75},
+  "value_criteria": [
+    {"id": "strategic_alignment", "name": "Strategic alignment", "weight": 0.25},
+    {"id": "public_business_value", "name": "Public and business value", "weight": 0.30},
+    {"id": "service_operational_impact", "name": "Service and operational impact", "weight": 0.25},
+    {"id": "risk_control_improvement", "name": "Risk and control improvement", "weight": 0.20}
+  ],
+  "feasibility_criteria": [
+    {"id": "data_readiness", "name": "Data readiness", "weight": 0.30},
+    {"id": "technical_feasibility", "name": "Technical feasibility", "weight": 0.25},
+    {"id": "process_organizational_readiness", "name": "Process and organizational readiness", "weight": 0.25},
+    {"id": "delivery_sustainability", "name": "Delivery and sustainability", "weight": 0.20}
+  ],
+  "risk_criteria": [
+    {"id": "decision_impact", "name": "Decision impact", "weight": 0.30},
+    {"id": "data_privacy", "name": "Data and privacy risk", "weight": 0.25},
+    {"id": "legal_compliance", "name": "Legal and compliance risk", "weight": 0.20},
+    {"id": "model_operational", "name": "Model and operational risk", "weight": 0.25}
+  ],
+  "lifecycle": ["discover", "evaluate", "prioritize", "approve", "develop", "deploy", "operate", "retire"],
+  "formal_gates": ["evaluation", "prioritization", "approval"],
+  "supported_modes": ["client-led", "diagnostic-led", "hybrid"],
+  "final_approver_role": "CEO"
+}

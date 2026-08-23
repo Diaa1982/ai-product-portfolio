@@ -1,0 +1,17 @@
+services:
+  p05-service-design:
+    build:
+      context: ../../..
+      dockerfile: products/service-design-ai/deploy/Dockerfile
+    ports: ["${P05_PORT:-8080}:8080"]
+    environment:
+      CASE_STORE_PATH: /app/data/runtime/cases.json
+      P05_CONFIG_PATH: /app/products/service-design-ai/config/service-design.v1.json
+    volumes: ["p05-runtime:/app/data/runtime"]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    restart: unless-stopped
+volumes:
+  p05-runtime:

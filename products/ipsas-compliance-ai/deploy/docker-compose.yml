@@ -1,0 +1,19 @@
+services:
+  ipsas-compliance-ai:
+    build:
+      context: ../../..
+      dockerfile: products/ipsas-compliance-ai/deploy/Dockerfile
+    ports:
+      - "${IPSAS_REVIEW_PORT:-8080}:8080"
+    environment:
+      P11_CONFIG_PATH: /app/products/ipsas-compliance-ai/config/ipsas-review.v1.json
+      CASE_STORE_PATH: /app/data/runtime/cases.json
+    read_only: true
+    tmpfs:
+      - /tmp
+      - /app/data/runtime
+    security_opt:
+      - no-new-privileges:true
+    cap_drop:
+      - ALL
+    restart: unless-stopped

@@ -1,0 +1,33 @@
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.ruff_cache/
+.venv/
+venv/
+
+# Environment and secrets
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+secrets/
+
+# Data and generated evidence
+data/raw/
+data/production/
+data/runtime/
+uploads/
+artifacts/
+logs/
+
+# Editors and operating systems
+.DS_Store
+.idea/
+.vscode/
+
+# Build
+build/
+dist/
+*.egg-info/

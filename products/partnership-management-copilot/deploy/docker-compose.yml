@@ -1,0 +1,17 @@
+services:
+  p07-partnership:
+    build:
+      context: ../../..
+      dockerfile: products/partnership-management-copilot/deploy/Dockerfile
+    ports: ["${P07_PORT:-8080}:8080"]
+    environment:
+      CASE_STORE_PATH: /app/data/runtime/cases.json
+      P07_CONFIG_PATH: /app/products/partnership-management-copilot/config/partnership.v1.json
+    volumes: ["p07-runtime:/app/data/runtime"]
+    read_only: true
+    tmpfs: [/tmp]
+    security_opt: ["no-new-privileges:true"]
+    cap_drop: ["ALL"]
+    restart: unless-stopped
+volumes:
+  p07-runtime:

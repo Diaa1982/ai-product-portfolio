@@ -1,0 +1,11 @@
+{
+  "product_id": "P05",
+  "title": "Synthetic G2G service design",
+  "owner_role": "SERVICE_DESIGNER",
+  "inputs": {
+    "business_outcome": "Reduce end-to-end service effort",
+    "service_name": "Synthetic institutional request",
+    "customer_type": "G2G",
+    "request_type": "explicit"
+  }
+}

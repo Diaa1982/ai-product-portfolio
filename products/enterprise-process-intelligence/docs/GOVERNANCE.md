@@ -1,0 +1,2 @@
+# Governance
+Lifecycle: define → analyze → model/document → execute → measure/monitor → improve. Process Owner validates content/linkages; Designer models; Division/Function Manager endorses material changes; control units/SMEs review applicable impacts; the Process Governance Team quality-reviews and controls publishing; Strategy Director/Board approve major routes. Minor, moderate and major changes follow configured routes. AI never approves or publishes.

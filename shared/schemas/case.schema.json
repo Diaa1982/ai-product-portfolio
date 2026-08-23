@@ -1,0 +1,22 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Governed Product Case",
+  "type": "object",
+  "required": ["case_id", "product_id", "title", "owner_role", "status", "risk_level", "inputs", "audit_log"],
+  "properties": {
+    "case_id": {"type": "string", "format": "uuid"},
+    "product_id": {"type": "string", "pattern": "^P[0-9]{2}$"},
+    "title": {"type": "string"},
+    "owner_role": {"type": "string"},
+    "status": {"enum": ["draft", "analysed", "paused_critical", "pending_approval", "approved", "rejected", "returned", "closed"]},
+    "risk_level": {"enum": ["low", "medium", "high", "critical"]},
+    "inputs": {"type": "object"},
+    "calculations": {"type": "object"},
+    "findings": {"type": "array"},
+    "recommendations": {"type": "array"},
+    "evidence": {"type": "array"},
+    "approvals": {"type": "array"},
+    "audit_log": {"type": "array"}
+  },
+  "additionalProperties": true
+}

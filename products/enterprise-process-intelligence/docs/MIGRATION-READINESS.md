@@ -1,0 +1,2 @@
+# Repository migration readiness
+Any ARIS, BIC or other migration requires security clearance, complete export, GUID/hierarchy preservation, model-conversion POC, EA-link and workflow validation, attachments/history export, identity/RBAC, UAE-approved residency, encryption/key control, SIEM, DR/RTO/RPO, exit rights, secure SDLC/SBOM and no critical findings. P10 may assess evidence and prepare a decision pack; it cannot select a vendor, approve procurement or migrate production.

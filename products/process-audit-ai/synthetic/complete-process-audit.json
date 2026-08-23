@@ -1,0 +1,31 @@
+{
+  "audit_id":"AUD-SYN-001","period":"2026-Q3","division":"Synthetic Finance Division","unit":"Synthetic Operations","process_id":"PROC-SYN-001","process_name":"Synthetic controlled process","process_version":"2.0","process_approved_at":"2026-07-01","process_owner_role":"PROCESS_OWNER","auditor_role":"AUDITOR","lead_auditor_role":"LEAD_AUDITOR","audit_scope":"Conformance, control, effectiveness and improvement","criteria_version":"1.0.0","documented_steps":["Receive","Validate","Approve","Close"],"actual_steps":["Receive","Validate","Approve","Close"],
+  "criteria_results":[
+    {"criterion_id":"A01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"B01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"C01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"D01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"E01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"F01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"G01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"H01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"I01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"J01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"K01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"L01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"M01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"N01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"N02","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"N03","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"N04","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"N05","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"O01","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"O02","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"O03","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"O04","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""},
+    {"criterion_id":"O05","applicable":true,"ai_suggested_rating":4,"auditor_rating":4,"evidence_references":["EV-DOC","EV-LOG"],"override_reason":""}
+  ],
+  "evidence_items":[{"reference":"EV-DOC","type":"controlled_document","source":"Synthetic repository","hash":"sha256:doc"},{"reference":"EV-LOG","type":"log","source":"Synthetic system","hash":"sha256:log"}],
+  "transaction_samples":[{"sample_id":"TX-SYN-001","sequence_matches":true,"controls_operated":true,"authorized_approvals":true,"inputs_outputs_match":true,"roles_match":true,"timestamps_valid":true,"cross_unit_consistent":true,"workaround_detected":false,"evidence_references":["EV-LOG"]}],
+  "sampling_plan_reference":"SAMPLE-PLAN-001","evidence_plan_reference":"EVIDENCE-PLAN-001","finding_review_reference":"FINDING-REVIEW-001","human_approval_reference":"AUDITOR-DECISION-001","assumptions":["Synthetic evidence only"]
+}

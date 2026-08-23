@@ -1,0 +1,2 @@
+# Runbook
+Monitor ingestion, duplicates/orphans, missing links, review backlog, change-route exceptions, migration-control gaps, authorization denials, audit writes and configuration drift. On integrity/security concern, stop ingestion, preserve source/logs, notify process/product/security owners, assess impact, correct or roll back, verify using synthetic exports and record closure. Never bypass publication or migration gates.

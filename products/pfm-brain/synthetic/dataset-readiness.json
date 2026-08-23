@@ -1,0 +1,13 @@
+{
+  "loaded_domains": [
+    "organization_master",
+    "chart_of_accounts",
+    "approved_budget",
+    "budget_execution",
+    "revenue",
+    "cash",
+    "kpi",
+    "risk_control",
+    "authority_matrix"
+  ]
+}

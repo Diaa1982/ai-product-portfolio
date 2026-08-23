@@ -1,0 +1,66 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>P08 · AI Use Case Assessor</title>
+  <style>
+    :root{--ink:#14212b;--muted:#5c6b76;--navy:#12324b;--blue:#1774b8;--teal:#16847a;--paper:#f4f7f8;--white:#fff;--line:#d9e2e7;--amber:#b76700}
+    *{box-sizing:border-box}body{margin:0;font:15px/1.5 Inter,system-ui,sans-serif;color:var(--ink);background:var(--paper)}
+    header{padding:32px max(24px,calc((100% - 1120px)/2));background:linear-gradient(120deg,var(--navy),#195f78);color:white}
+    header p{max-width:760px;margin:8px 0 0;color:#dbeaf0}.badge{display:inline-block;padding:4px 9px;border:1px solid #7db5c8;border-radius:99px;font-size:12px}
+    main{max-width:1120px;margin:24px auto;padding:0 24px 56px}.notice{background:#fff7e7;border-left:4px solid var(--amber);padding:12px 16px;margin-bottom:20px}
+    form{display:grid;gap:18px}.card{background:var(--white);border:1px solid var(--line);border-radius:12px;padding:20px;box-shadow:0 4px 18px #14212b0a}
+    h1{margin:8px 0 0}h2{margin:0 0 14px;font-size:19px}h3{font-size:15px;margin:18px 0 8px}.grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+    label{display:grid;gap:5px;color:var(--muted);font-size:13px}input,select,textarea{width:100%;padding:10px;border:1px solid #bdcbd3;border-radius:7px;background:white;color:var(--ink)}textarea{min-height:82px;resize:vertical}
+    .scores{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:10px}.scores label{font-size:12px}.scores input{font-size:16px}
+    button{border:0;border-radius:8px;padding:12px 18px;background:var(--blue);color:white;font-weight:700;cursor:pointer}button:disabled{opacity:.55}
+    #result{display:none}.metrics{display:grid;grid-template-columns:repeat(5,1fr);gap:10px}.metric{background:#eff6f8;padding:12px;border-radius:8px}.metric strong{display:block;font-size:22px}.result-good{border-left:5px solid var(--teal)}.small{font-size:12px;color:var(--muted)}code{word-break:break-all}
+    @media(max-width:760px){.grid,.scores,.metrics{grid-template-columns:1fr}}
+  </style>
+</head>
+<body>
+<header><span class="badge">P08 · technical deployment candidate</span><h1>AI Use Case Assessor</h1><p>Evidence-led intake, configurable value/feasibility scoring, risk screening and human approval routing. Scores support decisions; they never authorize production deployment.</p></header>
+<main>
+  <div class="notice"><strong>Synthetic or approved data only.</strong> Do not enter personal, confidential or restricted data until the target deployment has approved identity, storage, privacy and retention controls.</div>
+  <form id="form">
+    <section class="card"><h2>1 · Discovery intake</h2><div class="grid">
+      <label>Use-case title<input name="title" required value="Synthetic control review"></label>
+      <label>Assessment mode<select name="assessment_mode"><option>hybrid</option><option>client-led</option><option>diagnostic-led</option></select></label>
+      <label>Business problem<textarea name="business_problem" required>Manual evidence review delays decisions.</textarea></label>
+      <label>Desired outcome<textarea name="desired_outcome" required>Reduce effort while preserving human accountability.</textarea></label>
+      <label>Business owner<input name="business_owner" required value="PROCESS_OWNER"></label>
+      <label>AI task<textarea name="ai_task" required>Analyse evidence and draft a recommendation.</textarea></label>
+      <label>Process trigger<input name="process_trigger" required value="Request received"></label>
+      <label>Process closure<input name="process_closure" required value="Approved response issued"></label>
+      <label>Success criteria (one per line)<textarea name="success_criteria">30% effort reduction
+100% material evidence traceability</textarea></label>
+      <label>Prohibited automated decisions (one per line)<textarea name="prohibited">Final approval
+Risk acceptance</textarea></label>
+      <label>Low-confidence behavior<textarea name="low_confidence">Return insufficient information and escalate.</textarea></label>
+      <label>Evidence references (one per line)<textarea name="evidence">EV-SYN-001</textarea></label>
+    </div></section>
+    <section class="card"><h2>2 · Data source</h2><div class="grid">
+      <label>Source name<input name="source_name" value="Synthetic register"></label><label>Source owner<input name="source_owner" value="DATA_OWNER"></label>
+      <label>Classification<select name="classification"><option>Public</option><option selected>Internal</option><option>Confidential</option><option>Restricted</option></select></label>
+      <label>Quality status<input name="quality_status" value="validated"></label>
+    </div></section>
+    <section class="card"><h2>3 · Score evidence from 0–5</h2>
+      <h3>Value</h3><div class="scores" data-group="value_scores"><label>Strategic alignment<input type="number" min="0" max="5" step=".1" name="strategic_alignment" value="4"></label><label>Public/business value<input type="number" min="0" max="5" step=".1" name="public_business_value" value="4"></label><label>Service/operational impact<input type="number" min="0" max="5" step=".1" name="service_operational_impact" value="4"></label><label>Risk/control improvement<input type="number" min="0" max="5" step=".1" name="risk_control_improvement" value="4"></label></div>
+      <h3>Feasibility</h3><div class="scores" data-group="feasibility_scores"><label>Data readiness<input type="number" min="0" max="5" step=".1" name="data_readiness" value="4"></label><label>Technical feasibility<input type="number" min="0" max="5" step=".1" name="technical_feasibility" value="4"></label><label>Process/org readiness<input type="number" min="0" max="5" step=".1" name="process_organizational_readiness" value="4"></label><label>Delivery sustainability<input type="number" min="0" max="5" step=".1" name="delivery_sustainability" value="4"></label></div>
+      <h3>Risk (higher means greater risk)</h3><div class="scores" data-group="risk_scores"><label>Decision impact<input type="number" min="0" max="5" step=".1" name="decision_impact" value="2"></label><label>Data/privacy<input type="number" min="0" max="5" step=".1" name="data_privacy" value="2"></label><label>Legal/compliance<input type="number" min="0" max="5" step=".1" name="legal_compliance" value="2"></label><label>Model/operational<input type="number" min="0" max="5" step=".1" name="model_operational" value="2"></label></div>
+    </section>
+    <button id="submit" type="submit">Assess use case</button>
+  </form>
+  <section id="result" class="card result-good" aria-live="polite"><h2>Assessment result</h2><div class="metrics" id="metrics"></div><p id="recommendation"></p><p class="small" id="meta"></p></section>
+</main>
+<script>
+const lines=v=>v.split('\n').map(x=>x.trim()).filter(Boolean);
+const scores=name=>Object.fromEntries([...document.querySelector(`[data-group="${name}"]`).querySelectorAll('input')].map(x=>[x.name,Number(x.value)]));
+document.querySelector('#form').addEventListener('submit',async e=>{e.preventDefault();const f=new FormData(e.target),button=document.querySelector('#submit');button.disabled=true;
+ const payload={title:f.get('title'),assessment_mode:f.get('assessment_mode'),business_problem:f.get('business_problem'),desired_outcome:f.get('desired_outcome'),business_owner:f.get('business_owner'),process_trigger:f.get('process_trigger'),process_closure:f.get('process_closure'),ai_task:f.get('ai_task'),success_criteria:lines(f.get('success_criteria')),prohibited_automated_decisions:lines(f.get('prohibited')),low_confidence_behavior:f.get('low_confidence'),data_sources:[{name:f.get('source_name'),owner:f.get('source_owner'),classification:f.get('classification'),quality_status:f.get('quality_status')}],evidence_references:lines(f.get('evidence')),value_scores:scores('value_scores'),feasibility_scores:scores('feasibility_scores'),risk_scores:scores('risk_scores'),assumptions:['UI submission; verify evidence before decision']};
+ try{const response=await fetch('/p08/assess',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify(payload)});const r=await response.json();if(!response.ok)throw new Error(r.detail||'Assessment failed');
+ document.querySelector('#metrics').innerHTML=[['Value',r.value_score],['Feasibility',r.feasibility_score],['Priority',r.priority_score],['Risk',`${r.risk_score} · ${r.risk_tier}`],['Class',r.portfolio_classification]].map(x=>`<div class="metric"><span>${x[0]}</span><strong>${x[1]}</strong></div>`).join('');
+ document.querySelector('#recommendation').textContent=r.recommendation;document.querySelector('#meta').textContent=`Stage: ${r.lifecycle_stage} · Gate: ${r.required_gate} · Approver: ${r.required_approver_role} · ID: ${r.assessment_id}${r.missing_information.length?' · Missing: '+r.missing_information.join(', '):''}`;document.querySelector('#result').style.display='block';document.querySelector('#result').scrollIntoView({behavior:'smooth'});
+ }catch(err){alert(err.message)}finally{button.disabled=false}});
+</script>
+</body></html>

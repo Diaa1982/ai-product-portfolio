@@ -1,0 +1,20 @@
+{
+  "case_id": "SD-SYN-001", "service_id": "SVC-SYN-001", "service_name": "Synthetic institutional request", "explicit_request": true,
+  "customer_type": "government_entity", "direct_individual_service": false, "service_owner_role": "SERVICE_OWNER", "provider_roles": ["SERVICE_TEAM"],
+  "beneficiary_groups": ["Government entities"], "legal_mandate_reference": "LAW-SYN-001", "evidence_references": ["EV-SYN-001"],
+  "trigger": "Authorized request received", "objective": "Provide a traceable institutional outcome", "channels": ["Institutional portal"],
+  "inputs": ["Authorized request"], "outputs": ["Validated response"], "dependencies": ["Identity and records"], "escalation_path": "SERVICE_OWNER",
+  "process_id": "PROC-SYN-001", "sla_target": "5 working days (proposal)", "kpis": ["cycle_time", "first_time_right"],
+  "stages": [
+    {"stage":"Awareness & Reach","touchpoints":["Institutional portal"],"steps":["Discover"],"entities":["Government entity"],"systems":["Synthetic platform"],"pain_points":[],"evidence":["EV-01"]},
+    {"stage":"Engagement & Access","touchpoints":["Institutional portal"],"steps":["Authenticate"],"entities":["Government entity","DOF"],"systems":["Synthetic platform"],"pain_points":[],"evidence":["EV-02"]},
+    {"stage":"Service Delivery","touchpoints":["Workflow"],"steps":["Validate","Respond"],"entities":["DOF"],"systems":["Synthetic platform"],"pain_points":[],"evidence":["EV-03"]},
+    {"stage":"Post-Service","touchpoints":["Notification"],"steps":["Confirm"],"entities":["DOF"],"systems":["Synthetic platform"],"pain_points":[],"evidence":["EV-04"]},
+    {"stage":"Continuous Experience","touchpoints":["Feedback"],"steps":["Review"],"entities":["Service owner"],"systems":["Synthetic dashboard"],"pain_points":[],"evidence":["EV-05"]}
+  ],
+  "proactive_trigger":"Mandate event","data_reuse":"Approved institutional master data","inclusivity_considerations":["Accessible institutional channel"],
+  "current_state_summary":"Synthetic AS-IS validated for test.","desired_outcome":"Reduce avoidable handoffs with human accountability.",
+  "evidence_items":[{"claim":"The synthetic service has an approved owner.","classification":"fact","reference":"EV-SYN-001"},{"claim":"A unified intake may reduce handoffs.","classification":"ai_inference","reference":""}],
+  "selected_methods":["three_round_brainstorming","six_thinking_hats","five_whys","journey_mapping","service_blueprinting"],"gate":"G1","human_approval_reference":"APR-SYN-G1",
+  "improvement_options":["Unified intake"],"prototype_test_evidence":["TEST-SYN-001"],"risk_controls":["Human validation"],"operating_raci":{"accountable":"SERVICE_OWNER"},"benefits_baseline":["10 handoffs"],"monitoring_evidence":["MON-SYN-001"],"improvement_decision":"Continue pilot"
+}

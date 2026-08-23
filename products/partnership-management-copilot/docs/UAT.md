@@ -1,0 +1,3 @@
+# User acceptance testing
+
+Division users, partnership owners, Strategy Employee 1, Strategy Employee 2 and Legal review representative active, temporary, permanent and completed partnerships. Test bilingual register fields, document/item extraction, clause citations, claims/evidence acceptance, utilization, expiry, three-reminder/escalation drafts, reports, add/modify/delete history, role segregation and override reasons. Confirm that no background workflow, external sending, approval, signature, amendment, termination or legal opinion occurs. Acceptance requires signed defects, residual risks and deployment recommendation.

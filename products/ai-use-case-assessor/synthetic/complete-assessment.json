@@ -1,0 +1,19 @@
+{
+  "title": "Synthetic control review",
+  "assessment_mode": "hybrid",
+  "business_problem": "Manual evidence review delays decisions",
+  "desired_outcome": "Reduce effort while preserving accountability",
+  "business_owner": "PROCESS_OWNER",
+  "process_trigger": "Request received",
+  "process_closure": "Approved response issued",
+  "ai_task": "Analyse evidence and draft a recommendation",
+  "success_criteria": ["30% effort reduction", "100% material evidence traceability"],
+  "prohibited_automated_decisions": ["Final approval", "Risk acceptance"],
+  "low_confidence_behavior": "Return insufficient information and escalate",
+  "data_sources": [{"name": "Synthetic register", "owner": "DATA_OWNER", "classification": "Internal", "quality_status": "validated"}],
+  "evidence_references": ["EV-SYN-001"],
+  "value_scores": {"strategic_alignment": 4, "public_business_value": 4, "service_operational_impact": 4, "risk_control_improvement": 4},
+  "feasibility_scores": {"data_readiness": 4, "technical_feasibility": 4, "process_organizational_readiness": 4, "delivery_sustainability": 4},
+  "risk_scores": {"decision_impact": 2, "data_privacy": 2, "legal_compliance": 2, "model_operational": 2},
+  "assumptions": ["Synthetic inputs only"]
+}

@@ -1,0 +1,23 @@
+{
+  "assessment_id":"P18-SYN-001","entity_profile":"Synthetic public-finance entity","as_of_date":"2026-08-23","assessment_mode":"independent_assessment","scope_statement":"Synthetic entity-wide PFM assessment",
+  "criteria_results":[
+    {"criterion_id":"CR-01","domain":"strategy_governance","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-01"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-02","domain":"business_architecture","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-02"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-03","domain":"financial_operations","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-03"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-04","domain":"government_financial_digital_twin","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-04"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-05","domain":"data","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-05"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-06","domain":"applications_integration","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-06"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-07","domain":"technology","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-07"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-08","domain":"cybersecurity_resilience","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-08"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-09","domain":"ai_human_oversight","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-09"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-10","domain":"risk_compliance_assurance","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-10"],"assessor_id":"A1","reviewer_id":"A2"},
+    {"criterion_id":"CR-11","domain":"performance_public_value","weight":1,"mandatory":true,"proposed_level":3,"evidence_refs":["EV-11"],"assessor_id":"A1","reviewer_id":"A2"}
+  ],
+  "evidence_register":[
+    {"evidence_id":"EV-01","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-02","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-03","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-04","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-05","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-06","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-07","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-08","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-09","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-10","evidence_type":"architecture_process_review","valid":true,"independently_verified":false},{"evidence_id":"EV-11","evidence_type":"architecture_process_review","valid":true,"independently_verified":false}
+  ],
+  "assessors":[{"assessor_id":"A1","role":"LEAD_ASSESSOR"},{"assessor_id":"A2","role":"INDEPENDENT_REVIEWER"}],
+  "performance_history":{"sustained_quarters":4},"external_comparisons":[],
+  "moderation":{"independent_reviewer_confirmed":true,"conflicts_disclosed":true,"appeal_status":"NOT_OPEN","mandatory_principles":{"public_value":true,"human_accountability":true,"canonical_financial_events":true,"interoperability":true,"security_resilience":true,"continuous_assurance":true}},
+  "assumptions":["All evidence and identities are synthetic","Working-draft scheme only; no certificate or assurance opinion is issued"]
+}

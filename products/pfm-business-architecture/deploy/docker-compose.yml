@@ -1,0 +1,11 @@
+services:
+  p13:
+    build: {context: ../../.., dockerfile: products/pfm-business-architecture/deploy/Dockerfile}
+    ports: ["${P13_PORT:-8080}:8080"]
+    environment: {P13_CONFIG_PATH: /app/products/pfm-business-architecture/config/pfm-architecture.v1.json, CASE_STORE_PATH: /app/data/runtime/cases.json}
+    read_only: true
+    tmpfs: [/tmp]
+    cap_drop: [ALL]
+    security_opt: [no-new-privileges:true]
+    volumes: [p13-runtime:/app/data/runtime]
+volumes: {p13-runtime: {}}
