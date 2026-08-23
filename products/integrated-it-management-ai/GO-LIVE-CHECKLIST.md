@@ -11,7 +11,7 @@
 - [x] Evidence/linkage validation, decision package, audit digest and limitations.
 - [x] Protected-action checks and explicit human accountability.
 - [x] Dashboard, API, synthetic fixture, focused tests and hardened container baseline.
-- [x] Product, architecture, operating, security, deployment, test and UAT documentation.
+- [x] Product, architecture, operating, security, deployment, test and UAT documentation.\n- [x] 237 focused tests passed locally; both GitHub workflows passed 247 tests plus the P16 container/API smoke path (runs `32617447714`, `32617447756`).
 
 ## Required before production
 
