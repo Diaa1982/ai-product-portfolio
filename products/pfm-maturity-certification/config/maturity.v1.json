@@ -1,0 +1,10 @@
+{
+  "config_version":"1.0.0","product_id":"P18","synthetic_data_only":true,"vendor_neutral":true,"scheme_status":"WORKING_DRAFT_NOT_ADOPTED",
+  "assessment_modes":["self_assessment","internal_validation","independent_assessment"],
+  "domains":["strategy_governance","business_architecture","financial_operations","government_financial_digital_twin","data","applications_integration","technology","cybersecurity_resilience","ai_human_oversight","risk_compliance_assurance","performance_public_value"],
+  "maturity_levels":{"1":"Digitized","2":"Integrated","3":"Connected","4":"Intelligent","5":"Autonomous with accountable human governance","6":"Cognitive with accountable human governance"},
+  "recognition_classes":{"1":"Bronze candidate","2":"Silver candidate","3":"Gold candidate","4":"Platinum candidate","5":"Diamond candidate","6":"Diamond candidate"},
+  "mandatory_principles":["public_value","human_accountability","canonical_financial_events","interoperability","security_resilience","continuous_assurance"],
+  "artifact_statuses":["Not Started","Conceptual","Drafted","Internally Reviewed","Externally Reviewed","Pilot Tested","Publication Ready"],
+  "protected_actions":["issue_certificate","approve_certification","award_recognition","sign_assurance_opinion","waive_mandatory_criterion","approve_appeal","renew_certificate","publish_rating","declare_pefa_compliance","declare_ipsas_compliance","approve_go_live"]
+}

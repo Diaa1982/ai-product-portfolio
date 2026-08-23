@@ -20,6 +20,7 @@ from .p07_partnership import PartnershipInput, PartnershipManagementCopilot
 from .p10_process_intelligence import EnterpriseProcessIntelligence, ProcessPortfolioInput
 from .p13_pfm_business_architecture import PFMBusinessArchitecture, PFMArchitectureInput
 from .p17_cycle_time_benchmark import CycleTimeBenchmarkInput, PFMCycleTimeBenchmark
+from .p18_maturity_certification import PFMMaturityCertification, PFMMaturityInput
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
@@ -60,6 +61,8 @@ P13_DASHBOARD_PATH = Path(os.getenv("P13_DASHBOARD_PATH", Path(__file__).parent 
 P13_CONFIG_PATH = Path(os.getenv("P13_CONFIG_PATH", REPO_ROOT / "products" / "pfm-business-architecture" / "config" / "pfm-architecture.v1.json"))
 P17_DASHBOARD_PATH = Path(os.getenv("P17_DASHBOARD_PATH", Path(__file__).parent / "static" / "p17.html"))
 P17_CONFIG_PATH = Path(os.getenv("P17_CONFIG_PATH", REPO_ROOT / "products" / "pfm-cycle-time-benchmark" / "config" / "cycle-time.v1.json"))
+P18_DASHBOARD_PATH = Path(os.getenv("P18_DASHBOARD_PATH", Path(__file__).parent / "static" / "p18.html"))
+P18_CONFIG_PATH = Path(os.getenv("P18_CONFIG_PATH", REPO_ROOT / "products" / "pfm-maturity-certification" / "config" / "maturity.v1.json"))
 
 store = JsonCaseStore(CASE_STORE_PATH)
 engine = PortfolioEngine(WORKFLOW_PATH, store)
@@ -78,6 +81,7 @@ p07_partnership = PartnershipManagementCopilot(P07_CONFIG_PATH)
 p10_process_intelligence = EnterpriseProcessIntelligence(P10_CONFIG_PATH)
 p13_pfm_architecture = PFMBusinessArchitecture(P13_CONFIG_PATH)
 p17_cycle_time = PFMCycleTimeBenchmark(P17_CONFIG_PATH)
+p18_maturity = PFMMaturityCertification(P18_CONFIG_PATH)
 
 app = FastAPI(
     title="Governed AI Product Portfolio",
@@ -603,6 +607,23 @@ class P17AnalysisRequest(BaseModel):
 class P17ActionRequest(BaseModel):
     action: str = Field(min_length=3, max_length=200)
 
+class P18AssessmentRequest(BaseModel):
+    assessment_id: str = Field(min_length=3, max_length=100)
+    entity_profile: str
+    as_of_date: str
+    assessment_mode: str
+    scope_statement: str
+    criteria_results: list[dict[str, Any]]
+    evidence_register: list[dict[str, Any]]
+    assessors: list[dict[str, Any]]
+    performance_history: dict[str, Any]
+    external_comparisons: list[dict[str, Any]]
+    moderation: dict[str, Any]
+    assumptions: list[str] = Field(default_factory=list)
+
+class P18ActionRequest(BaseModel):
+    action: str = Field(min_length=3, max_length=200)
+
 
 def as_http_error(exc: Exception) -> HTTPException:
     if isinstance(exc, KeyError):
@@ -685,6 +706,9 @@ def p13_dashboard() -> FileResponse: return FileResponse(P13_DASHBOARD_PATH)
 @app.get("/p17", include_in_schema=False)
 def p17_dashboard() -> FileResponse: return FileResponse(P17_DASHBOARD_PATH)
 
+@app.get("/p18", include_in_schema=False)
+def p18_dashboard() -> FileResponse: return FileResponse(P18_DASHBOARD_PATH)
+
 
 @app.get("/health")
 def health() -> dict[str, Any]:
@@ -702,7 +726,19 @@ def health() -> dict[str, Any]:
             "p06_config_version": p06_process_audit.config["config_version"],
             "p07_config_version": p07_partnership.config["config_version"],"p10_config_version":p10_process_intelligence.config["config_version"],
             "p13_config_version": p13_pfm_architecture.config["config_version"],
-            "p17_config_version": p17_cycle_time.config["config_version"]}
+            "p17_config_version": p17_cycle_time.config["config_version"],
+            "p18_config_version": p18_maturity.config["config_version"]}
+
+@app.get("/p18/config")
+def p18_config() -> dict[str, Any]: return p18_maturity.config
+
+@app.post("/p18/assess")
+def p18_assess(request: P18AssessmentRequest) -> dict[str, Any]:
+    try: return p18_maturity.assess(PFMMaturityInput(**request.model_dump())).to_dict()
+    except (ValueError, PermissionError, KeyError) as exc: raise as_http_error(exc) from exc
+
+@app.post("/p18/actions/check")
+def p18_check_action(request: P18ActionRequest) -> dict[str, Any]: return p18_maturity.check_action(request.action)
 
 @app.get("/p17/config")
 def p17_config() -> dict[str, Any]: return p17_cycle_time.config

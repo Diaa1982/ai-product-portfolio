@@ -320,3 +320,21 @@ jobs:
             python -c "import json,sys; r=json.load(sys.stdin); p=r['process_results'][0]; assert r['assessment_status']=='VALIDATED_SYNTHETIC_ANALYSIS'; assert p['actual_median']==38; assert p['gap']==-4; assert p['interpretation']=='WITHIN_THRESHOLD'; assert r['portfolio_summary']['official_target_count']==0; assert len(r['audit_digest'])==64"
           curl --fail --silent --header "Content-Type: application/json" --data '{"action":"approve SLA"}' http://127.0.0.1:8080/p17/actions/check |
             python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"
+
+
+      - name: Build P18 deployment image
+        run: docker build -f products/pfm-maturity-certification/deploy/Dockerfile -t p18-maturity:ci .
+      - name: Smoke-test P18 evidenced maturity, moderation and certificate denial
+        shell: bash
+        run: |
+          docker run -d --name p18-maturity-ci -p 8080:8080 p18-maturity:ci
+          trap 'docker logs p18-maturity-ci; docker rm -f p18-maturity-ci' EXIT
+          for attempt in {1..20}; do
+            if curl --fail --silent http://127.0.0.1:8080/health >/dev/null; then break; fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/p18 >/dev/null
+          curl --fail --silent --header "Content-Type: application/json" --data @products/pfm-maturity-certification/synthetic/moderation-ready-assessment.json http://127.0.0.1:8080/p18/assess |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['assessment_status']=='MODERATION_READY'; assert r['overall_maturity']['evidenced_level']==3; assert r['recognition']['candidate_class']=='Gold candidate'; assert r['recognition']['certificate_issued'] is False; assert r['overall_maturity']['formal_rating'] is False; assert len(r['audit_digest'])==64"
+          curl --fail --silent --header "Content-Type: application/json" --data '{"action":"issue certificate"}' http://127.0.0.1:8080/p18/actions/check |
+            python -c "import json,sys; r=json.load(sys.stdin); assert r['permitted'] is False; assert r['human_authority_required'] is True"

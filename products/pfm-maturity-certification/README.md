@@ -1,46 +1,20 @@
 # PFM Maturity & Certification
 
-**Product ID:** P18  
-**Domain:** PFM institutional maturity and reform assurance  
-**Baseline maturity:** Product definition
+**Product ID:** P18 · **Stage:** Technical deployment candidate · **Data:** Synthetic only · **Production ready:** No
 
-## Public-value proposition
+P18 provides evidence-led maturity assessment, independent moderation controls, recognition-readiness and improvement planning across core PFM and enabling capabilities. It never issues a certificate, accreditation or assurance opinion.
 
-Assess governance, capabilities, processes, controls, data, workforce and performance maturity using configurable evidence-based criteria.
+## Executable scope
 
-## Intended users
+- Six configurable levels: Digitized, Integrated, Connected, Intelligent, Autonomous and Cognitive—with accountable human governance.
+- Eleven domains spanning strategy/governance, architecture, finance operations, GFDT, data, applications, technology, cyber resilience, AI oversight, assurance and public value.
+- Evidence caps for advanced levels; mandatory principles; assessor/reviewer segregation.
+- Domain and overall evidenced maturity, draft improvements, surveillance dates and appeal state.
+- Bronze–Diamond candidate labels for working-draft scheme review only.
+- API/UI, fixture, 15 focused tests, documentation and hardened container.
 
-Finance ministries, subnational finance entities, reform programmes and assurance teams.
+Run `python -m unittest tests.test_p18_maturity_certification -v`, start the API and open `/p18`.
 
-## Core capabilities
+This is an open, vendor-neutral working draft—not an adopted international standard. It does not replace law, IPSAS, GFSM, PEFA or INTOSAI requirements.
 
-- Configurable maturity model
-- Evidence request and validation
-- Scoring, moderation and gap analysis
-- Roadmap and certification workflow
-
-## Human-accountability boundary
-
-The product cannot issue an official certification or assurance opinion unless an authorized scheme owner and assessors approve it.
-
-## Minimum product controls
-
-- Approved source and data registry.
-- Role-based access and segregation of duties.
-- Evidence provenance, calculations and citations.
-- Confidence, materiality and exception thresholds.
-- Human review and approval states.
-- Versioned prompts, models, rules and schemas.
-- Audit logging, monitoring, retention and incident response.
-- Synthetic data until approved onboarding is completed.
-
-## Initial product backlog
-
-- [ ] Encode maturity dimensions
-- [ ] Implement evidence workflow
-- [ ] Add moderation and scoring controls
-- [ ] Create synthetic assessment case
-
-## Release path
-
-Concept → Discovery → Design → MVP → Pilot → Production → Scale.
+See the [checklist](GO-LIVE-CHECKLIST.md), [assessment methodology](docs/ASSESSMENT-METHODOLOGY.md), [evidence standard](docs/EVIDENCE-STANDARD.md), [moderation](docs/MODERATION-AND-APPEALS.md), [scheme governance](docs/CERTIFICATION-GOVERNANCE.md), [API](docs/API.md) and [evidence pack](docs/GO-LIVE-EVIDENCE.md).

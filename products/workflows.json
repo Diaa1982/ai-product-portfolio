@@ -599,18 +599,25 @@
     },
     {
       "product_id": "P18",
-      "version": "1.0",
+      "version": "1.1",
       "required_inputs": [
-        "business_outcome",
-        "assessment_scope",
-        "maturity_dimension",
-        "evidence_period"
+        "assessment_id",
+        "assessment_mode",
+        "criteria_results",
+        "evidence_register",
+        "assessors",
+        "moderation"
       ],
-      "calculation_profile": "none",
+      "calculation_profile": "pfm_maturity_v1",
       "approval_gate": "ASSESSMENT_MODERATION",
       "approval_role": "AUTHORIZED_ASSESSMENT_MODERATOR",
       "evidence_required_for_material_findings": true,
-      "thresholds": {}
+      "thresholds": {
+        "maturity_min": 1,
+        "maturity_max": 6,
+        "level_5_sustained_quarters": 4,
+        "level_6_sustained_quarters": 8
+      }
     }
   ]
 }

@@ -614,7 +614,7 @@
       "id": "P18",
       "slug": "pfm-maturity-certification",
       "name": "PFM Maturity & Certification",
-      "maturity": "product-definition",
+      "maturity": "technical-deployment-candidate",
       "classification": "PORTFOLIO-INTERNAL",
       "data_policy": "synthetic-only",
       "production_ready": false,
@@ -624,11 +624,32 @@
       },
       "documents": {
         "product_readme": "products/pfm-maturity-certification/README.md",
-        "go_live_checklist": "products/pfm-maturity-certification/GO-LIVE-CHECKLIST.md"
+        "go_live_checklist": "products/pfm-maturity-certification/GO-LIVE-CHECKLIST.md",
+        "prd": "products/pfm-maturity-certification/docs/PRD.md",
+        "architecture": "products/pfm-maturity-certification/docs/ARCHITECTURE.md",
+        "assessment_methodology": "products/pfm-maturity-certification/docs/ASSESSMENT-METHODOLOGY.md",
+        "domain_model": "products/pfm-maturity-certification/docs/DOMAIN-MODEL.md",
+        "evidence_standard": "products/pfm-maturity-certification/docs/EVIDENCE-STANDARD.md",
+        "scoring_calibration": "products/pfm-maturity-certification/docs/SCORING-AND-CALIBRATION.md",
+        "moderation_appeals": "products/pfm-maturity-certification/docs/MODERATION-AND-APPEALS.md",
+        "certification_governance": "products/pfm-maturity-certification/docs/CERTIFICATION-GOVERNANCE.md",
+        "framework_boundaries": "products/pfm-maturity-certification/docs/FRAMEWORK-BOUNDARIES.md",
+        "surveillance_renewal": "products/pfm-maturity-certification/docs/SURVEILLANCE-RENEWAL.md",
+        "data_model": "products/pfm-maturity-certification/docs/DATA-MODEL.md",
+        "api": "products/pfm-maturity-certification/docs/API.md",
+        "security_privacy": "products/pfm-maturity-certification/docs/SECURITY-PRIVACY.md",
+        "deployment": "products/pfm-maturity-certification/docs/DEPLOYMENT.md",
+        "runbook": "products/pfm-maturity-certification/docs/RUNBOOK.md",
+        "test_plan": "products/pfm-maturity-certification/docs/TEST-PLAN.md",
+        "uat": "products/pfm-maturity-certification/docs/UAT.md",
+        "roadmap": "products/pfm-maturity-certification/docs/ROADMAP.md",
+        "go_live_evidence": "products/pfm-maturity-certification/docs/GO-LIVE-EVIDENCE.md"
       },
       "readiness": {
-        "stage": "executable-mvp-foundation",
-        "go_live_ready": false
+        "stage": "technical-deployment-candidate",
+        "deployment_candidate": true,
+        "go_live_ready": false,
+        "formal_approval": "pending"
       }
     }
   ]
