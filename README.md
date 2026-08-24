@@ -2,7 +2,11 @@
 
 Private monorepo for converting a portfolio of public finance management, enterprise operations, process, service, governance, assurance, and strategic decision-support initiatives into governed AI products.
 
-## Portfolio productization status\n\nAll 18 products now have technical deployment-candidate baselines. This means documented, tested, synthetic-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.\n\n## Executable portfolio MVP
+## Portfolio productization status
+
+All 18 products now have technical deployment-candidate baselines. This means documented, tested, synthetic-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.
+
+## Executable portfolio MVP
 
 The platform now provides:
 
@@ -46,6 +50,8 @@ uvicorn src.portfolio_api.main:app --reload
 ```
 
 Open `http://127.0.0.1:8000` for the dashboard and `http://127.0.0.1:8000/docs` for the API.
+
+For a controlled GitHub-run demonstration or readiness check, use the [Pilot Validation workflow](docs/PILOT-WORKFLOW.md). It builds one selected product, applies the synthetic-only boundary, performs smoke checks and publishes an evidence artifact; it does not deploy to production.
 
 ## Portfolio groups
 
