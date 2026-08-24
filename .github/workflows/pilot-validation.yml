@@ -1,0 +1,198 @@
+name: Pilot Validation
+
+run-name: Pilot validation — ${{ inputs.product_id }} — ${{ inputs.pilot_stage }}
+
+on:
+  workflow_dispatch:
+    inputs:
+      product_id:
+        description: Product to validate
+        required: true
+        type: choice
+        default: P08
+        options:
+          - P08
+          - P14
+          - P16
+          - P01
+          - P02
+          - P03
+          - P04
+          - P05
+          - P06
+          - P07
+          - P09
+          - P10
+          - P11
+          - P12
+          - P13
+          - P15
+          - P17
+          - P18
+      pilot_stage:
+        description: Evidence stage (no deployment is performed)
+        required: true
+        type: choice
+        default: demonstration
+        options:
+          - demonstration
+          - staging-readiness
+          - uat-readiness
+      evidence_reference:
+        description: Approved pilot, change or review reference
+        required: true
+        type: string
+        default: PILOT-DRAFT
+      run_full_tests:
+        description: Run the complete portfolio test suite
+        required: true
+        type: boolean
+        default: true
+
+permissions:
+  contents: read
+
+concurrency:
+  group: pilot-validation-${{ inputs.product_id }}
+  cancel-in-progress: false
+
+jobs:
+  validate-pilot-candidate:
+    name: Validate ${{ inputs.product_id }} pilot candidate
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    env:
+      ALLOW_SYNTHETIC_DATA_ONLY: "true"
+      LLM_PROVIDER: disabled
+      APP_ENV: pilot-validation
+    steps:
+      - name: Check out the selected revision
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Install application dependencies
+        run: python -m pip install -r requirements.txt
+
+      - name: Resolve and govern selected product
+        id: product
+        env:
+          PRODUCT_ID: ${{ inputs.product_id }}
+        run: |
+          python - <<'PY'
+          import json
+          import os
+          from pathlib import Path
+
+          registry = json.loads(Path("products/registry.json").read_text(encoding="utf-8"))
+          product = next((p for p in registry["products"] if p["id"] == os.environ["PRODUCT_ID"]), None)
+          if product is None:
+              raise SystemExit("Selected product is not registered")
+          if product.get("data_policy") != "synthetic-only":
+              raise SystemExit("Pilot workflow accepts synthetic-only products")
+          if product.get("production_ready") is not False:
+              raise SystemExit("Registry must retain production_ready=false")
+          slug = product["slug"]
+          dockerfile = Path("products") / slug / "deploy" / "Dockerfile"
+          if not dockerfile.exists():
+              raise SystemExit(f"Missing deployment Dockerfile: {dockerfile}")
+          with Path(os.environ["GITHUB_OUTPUT"]).open("a", encoding="utf-8") as output:
+              output.write(f"slug={slug}\n")
+              output.write(f"dockerfile={dockerfile.as_posix()}\n")
+              output.write(f"dashboard=/{os.environ['PRODUCT_ID'].lower()}\n")
+          PY
+
+      - name: Validate portfolio registry
+        run: python scripts/validate_portfolio.py
+
+      - name: Run full unit and control suite
+        if: ${{ inputs.run_full_tests }}
+        run: python -m unittest discover -s tests -v
+
+      - name: Compile Python
+        run: python -m compileall -q src scripts tests
+
+      - name: Reject common secret files
+        shell: bash
+        run: |
+          if find . -type f \( -name ".env" -o -name "*.pem" -o -name "*.key" \) | grep -q .; then
+            echo "Potential secret file committed."
+            exit 1
+          fi
+
+      - name: Build selected product image
+        env:
+          DOCKERFILE: ${{ steps.product.outputs.dockerfile }}
+          PRODUCT_ID: ${{ inputs.product_id }}
+        run: docker build -f "$DOCKERFILE" -t "portfolio-pilot:${PRODUCT_ID,,}" .
+
+      - name: Run synthetic-only container smoke test
+        env:
+          PRODUCT_ID: ${{ inputs.product_id }}
+          DASHBOARD_PATH: ${{ steps.product.outputs.dashboard }}
+        run: |
+          CONTAINER="portfolio-pilot-${PRODUCT_ID,,}"
+          docker run -d --name "$CONTAINER" -p 8080:8080             --read-only --tmpfs /tmp --tmpfs /app/data/runtime             --cap-drop ALL --security-opt no-new-privileges:true             -e ALLOW_SYNTHETIC_DATA_ONLY=true -e LLM_PROVIDER=disabled             "portfolio-pilot:${PRODUCT_ID,,}"
+          trap 'docker logs "$CONTAINER"; docker rm -f "$CONTAINER"' EXIT
+          for attempt in {1..30}; do
+            if curl --fail --silent http://127.0.0.1:8080/health > health.json; then
+              break
+            fi
+            sleep 1
+          done
+          curl --fail --silent http://127.0.0.1:8080/health > health.json
+          curl --fail --silent "http://127.0.0.1:8080${DASHBOARD_PATH}" > dashboard.html
+          python - <<'PY'
+          import json
+          health = json.load(open("health.json", encoding="utf-8"))
+          assert health["status"] == "ok"
+          assert health["synthetic_data_only"] is True
+          PY
+
+      - name: Create pilot evidence record
+        env:
+          PRODUCT_ID: ${{ inputs.product_id }}
+          PRODUCT_SLUG: ${{ steps.product.outputs.slug }}
+          PILOT_STAGE: ${{ inputs.pilot_stage }}
+          EVIDENCE_REFERENCE: ${{ inputs.evidence_reference }}
+          RUN_FULL_TESTS: ${{ inputs.run_full_tests }}
+        run: |
+          mkdir -p pilot-evidence
+          cp health.json pilot-evidence/health.json
+          cat > pilot-evidence/PILOT-VALIDATION.md <<EOF
+          # Pilot validation evidence
+
+          - Product: ${PRODUCT_ID} — ${PRODUCT_SLUG}
+          - Stage: ${PILOT_STAGE}
+          - Evidence reference: ${EVIDENCE_REFERENCE}
+          - Repository: ${GITHUB_REPOSITORY}
+          - Commit: ${GITHUB_SHA}
+          - Workflow run: ${GITHUB_SERVER_URL}/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}
+          - Initiated by: ${GITHUB_ACTOR}
+          - UTC timestamp: $(date -u +"%Y-%m-%dT%H:%M:%SZ")
+          - Registry validation: passed
+          - Full test suite requested: ${RUN_FULL_TESTS}
+          - Python compilation: passed
+          - Secret-file check: passed
+          - Container image build: passed
+          - Health and dashboard smoke tests: passed
+          - Data policy: synthetic-only
+          - Production authorization: not granted
+
+          This evidence supports technical pilot readiness only. It does not approve production
+          data, integrations, financial decisions, accounting conclusions, risk acceptance,
+          external publication, service commitments or go-live.
+          EOF
+          cat pilot-evidence/PILOT-VALIDATION.md >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload pilot evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: pilot-evidence-${{ inputs.product_id }}-${{ github.run_number }}
+          path: pilot-evidence/
+          retention-days: 90
+          if-no-files-found: error
