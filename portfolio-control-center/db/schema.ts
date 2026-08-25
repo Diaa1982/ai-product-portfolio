@@ -1,0 +1,31 @@
+import { sql } from "drizzle-orm";
+import { integer, real, sqliteTable, text } from "drizzle-orm/sqlite-core";
+
+export const projects = sqliteTable("projects", {
+  id: text("id").primaryKey(),
+  name: text("name").notNull(),
+  slug: text("slug").notNull(),
+  category: text("category").notNull(),
+  owner: text("owner").notNull().default("Unassigned"),
+  stage: text("stage").notNull().default("Discover"),
+  maturity: text("maturity").notNull().default("concept"),
+  dataPolicy: text("data_policy").notNull().default("synthetic-only"),
+  productionReady: integer("production_ready", { mode: "boolean" }).notNull().default(false),
+  riskLevel: text("risk_level").notNull().default("Not assessed"),
+  gateProgress: integer("gate_progress").notNull().default(0),
+  technicalStatus: text("technical_status").notNull().default("Not validated"),
+  pilotWave: integer("pilot_wave").notNull().default(4),
+  sourceUrl: text("source_url").notNull().default(""),
+  documentKey: text("document_key"),
+  documentName: text("document_name"),
+  documentType: text("document_type"),
+  financialKpi: real("financial_kpi"),
+  operationalKpi: real("operational_kpi"),
+  customerKpi: real("customer_kpi"),
+  qualityKpi: real("quality_kpi"),
+  innovationKpi: real("innovation_kpi"),
+  kpiPeriod: text("kpi_period"),
+  notes: text("notes").notNull().default(""),
+  createdAt: text("created_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+  updatedAt: text("updated_at").notNull().default(sql`CURRENT_TIMESTAMP`),
+});

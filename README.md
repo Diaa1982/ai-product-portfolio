@@ -6,6 +6,14 @@ Private monorepo for converting a portfolio of public finance management, enterp
 
 All 18 products now have technical deployment-candidate baselines. This means documented, tested, synthetic-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.
 
+## Portfolio control center and Develop-stage closure
+
+- [Open the live AI Product Portfolio Control Center](https://ai-product-portfolio-hub.diaa-alkhateeb.chatgpt.site).
+- Complete deployable source is version-controlled in [\`portfolio-control-center/\`](portfolio-control-center/).
+- [Develop-stage closure](docs/DEVELOP-STAGE-CLOSURE.md) records the completed baseline and remaining Deploy-gate controls.
+- [Owner input register](docs/OWNER-INPUT-REGISTER.md) identifies the decisions and evidence required before pilot and go-live.
+- [Knowledge-management guide](docs/KNOWLEDGE-MANAGEMENT.md) links GitHub, Notion, and the operational control center.
+
 ## Executable portfolio MVP
 
 The platform now provides:
