@@ -1,0 +1,48 @@
+name: Portfolio Control Center Quality
+
+on:
+  pull_request:
+    paths:
+      - "portfolio-control-center/**"
+      - ".github/workflows/portfolio-control-center-quality.yml"
+  push:
+    branches: [main]
+    paths:
+      - "portfolio-control-center/**"
+      - ".github/workflows/portfolio-control-center-quality.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+concurrency:
+  group: portfolio-control-center-${{ github.ref }}
+  cancel-in-progress: true
+
+jobs:
+  quality:
+    name: Lint, build, and verify bundle
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    defaults:
+      run:
+        working-directory: portfolio-control-center
+    steps:
+      - name: Check out source
+        uses: actions/checkout@v4
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+          cache: npm
+          cache-dependency-path: portfolio-control-center/package-lock.json
+
+      - name: Install locked dependencies
+        run: npm ci
+
+      - name: Lint source
+        run: npm run lint
+
+      - name: Build and verify deployment bundle
+        run: npm test
