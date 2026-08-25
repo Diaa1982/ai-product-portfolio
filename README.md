@@ -9,7 +9,8 @@ All 18 products now have technical deployment-candidate baselines. This means do
 ## Portfolio control center and Develop-stage closure
 
 - [Open the live AI Product Portfolio Control Center](https://ai-product-portfolio-hub.diaa-alkhateeb.chatgpt.site).
-- Complete deployable source is version-controlled in [\`portfolio-control-center/\`](portfolio-control-center/).
+- Complete deployable source is version-controlled in [`portfolio-control-center/`](portfolio-control-center/).
+- [Stakeholder product and deployment brief](docs/STAKEHOLDER-PRODUCT-BRIEF.md) summarizes each product, how it works, the parties to engage and the tailored path to go-live.
 - [Develop-stage closure](docs/DEVELOP-STAGE-CLOSURE.md) records the completed baseline and remaining Deploy-gate controls.
 - [Owner input register](docs/OWNER-INPUT-REGISTER.md) identifies the decisions and evidence required before pilot and go-live.
 - [Knowledge-management guide](docs/KNOWLEDGE-MANAGEMENT.md) links GitHub, Notion, and the operational control center.
