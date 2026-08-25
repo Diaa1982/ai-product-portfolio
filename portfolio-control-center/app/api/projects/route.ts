@@ -9,7 +9,10 @@ const allowedTypes = new Set(["application/pdf", "application/json", "applicatio
 
 export async function GET() {
   try { return Response.json({ projects: await listProjects(), portfolioTestCount: 247 }); }
-  catch (error) { return Response.json({ error: message(error) }, { status: 500 }); }
+  catch (error) {
+    console.error("portfolio.projects.get_failed", error);
+    return Response.json({ error: message(error) }, { status: 500 });
+  }
 }
 
 export async function POST(request: Request) {
