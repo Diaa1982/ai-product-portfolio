@@ -1,0 +1,17 @@
+services:
+  api:
+    build: .
+    env_file: .env
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./data:/app/data
+  ui:
+    build: .
+    env_file: .env
+    command: ["python", "-m", "enterprise_ai.ui"]
+    ports:
+      - "7860:7860"
+    volumes:
+      - ./data:/app/data
+
