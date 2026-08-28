@@ -1,0 +1,43 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "enterprise-agentic-ai"
+version = "0.1.0"
+description = "Governed enterprise starter kit for RAG, multimodal AI, multi-agent workflows, LangGraph, CrewAI, and MCP."
+readme = "README.md"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.8",
+  "pydantic-settings>=2.4",
+  "python-dotenv>=1.0",
+  "PyYAML>=6.0",
+  "langchain>=0.3",
+  "langchain-openai>=0.2",
+  "langgraph>=0.2",
+  "langchain-chroma>=0.1",
+  "langchain-huggingface>=0.1",
+  "sentence-transformers>=3.0",
+  "chromadb>=0.5",
+  "crewai>=0.80",
+  "fastmcp>=2.0",
+  "fastapi>=0.115",
+  "uvicorn>=0.30",
+  "gradio>=5.0",
+  "pillow>=10.0",
+]
+
+[project.optional-dependencies]
+watsonx = ["langchain-ibm>=0.3"]
+dev = ["pytest>=8.0", "ruff>=0.7"]
+
+[project.scripts]
+enterprise-ai = "enterprise_ai.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/enterprise_ai"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+
