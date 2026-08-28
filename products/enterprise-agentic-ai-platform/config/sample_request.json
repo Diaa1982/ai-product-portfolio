@@ -1,0 +1,30 @@
+{
+  "title": "Enterprise AI Use-Case Portfolio",
+  "challenge": "AI opportunities are proposed across business units without one evidence-based assessment, prioritization, governance, and value-realization cycle.",
+  "objective": "Establish a governed portfolio that prioritizes feasible, valuable, and responsible AI initiatives.",
+  "business_area": "Enterprise Transformation",
+  "use_case_type": "ai_transformation",
+  "users": [
+    "Executive leadership",
+    "AI governance board",
+    "Business owners",
+    "Technology and data teams"
+  ],
+  "data_sources": [
+    "Strategy and KPI register",
+    "Process and service catalog",
+    "AI use-case register",
+    "Risk and control register"
+  ],
+  "constraints": [
+    "Approved enterprise data only",
+    "Human approval for high-impact decisions"
+  ],
+  "expected_outcomes": [
+    "Prioritized AI portfolio",
+    "Approved roadmap",
+    "Benefits and risk dashboard"
+  ],
+  "authorized_to_execute": false
+}
+
