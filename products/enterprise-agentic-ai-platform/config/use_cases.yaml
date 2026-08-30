@@ -1,0 +1,20 @@
+use_cases:
+  ai_transformation:
+    name: Enterprise AI Transformation Advisor
+    objective: Convert enterprise challenges into governed AI initiatives and implementation roadmaps.
+    allowed_tools: [search_knowledge, assess_use_case, estimate_value, create_action_plan]
+    required_agents: [retrieval, strategy, architecture, risk, value, synthesizer]
+    approval_required: true
+  process_intelligence:
+    name: Process Intelligence and Improvement
+    objective: Identify bottlenecks, control gaps, automation candidates, and measurable improvements.
+    allowed_tools: [search_knowledge, assess_use_case, estimate_value, create_action_plan]
+    required_agents: [retrieval, process, architecture, risk, value, synthesizer]
+    approval_required: true
+  public_finance:
+    name: Public Finance Management Intelligence
+    objective: Support evidence-based budget, revenue, expenditure, cash, control, and performance analysis.
+    allowed_tools: [search_knowledge, assess_use_case, estimate_value, create_action_plan]
+    required_agents: [retrieval, pfm, architecture, risk, value, synthesizer]
+    approval_required: true
+

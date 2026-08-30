@@ -4,7 +4,7 @@ Private monorepo for converting a portfolio of public finance management, enterp
 
 ## Portfolio productization status
 
-All 18 products now have technical deployment-candidate baselines. This means documented, tested, synthetic-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.
+The original 18 portfolio products have technical deployment-candidate baselines. A nineteenth standalone reference package—[Enterprise Agentic AI Platform](products/enterprise-agentic-ai-platform/README.md)—adds reusable RAG, multimodal, multi-agent, LangGraph, CrewAI and MCP patterns without changing the 18-workflow control-center registry. All packages remain documented, tested, synthetic/reference-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.
 
 ## Portfolio control center and Develop-stage closure
 
@@ -14,6 +14,7 @@ All 18 products now have technical deployment-candidate baselines. This means do
 - [Develop-stage closure](docs/DEVELOP-STAGE-CLOSURE.md) records the completed baseline and remaining Deploy-gate controls.
 - [Owner input register](docs/OWNER-INPUT-REGISTER.md) identifies the decisions and evidence required before pilot and go-live.
 - [Knowledge-management guide](docs/KNOWLEDGE-MANAGEMENT.md) links GitHub, Notion, and the operational control center.
+- [Enterprise Agentic AI Platform](products/enterprise-agentic-ai-platform/README.md) is a standalone governed reference implementation for retrieval, multimodal evidence, collaborating agents, workflow orchestration and MCP tools.
 
 ## Executable portfolio MVP
 
@@ -72,7 +73,7 @@ Each project remains an independent package with its own product document and go
 4. [Process, Service & Partnership Operations](groups/04-process-service-partnership-operations/README.md)
 5. [Enterprise Architecture & Technology Management](groups/05-enterprise-architecture-technology/README.md)
 
-Open the [categorized project catalog and go-live readiness matrix](docs/PROJECT-CATALOG.md) for direct links to every project document and its tailored checklist. The [standard go-live gates](docs/GO-LIVE-GATE-STANDARD.md) define the evidence required before any production launch.
+Open the [categorized project catalog and go-live readiness matrix](docs/PROJECT-CATALOG.md) for direct links to every project document, the standalone P19 reference platform, and tailored checklists. The [standard go-live gates](docs/GO-LIVE-GATE-STANDARD.md) define the evidence required before any production launch.
 
 ## Repository map
 
