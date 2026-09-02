@@ -1,0 +1,38 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "restaurant-ai-platform"
+version = "1.0.0"
+description = "Multimodal, multi-agent restaurant recommendation capstone"
+requires-python = ">=3.11"
+dependencies = [
+  "pydantic>=2.8,<3",
+  "numpy>=1.26,<3",
+  "Pillow>=10,<13",
+]
+
+[project.optional-dependencies]
+ui = ["gradio>=5,<7"]
+openai = ["openai>=1.60"]
+mcp = ["mcp>=1.12"]
+dev = ["pytest>=8", "ruff>=0.9"]
+all = ["gradio>=5,<7", "openai>=1.60", "mcp>=1.12", "pytest>=8", "ruff>=0.9"]
+
+[project.scripts]
+restaurant-ai = "restaurant_ai.cli:main"
+restaurant-ai-ui = "restaurant_ai.app:main"
+restaurant-ai-mcp = "restaurant_ai.mcp_server:main"
+restaurant-ai-mcp-check = "restaurant_ai.mcp_client:main"
+restaurant-ai-host = "restaurant_ai.mcp_host:main"
+
+[tool.setuptools.packages.find]
+where = ["src"]
+
+[tool.pytest.ini_options]
+pythonpath = ["src"]
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100

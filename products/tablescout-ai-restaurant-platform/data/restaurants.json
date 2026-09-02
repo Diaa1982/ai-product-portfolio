@@ -1,0 +1,203 @@
+[
+  {
+    "id": "saffron-table",
+    "name": "Saffron Table",
+    "description": "Contemporary Persian dining with charcoal kebabs, fragrant rice and a calm terrace.",
+    "cuisines": [
+      "middle eastern",
+      "persian"
+    ],
+    "neighborhood": "Downtown",
+    "location": {
+      "latitude": 25.1972,
+      "longitude": 55.2744
+    },
+    "price_band": "$$$",
+    "dietary": [
+      "halal",
+      "vegetarian",
+      "gluten-free"
+    ],
+    "ambience": [
+      "quiet",
+      "romantic",
+      "terrace"
+    ],
+    "menu": [
+      {
+        "name": "Saffron Chicken",
+        "description": "Charcoal chicken, saffron rice, barberries",
+        "price": 92.0,
+        "dietary": [
+          "halal",
+          "gluten-free"
+        ],
+        "image_path": null,
+        "image_caption": "golden saffron rice with charcoal chicken"
+      }
+    ],
+    "reviews": [
+      {
+        "rating": 4.8,
+        "text": "Elegant but relaxed; the saffron rice and service were excellent.",
+        "sentiment": 0.9,
+        "aspects": {
+          "food": 0.95,
+          "service": 0.9
+        }
+      }
+    ],
+    "active": true,
+    "updated_at": "2026-08-18T17:50:19.102765Z"
+  },
+  {
+    "id": "green-fork",
+    "name": "Green Fork Kitchen",
+    "description": "Bright plant-forward café serving seasonal bowls, vegan desserts and specialty coffee.",
+    "cuisines": [
+      "healthy",
+      "vegan"
+    ],
+    "neighborhood": "Business Bay",
+    "location": {
+      "latitude": 25.185,
+      "longitude": 55.267
+    },
+    "price_band": "$$",
+    "dietary": [
+      "vegan",
+      "vegetarian",
+      "dairy-free",
+      "gluten-free"
+    ],
+    "ambience": [
+      "bright",
+      "casual",
+      "laptop-friendly"
+    ],
+    "menu": [
+      {
+        "name": "Harvest Bowl",
+        "description": "Quinoa, roasted squash, greens and tahini",
+        "price": 58.0,
+        "dietary": [
+          "vegan",
+          "gluten-free"
+        ],
+        "image_path": null,
+        "image_caption": "colorful quinoa bowl with roasted vegetables"
+      }
+    ],
+    "reviews": [
+      {
+        "rating": 4.5,
+        "text": "Fresh bowls and clear allergen labels; busy around lunch.",
+        "sentiment": 0.75,
+        "aspects": {
+          "food": 0.85,
+          "ambience": 0.55
+        }
+      }
+    ],
+    "active": true,
+    "updated_at": "2026-08-18T17:50:19.102809Z"
+  },
+  {
+    "id": "marina-ember",
+    "name": "Marina Ember",
+    "description": "Waterfront steak and seafood restaurant focused on open-fire cooking and sunset views.",
+    "cuisines": [
+      "seafood",
+      "steakhouse"
+    ],
+    "neighborhood": "Dubai Marina",
+    "location": {
+      "latitude": 25.0805,
+      "longitude": 55.1403
+    },
+    "price_band": "$$$$",
+    "dietary": [
+      "halal",
+      "gluten-free"
+    ],
+    "ambience": [
+      "luxury",
+      "romantic",
+      "waterfront"
+    ],
+    "menu": [
+      {
+        "name": "Fire-Grilled Sea Bass",
+        "description": "Sea bass, lemon, herbs and grilled vegetables",
+        "price": 165.0,
+        "dietary": [
+          "halal",
+          "gluten-free"
+        ],
+        "image_path": null,
+        "image_caption": "grilled sea bass with lemon beside marina view"
+      }
+    ],
+    "reviews": [
+      {
+        "rating": 4.7,
+        "text": "Memorable sunset view and excellent fish, though it is expensive.",
+        "sentiment": 0.8,
+        "aspects": {
+          "food": 0.9,
+          "value": 0.2
+        }
+      }
+    ],
+    "active": true,
+    "updated_at": "2026-08-18T17:50:19.102832Z"
+  },
+  {
+    "id": "napoli-corner",
+    "name": "Napoli Corner",
+    "description": "Neighborhood pizzeria with wood-fired Neapolitan pies, handmade pasta and quick service.",
+    "cuisines": [
+      "italian",
+      "pizza"
+    ],
+    "neighborhood": "Jumeirah",
+    "location": {
+      "latitude": 25.221,
+      "longitude": 55.255
+    },
+    "price_band": "$$",
+    "dietary": [
+      "vegetarian"
+    ],
+    "ambience": [
+      "casual",
+      "family-friendly",
+      "lively"
+    ],
+    "menu": [
+      {
+        "name": "Margherita",
+        "description": "Tomato, fior di latte and basil",
+        "price": 52.0,
+        "dietary": [
+          "vegetarian"
+        ],
+        "image_path": null,
+        "image_caption": "wood-fired margherita pizza with blistered crust"
+      }
+    ],
+    "reviews": [
+      {
+        "rating": 4.6,
+        "text": "Proper airy crust, friendly staff and good value for families.",
+        "sentiment": 0.85,
+        "aspects": {
+          "food": 0.9,
+          "value": 0.8
+        }
+      }
+    ],
+    "active": true,
+    "updated_at": "2026-08-18T17:50:19.102841Z"
+  }
+]

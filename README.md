@@ -4,7 +4,7 @@ Private monorepo for converting a portfolio of public finance management, enterp
 
 ## Portfolio productization status
 
-The original 18 portfolio products have technical deployment-candidate baselines. A nineteenth standalone reference package—[Enterprise Agentic AI Platform](products/enterprise-agentic-ai-platform/README.md)—adds reusable RAG, multimodal, multi-agent, LangGraph, CrewAI and MCP patterns without changing the 18-workflow control-center registry. All packages remain documented, tested, synthetic/reference-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.
+The original 18 portfolio products have technical deployment-candidate baselines. A nineteenth standalone reference package—[Enterprise Agentic AI Platform](products/enterprise-agentic-ai-platform/README.md)—adds reusable RAG, multimodal, multi-agent, LangGraph, CrewAI and MCP patterns. A twentieth standalone capstone—[TableScout AI Restaurant Platform](products/tablescout-ai-restaurant-platform/README.md)—demonstrates structured restaurant knowledge, multimodal late-fusion retrieval, governed multi-agent recommendations, Gradio and MCP integration. Neither package changes the 18-workflow control-center registry. All packages remain documented, tested, synthetic/reference-only software candidates—not production authorization. Every product remains `production_ready: false` pending organizational data, integration, IAM/security/privacy, UAT, operations, residual-risk and formal go-live gates.
 
 ## Portfolio control center and Develop-stage closure
 
@@ -15,6 +15,7 @@ The original 18 portfolio products have technical deployment-candidate baselines
 - [Owner input register](docs/OWNER-INPUT-REGISTER.md) identifies the decisions and evidence required before pilot and go-live.
 - [Knowledge-management guide](docs/KNOWLEDGE-MANAGEMENT.md) links GitHub, Notion, and the operational control center.
 - [Enterprise Agentic AI Platform](products/enterprise-agentic-ai-platform/README.md) is a standalone governed reference implementation for retrieval, multimodal evidence, collaborating agents, workflow orchestration and MCP tools.
+- [TableScout AI Restaurant Platform](products/tablescout-ai-restaurant-platform/README.md) is a runnable capstone for validated restaurant data, multimodal retrieval, controlled recommendation agents, Gradio and MCP.
 
 ## Executable portfolio MVP
 
