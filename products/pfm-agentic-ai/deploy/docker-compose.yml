@@ -8,6 +8,7 @@ services:
     environment:
       P01_CONFIG_PATH: /app/products/pfm-agentic-ai/config/pfm-agents.v1.json
       CASE_STORE_PATH: /app/data/runtime/cases.json
+      PFM_SIGNAL_SOURCES_JSON: ${PFM_SIGNAL_SOURCES_JSON:-}
     read_only: true
     tmpfs:
       - /tmp
