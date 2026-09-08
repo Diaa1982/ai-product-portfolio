@@ -1,0 +1,38 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "$id":"agent-registry.schema.json",
+  "title":"PFM Agent Registry",
+  "type":"object",
+  "required":["version","agents"],
+  "properties":{
+    "version":{"type":"string"},
+    "agents":{"type":"array","items":{"$ref":"#/$defs/agent"}}
+  },
+  "$defs":{
+    "agent":{
+      "type":"object",
+      "required":["id","name","domain","mandate","enabled","autonomy","allowed_tools","prohibited_actions","approval_policy","evidence_policy","subagents"],
+      "properties":{
+        "id":{"type":"string","pattern":"^[a-z0-9-]+$"},
+        "name":{"type":"string","minLength":2},
+        "domain":{"enum":["strategy","budget","treasury","revenue","accounting","intelligence","assurance","custom"]},
+        "mandate":{"type":"string","minLength":10},
+        "enabled":{"type":"boolean"},
+        "autonomy":{"enum":["observe","recommend","prepare_action","execute_low_risk"]},
+        "allowed_tools":{"type":"array","items":{"type":"string"},"uniqueItems":true},
+        "prohibited_actions":{"type":"array","items":{"type":"string"},"uniqueItems":true},
+        "approval_policy":{"type":"object","required":["materiality_amount","currency","gate"],"properties":{"materiality_amount":{"type":"number","minimum":0},"currency":{"type":"string"},"gate":{"type":"string"}}},
+        "evidence_policy":{"type":"object","required":["minimum_sources","require_authoritative_source","require_as_of_date"],"properties":{"minimum_sources":{"type":"integer","minimum":1},"require_authoritative_source":{"type":"boolean"},"require_as_of_date":{"type":"boolean"}}},
+        "triggers":{"type":"array","items":{"type":"string"}},
+        "subagents":{"type":"array","items":{"$ref":"#/$defs/subagent"}}
+      },
+      "additionalProperties":false
+    },
+    "subagent":{
+      "type":"object",
+      "required":["id","name","mandate","enabled"],
+      "properties":{"id":{"type":"string"},"name":{"type":"string"},"mandate":{"type":"string"},"enabled":{"type":"boolean"},"allowed_tools":{"type":"array","items":{"type":"string"}}},
+      "additionalProperties":false
+    }
+  }
+}

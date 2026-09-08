@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>PFM Agentic AI — Fiscal Intelligence Control Center</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="./styles.css" />
+</head>
+<body>
+  <div class="app-shell">
+    <aside class="sidebar">
+      <div class="brand"><span class="brand-orb"></span><div><strong>PFM Agentic AI</strong><small>Fiscal Intelligence OS</small></div></div>
+      <nav id="nav">
+        <button class="nav-item active" data-view="command"><span>◉</span>Command Center</button>
+        <button class="nav-item" data-view="agents"><span>◎</span>Agents</button>
+        <button class="nav-item" data-view="reports"><span>▤</span>Reports</button>
+        <button class="nav-item" data-view="config"><span>⚙</span>Configuration</button>
+      </nav>
+      <div class="sidebar-footer"><div class="status-dot"></div><div><strong>Control plane online</strong><small>Demo mode · synthetic data</small></div></div>
+    </aside>
+
+    <main>
+      <header class="topbar">
+        <div><p class="eyebrow">GOVERNMENT FISCAL INTELLIGENCE</p><h1 id="page-title">Command Center</h1></div>
+        <div class="top-actions"><button id="pulse-btn" class="ghost-btn">Run fiscal pulse</button><button id="new-agent-btn" class="primary-btn">+ Add agent</button></div>
+      </header>
+
+      <section id="command" class="view active-view">
+        <div class="hero-grid">
+          <div class="fiscal-core panel">
+            <div class="core-label">REAL-TIME FISCAL HEALTH</div>
+            <div class="orb-stage">
+              <div class="orbit orbit-a"></div><div class="orbit orbit-b"></div><div class="orbit orbit-c"></div>
+              <div id="main-orb" class="main-orb"><div class="orb-inner"><span id="health-score">82</span><small>HEALTH INDEX</small></div></div>
+              <div class="satellite sat-1">Revenue</div><div class="satellite sat-2">Budget</div><div class="satellite sat-3">Cash</div><div class="satellite sat-4">Accrual</div>
+            </div>
+            <div class="core-stats"><div><span>Liquidity</span><strong>Healthy</strong></div><div><span>Forecast variance</span><strong>2.4%</strong></div><div><span>Open risks</span><strong id="risk-count">7</strong></div></div>
+          </div>
+          <div class="panel live-panel"><div class="section-head"><div><p class="eyebrow">LIVE ORCHESTRATION</p><h2>Agent activity</h2></div><span class="live-chip">LIVE</span></div><div id="activity-stream" class="activity-stream"></div></div>
+        </div>
+
+        <div class="metric-grid">
+          <article class="metric-card"><span>Approved budget</span><strong>AED 78.4B</strong><small>Government-wide</small></article>
+          <article class="metric-card"><span>Committed</span><strong>AED 51.7B</strong><small>65.9% of budget</small></article>
+          <article class="metric-card"><span>Cash paid</span><strong>AED 43.6B</strong><small>55.6% of budget</small></article>
+          <article class="metric-card"><span>Accrued expense</span><strong>AED 46.9B</strong><small>59.8% of budget</small></article>
+        </div>
+
+        <div class="two-col">
+          <div class="panel"><div class="section-head"><div><p class="eyebrow">PFM OPERATING CYCLE</p><h2>Government fiscal flow</h2></div></div><div id="cycle-flow" class="cycle-flow"></div></div>
+          <div class="panel"><div class="section-head"><div><p class="eyebrow">EXCEPTIONS</p><h2>Requires attention</h2></div><button class="link-btn" data-view-target="reports">Open reports</button></div><div id="exceptions"></div></div>
+        </div>
+      </section>
+
+      <section id="agents" class="view">
+        <div class="section-head page-section"><div><p class="eyebrow">AGENT OBSERVABILITY</p><h2>Monitor, inspect and customize every agent</h2></div><div class="filter-row"><select id="agent-domain-filter"><option value="all">All domains</option></select><select id="agent-status-filter"><option value="all">All statuses</option><option>running</option><option>idle</option><option>waiting_approval</option><option>exception</option></select></div></div>
+        <div id="agent-grid" class="agent-grid"></div>
+      </section>
+
+      <section id="reports" class="view">
+        <div class="section-head page-section"><div><p class="eyebrow">REPORT FACTORY</p><h2>Variable mandate-driven fiscal reporting</h2></div><button id="generate-report-btn" class="primary-btn">Generate report</button></div>
+        <div class="report-builder panel">
+          <div class="form-grid">
+            <label>Report type<select id="report-type"><option>Budget Execution</option><option>Entity Fiscal Position</option><option>Expenditure Analysis</option><option>Revenue Performance</option><option>Cash Forecast</option><option>Delayed Transactions</option><option>Accounting Close</option><option>Fiscal Risk</option><option>Government Consolidation</option></select></label>
+            <label>Entity<select id="report-entity"><option>All entities</option><option>Entity A</option><option>Entity B</option><option>Entity C</option></select></label>
+            <label>Mandate<select id="report-mandate"><option>All mandates</option><option>Budget Control</option><option>Treasury</option><option>Revenue</option><option>Accounting</option><option>Fiscal Strategy</option></select></label>
+            <label>Period<select id="report-period"><option>Current month</option><option>Quarter to date</option><option>Year to date</option><option>Forecast year-end</option></select></label>
+          </div>
+          <div class="check-row"><label><input type="checkbox" checked id="include-forecast"> Forecast</label><label><input type="checkbox" checked id="include-delays"> Delays</label><label><input type="checkbox" checked id="include-exceptions"> Exceptions</label><label><input type="checkbox" checked id="include-evidence"> Evidence links</label></div>
+        </div>
+        <div id="report-output" class="panel report-output"><div class="empty-state">Configure the report and select <strong>Generate report</strong>.</div></div>
+      </section>
+
+      <section id="config" class="view">
+        <div class="section-head page-section"><div><p class="eyebrow">CONTROL PLANE</p><h2>Agent configuration and sub-agent design</h2></div><button id="save-config-btn" class="primary-btn">Save configuration</button></div>
+        <div class="two-col config-layout"><div class="panel"><h3>Selected agent</h3><label>Agent<select id="config-agent"></select></label><label>Name<input id="config-name" /></label><label>Mandate<textarea id="config-mandate" rows="4"></textarea></label><label>Automation level<select id="config-autonomy"><option>observe</option><option>recommend</option><option>prepare_action</option><option>execute_low_risk</option></select></label><label>Approval threshold<input id="config-threshold" type="number" min="0" /></label><div class="switch-row"><span>Enabled</span><input id="config-enabled" type="checkbox" /></div></div><div class="panel"><div class="section-head"><div><h3>Sub-agents</h3><small>Extend specialist capability without changing the parent mandate.</small></div><button id="add-subagent-btn" class="ghost-btn">+ Add sub-agent</button></div><div id="subagent-list"></div></div></div>
+      </section>
+    </main>
+  </div>
+
+  <dialog id="agent-dialog"><form method="dialog" class="dialog-card"><div class="section-head"><h2>Agent details</h2><button class="icon-btn" value="cancel">×</button></div><div id="dialog-content"></div></form></dialog>
+  <dialog id="new-agent-dialog"><form id="new-agent-form" method="dialog" class="dialog-card"><div class="section-head"><h2>Create agent</h2><button class="icon-btn" value="cancel">×</button></div><label>Name<input name="name" required /></label><label>Domain<input name="domain" required /></label><label>Mandate<textarea name="mandate" required rows="4"></textarea></label><label>Automation level<select name="autonomy"><option>observe</option><option>recommend</option><option>prepare_action</option><option>execute_low_risk</option></select></label><div class="dialog-actions"><button value="cancel" class="ghost-btn">Cancel</button><button value="default" class="primary-btn">Create</button></div></form></dialog>
+
+  <script src="./app.js"></script>
+</body>
+</html>
