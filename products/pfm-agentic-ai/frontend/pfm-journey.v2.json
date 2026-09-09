@@ -1,0 +1,145 @@
+{
+  "version": "2.0",
+  "title": "Controlled Government PFM Journey",
+  "principle": "Signals inform strategy; strategy constrains the fiscal envelope; the approved budget authorizes execution; cash and accounting follow controlled authority; consolidation and final statements close the cycle and feed the next planning round.",
+  "phases": [
+    {"id":"sense","name":"Sense & Direct","stages":[1,2,3]},
+    {"id":"plan","name":"Plan & Authorize","stages":[4,5,6]},
+    {"id":"execute","name":"Execute & Control","stages":[7,8,9]},
+    {"id":"account","name":"Account & Report","stages":[10,11,12]}
+  ],
+  "stages": [
+    {
+      "id":1,"name":"Signals & Government Direction","short":"Signals","phase":"Sense & Direct","agent":"Signal Intelligence Agent","owner":"Fiscal Strategy / Policy Function","authority":"Analyst validates the signal; management confirms whether it becomes a planning assumption.","gate":"G0 · Signal validation",
+      "inputs":["Global macroeconomic indicators","Regional economic and market developments","Local government directions and policies","Approved authoritative public sources","Existing fiscal-risk watchlist"],
+      "subprocesses":["Source monitoring","Provenance and freshness validation","Signal classification","Materiality scoring","Fiscal-exposure mapping","Scenario trigger creation"],
+      "logic":["Separate observed fact from AI interpretation.","Score confidence, materiality, time horizon and affected fiscal domains.","Map each signal to revenue, expenditure, cash, debt, asset/liability or service-demand exposure.","Promote only validated signals into the fiscal-planning assumption register."],
+      "calculations":["Materiality score = configured impact × likelihood × horizon weighting","Confidence = source quality + recency + corroboration","Exposure map = signal → fiscal driver → affected mandate/entity/category"],
+      "outputs":["Verified signal register","Fiscal exposure map","Watchlist and early-warning cases","Scenario triggers","Approved planning-assumption candidates"],
+      "evidence":["Source URL / API","Publication and retrieval timestamps","Source authority","Evidence snapshot/hash","Analyst validation decision"],
+      "controls":["Approved sources only","No unsupported signal creation","Freshness/status visible","Low-confidence signals cannot become approved assumptions automatically"],
+      "autonomy":"Sense / classify / recommend only"
+    },
+    {
+      "id":2,"name":"Fiscal Strategy & Priorities","short":"Strategy","phase":"Sense & Direct","agent":"Strategic Fiscal Intelligence Agent","owner":"Government Finance Leadership","authority":"Leadership approves strategic fiscal direction and priority choices.","gate":"G1 · Strategic direction",
+      "inputs":["Validated signals","Government priorities","Prior-year fiscal results","Medium-term commitments","Fiscal risks","Debt and liquidity constraints"],
+      "subprocesses":["Baseline outlook","Scenario analysis","Priority alignment","Fiscal-risk assessment","Policy option comparison","Strategic trade-off review"],
+      "logic":["Build baseline, upside and downside fiscal scenarios.","Translate strategic priorities into fiscal implications.","Identify expenditure pressures, revenue risks, contingent liabilities and headroom.","Prepare options; do not make the strategic decision."],
+      "calculations":["Baseline fiscal balance = projected revenue − projected expenditure","Scenario variance = scenario result − baseline result","Fiscal-risk exposure = probability-weighted financial exposure where an approved method exists"],
+      "outputs":["Fiscal strategy options","Priority map","Approved macro-fiscal assumptions","Risk appetite / buffers guidance","Direction for the fiscal envelope"],
+      "evidence":["Scenario assumptions","Prior-period outturn","Risk register","Government priority references","Decision log"],
+      "controls":["Scenario traceability","Assumption versioning","Conflict with fiscal rules/limits flagged","Leadership decision recorded"],
+      "autonomy":"Analyse and recommend"
+    },
+    {
+      "id":3,"name":"Macro-Fiscal Framework & Fiscal Envelope","short":"Envelope","phase":"Sense & Direct","agent":"Fiscal Strategy & Scenario Agent","owner":"Fiscal Planning Authority","authority":"Authorized fiscal authority approves aggregate resource and expenditure envelope.","gate":"G2 · Fiscal envelope approval",
+      "inputs":["Approved macro assumptions","Revenue forecast","Baseline expenditure","Debt service and mandatory obligations","Cash/liquidity outlook","Reserve and risk-buffer policy"],
+      "subprocesses":["Resource forecast","Baseline costing","Fiscal-space calculation","Reserve setting","Capital/recurrent envelope split","Medium-term ceiling preparation"],
+      "logic":["Establish the maximum affordable aggregate envelope before entity allocation.","Separate baseline obligations, committed initiatives and new-policy space.","Retain configured reserves/buffers before distributing ceilings.","Create a medium-term frame where data exists; do not exceed approved aggregate authority."],
+      "calculations":["Indicative fiscal space = projected resources + approved financing − baseline obligations − reserves/buffers","Aggregate expenditure ceiling = approved affordable expenditure envelope","Headroom = approved ceiling − baseline committed expenditure"],
+      "outputs":["Aggregate fiscal envelope","Revenue/resource ceiling","Expenditure ceiling","Reserve/buffer amount","Sector/priority guidance","Medium-term ceilings"],
+      "evidence":["Revenue model","Baseline expenditure model","Debt/cash assumptions","Fiscal-rule checks","Approval reference"],
+      "controls":["Affordability first","No entity allocations before envelope approval","Mandatory obligations protected","Reserve rules applied consistently"],
+      "autonomy":"Prepare envelope options"
+    },
+    {
+      "id":4,"name":"Budget Allocation & Formulation","short":"Allocation","phase":"Plan & Authorize","agent":"Government Budget Allocation Agent","owner":"Budget Authority","authority":"Budget authority validates ceilings and submits the draft budget for formal approval.","gate":"G3 · Draft budget validation",
+      "inputs":["Approved aggregate envelope","Entity/sector ceilings","Policy priorities","Historical execution","Workload and cost drivers","Capital-project pipeline","Entity budget submissions"],
+      "subprocesses":["Top-down ceiling allocation","Bottom-up need review","Entity challenge","Baseline vs new-policy separation","Capital prioritization","Economic/program classification","Funding-gap resolution"],
+      "logic":["Allocate within the approved aggregate ceiling.","Challenge entity requests against priorities, prior execution, cost/workload drivers and deliverability.","Keep baseline, mandatory commitments, new initiatives and capital separately visible.","Generate multiple allocation options when trade-offs remain."],
+      "calculations":["Entity headroom = proposed ceiling − validated baseline","Funding gap = validated requirement − proposed ceiling","Allocation variance = proposed allocation − prior approved allocation","Portfolio affordability: Σ entity allocations + reserves ≤ aggregate ceiling"],
+      "outputs":["Draft budget by entity/program/economic classification","Entity ceilings","Capital allocation","Reserve allocation","Unfunded/partially funded priorities","Budget challenge record"],
+      "evidence":["Entity submissions","Costing/workload evidence","Historical execution","Capital business cases","Challenge decisions"],
+      "controls":["Aggregate ceiling cannot be exceeded","Classification validation","Duplicate funding checks","No AI appropriation authority","Every override requires rationale"],
+      "autonomy":"Recommend allocation; prepare draft"
+    },
+    {
+      "id":5,"name":"Budget Approval & Appropriation","short":"Approval","phase":"Plan & Authorize","agent":"Budget Challenge & Approval Support Agent","owner":"Statutory / Authorized Budget Approval Body","authority":"Formal budget/appropriation authority remains entirely human/statutory.","gate":"G4 · Formal budget approval",
+      "inputs":["Validated draft budget","Budget challenge outcomes","Fiscal envelope compliance","Legal/appropriation structure","Final entity allocations"],
+      "subprocesses":["Final compliance validation","Decision briefing","Approval workflow","Appropriation recording","Baseline version freeze"],
+      "logic":["Validate that the final draft reconciles to the approved envelope and classifications.","Prepare the approval brief and changes between versions.","Once formally approved, freeze the original-budget baseline and retain all subsequent amendments separately."],
+      "calculations":["Original budget = formally approved appropriation baseline","Control reconciliation: Σ approved entity appropriations = approved aggregate appropriation, subject to authorized reserves/classification"],
+      "outputs":["Approved original budget","Appropriation register","Entity approved budgets","Approval decision record","Version-locked baseline"],
+      "evidence":["Formal approval instrument/reference","Approved budget tables","Version checksum","Decision minutes/record where applicable"],
+      "controls":["No AI approval","Only authorized approver can establish appropriation","Original budget never overwritten by later amendments","Segregation of preparer/reviewer/approver"],
+      "autonomy":"Validate and prepare approval pack"
+    },
+    {
+      "id":6,"name":"Allotment, Cash Plan & Funding Schedule","short":"Funding Plan","phase":"Plan & Authorize","agent":"Government Cash Forecasting Agent","owner":"Budget Control + Treasury Authority","authority":"Authorized budget/treasury officers approve allotments and funding releases.","gate":"Operational release gate",
+      "inputs":["Approved budget","Entity operating plans","Procurement/project milestones","Payroll/mandatory schedules","Revenue collection calendar","Opening cash and financing schedule"],
+      "subprocesses":["Allotment/phasing","Monthly entity cash-needs forecast","Payment profile","Revenue inflow profile","Liquidity buffer planning","Funding calendar"],
+      "logic":["Translate annual authority into controlled execution and monthly cash plans.","Separate budget authority from cash availability: an approved budget does not automatically mean immediate cash release.","Align entity need with execution milestones and treasury liquidity."],
+      "calculations":["Monthly funding need = forecast eligible payments due − available entity cash/approved offsets","Funding variance = requested amount − modelled need","Closing liquidity = opening cash + collections + financing − payments − investments"],
+      "outputs":["Allotment/operating limit","Monthly funding schedule","Entity cash plan","Government liquidity forecast","Release calendar"],
+      "evidence":["Approved budget","Entity monthly plan","Payment pipeline","Cash forecast","Treasury approval"],
+      "controls":["Budget authority check","Cash-availability check","Dual authorization for releases","No autonomous fund release","Funding request above need routed to exception"],
+      "autonomy":"Forecast and prepare release proposal"
+    },
+    {
+      "id":7,"name":"Budget Execution, Commitments & Payments","short":"Execution","phase":"Execute & Control","agent":"Budget Execution Agent","owner":"Entity + Central Budget Control","authority":"Transactions follow delegated authority, commitment and payment controls.","gate":"Transaction / commitment control",
+      "inputs":["Approved/adjusted budget","Allotment","Purchase orders/contracts","Commitments/obligations","Invoices/claims","Actual expenditure","Delivery milestones"],
+      "subprocesses":["Commitment control","Obligation validation","Payment readiness","Budget-availability check","Project execution monitoring","Delay detection","Forecast outturn"],
+      "logic":["Check budget authority before commitments and eligible payments.","Track each transaction through commitment → obligation → payment → accounting status.","Forecast year-end outturn from actuals, outstanding commitments and expected delivery.","Route breaches and exceptions instead of bypassing controls."],
+      "calculations":["Adjusted budget = original budget + approved amendments","Available balance = adjusted budget − controlled commitments/obligations/actuals according to approved control basis","Forecast variance = forecast outturn − adjusted budget","Utilization = selected controlled expenditure measure ÷ adjusted budget"],
+      "outputs":["Execution dashboard","Commitment register","Available balance","Forecast outturn","Delayed expenditure/project alerts","Payment-ready cases"],
+      "evidence":["Contract/PO","Invoice/claim","Delivery evidence","Budget control reference","Payment authorization"],
+      "controls":["No commitment without available authority","Duplicate/overpayment checks","Delegation thresholds","Maker-checker","Data lineage from transaction to budget line"],
+      "autonomy":"Monitor, validate and prepare eligible actions"
+    },
+    {
+      "id":8,"name":"Monitoring, Forecasting & In-Year Budget Amendment","short":"Amendments","phase":"Execute & Control","agent":"Budget Amendment & Fiscal Monitoring Agents","owner":"Budget Authority / Leadership as delegated","authority":"Only authorized officers approve virements, supplements, reductions or reallocations.","gate":"Amendment / virement approval",
+      "inputs":["Budget execution","Forecast outturn","Revenue performance","Project delays","New government priorities","Savings/pressures","Entity amendment requests"],
+      "subprocesses":["Monthly/quarterly monitoring","Variance diagnosis","Underspend/overspend forecast","Reprioritization options","Virement/amendment analysis","Approval routing","Adjusted-budget update"],
+      "logic":["Detect material forecast variance early.","Distinguish timing variance from permanent saving/pressure.","Assess amendment against authority, funding source, priority and downstream cash/accounting impact.","Once approved, update adjusted budget while preserving the original appropriation baseline."],
+      "calculations":["Forecast variance = forecast outturn − adjusted budget","Proposed adjusted budget = current adjusted budget + proposed authorized amendment","Post-amendment headroom = proposed adjusted budget − forecast outturn"],
+      "outputs":["Monitoring report","Corrective-action options","Virement/amendment proposal","Approved amendment register","Updated adjusted budget","Revised cash forecast"],
+      "evidence":["Variance evidence","Entity request","Funding source","Authority/delegation check","Approval reference"],
+      "controls":["Original budget preserved","Amendment type and authority validated","No circular/self-approval","Cash and accounting impacts recalculated","Full audit trail"],
+      "autonomy":"Recommend and prepare amendment case"
+    },
+    {
+      "id":9,"name":"Treasury, Revenue & Financial Operations","short":"Operations","phase":"Execute & Control","agent":"Treasury / Revenue / Finance Operations Agent Group","owner":"Treasury, Revenue and Finance Operations Authorities","authority":"Fund releases, refunds, bank/investment actions, pricing/legal determinations and material transfers require authorized approval.","gate":"Protected financial-operation gates",
+      "inputs":["Cash position","Collections/receivables","Funding schedule","Payment pipeline","Bank statements","Refund claims","Inter-entity/intergovernmental balances","Pricing/exemption requests","Deposit/maturity schedule"],
+      "subprocesses":["Revenue collection & consolidation","Revenue reconciliation","Refund validation","Entity funding transfers","Inter-entity transfers","Intergovernmental accounting","Bank reconciliation","Liquidity management","Surplus deposit/maturity management","Government pricing analysis","Pricing exceptions","Revenue legal intelligence"],
+      "logic":["Reconcile collections to receivables and banks.","Validate refund entitlement and evidence before preparing a case.","Compare entity monthly funding request with approved budget, commitments and modelled need.","Reconcile inter-entity and intergovernmental transactions symmetrically.","Manage liquidity and surplus-maturity options within approved counterparty/risk limits.","Keep legal/pricing recommendations separate from formal legal or pricing authority."],
+      "calculations":["Revenue variance = actual collections − period revenue plan","Reconciliation difference = source-system amount − bank/ledger matched amount","Funding gap = requested amount − validated modelled need","Inter-entity imbalance = entity A receivable/payable mirror − entity B counterpart","Closing cash = opening cash + collections + financing − payments − investments"],
+      "outputs":["Revenue dashboard","Reconciliation status","Refund/transfer cases","Funding release proposal","Bank/liquidity position","Surplus investment options","Pricing/exception brief","Resolved/unresolved inter-entity balances"],
+      "evidence":["Bank statements","Collection files","Receivable records","Refund evidence","Transfer instruction","Counterparty confirmation","Legal/policy reference"],
+      "controls":["Maker-checker-executor-reconciler separation","Bank/account validation","Duplicate refund/payment detection","Counterparty limits","No autonomous legal/pricing determination","Independent reconciliation"],
+      "autonomy":"High automation for matching/reconciliation; protected actions remain gated"
+    },
+    {
+      "id":10,"name":"Accounting, Reconciliation & Period Close","short":"Close","phase":"Account & Report","agent":"Accounting Operations & Monthly Close Agents","owner":"Chief Accounting / Authorized Accounting Function","authority":"Authorized accounting officers approve journals, close periods and certify balances.","gate":"Journal and period-close approval",
+      "inputs":["General/subledgers","Bank reconciliations","Accruals","Payables/receivables","Assets/liabilities","Inter-entity confirmations","Budget execution","Cash transactions","Accounting policies"],
+      "subprocesses":["Completeness checks","Subledger-to-GL reconciliation","Bank reconciliation","Accrual and cut-off review","Suspense clearing","Inter-entity confirmation","Journal preparation","Trial balance","Close checklist"],
+      "logic":["Reconcile budget, cash and accrual views before close.","Identify missing postings, cut-off issues and unsupported balances.","Prepare controlled journals with evidence and approver routing.","Prevent close when material reconciliation or evidence exceptions remain."],
+      "calculations":["Accrual-cash bridge = accrued expense − cash paid, explained by liabilities/timing/classification","Trial-balance check = total debits − total credits = 0","Open-reconciliation count and material unresolved difference"],
+      "outputs":["Reconciled ledgers","Journal proposals","Monthly trial balance","Close exception register","Budget-cash-accrual bridge","Certified close package"],
+      "evidence":["Reconciliation schedules","Journal support","Cut-off evidence","Balance confirmations","Close certification"],
+      "controls":["Approved accounting policy","Journal maker/checker","Period lock","Materiality thresholds","No AI period close or balance certification"],
+      "autonomy":"Reconcile and prepare; certification remains human"
+    },
+    {
+      "id":11,"name":"Government Consolidation & Eliminations","short":"Consolidation","phase":"Account & Report","agent":"Government Consolidation Agent","owner":"Government Accounting / Consolidation Function","authority":"Authorized consolidation/accounting authority certifies consolidated balances.","gate":"Consolidation certification",
+      "inputs":["Certified entity trial balances","Reporting packages","Consolidation perimeter","Inter-entity balances","Accounting policies","Elimination rules","Approved consolidation adjustments"],
+      "subprocesses":["Submission validation","Account mapping","Policy harmonization","Inter-entity matching","Elimination","Consolidation adjustments","Analytical review","Difference resolution"],
+      "logic":["Validate every entity package before inclusion.","Match reciprocal inter-entity balances and route differences for resolution.","Eliminate internal transactions/balances according to approved rules.","Consolidate only within the approved reporting perimeter and retain entity-to-group lineage."],
+      "calculations":["Consolidated balance = Σ certified entity balances − approved eliminations + approved consolidation adjustments","Elimination difference = entity-reported reciprocal amounts before approved adjustment","Unresolved difference ratio = unresolved material differences ÷ consolidated relevant balance"],
+      "outputs":["Consolidated trial balance","Elimination register","Consolidation adjustment register","Unresolved difference log","Draft government-wide financial statements"],
+      "evidence":["Certified reporting packages","Entity confirmations","Elimination support","Adjustment approvals","Consolidation certification"],
+      "controls":["Approved reporting perimeter","Uniform mapping/policies","Reciprocal-balance validation","Materiality controls","No silent plug entries"],
+      "autonomy":"Match, eliminate by approved rules, prepare draft"
+    },
+    {
+      "id":12,"name":"Final Financial Statements & Fiscal Health","short":"Final Statements","phase":"Account & Report","agent":"Financial Statement & Fiscal Health Agents","owner":"Authorized Government Reporting Authority","authority":"Formal approval, certification, audit/assurance and publication remain statutory/human responsibilities.","gate":"Final approval / publication",
+      "inputs":["Certified consolidated trial balance","Disclosure schedules","Cash-flow data","Budget comparison","Accounting policies","Approved adjustments","Audit/assurance findings where applicable"],
+      "subprocesses":["Statement generation","Disclosure completeness","Cash-flow validation","Budget-to-actual reporting","Cash/accrual/budget consistency review","Management certification","Audit/assurance response","Formal approval/publication","Fiscal-health feedback"],
+      "logic":["Generate the full draft reporting package from certified consolidated balances.","Check consistency across statements, notes, budget comparison and cash flow.","Separate draft AI-prepared narrative from certified financial statements.","Feed final outturn, risks and structural variances into the next Signals/Strategy cycle."],
+      "calculations":["Budget variance = final actual − final adjusted budget","Cash/accrual difference = recognized accrual position − related cash movement, with explanation","Fiscal-health view = budget + cash + accrual + revenue + risk + data-integrity dimensions; methodology must be approved before use as an official KPI"],
+      "outputs":["Draft then approved financial statements","Notes/disclosures","Budget comparison","Cash-flow statement","Fiscal-position / fiscal-health briefing","Lessons and next-cycle signals"],
+      "evidence":["Certified consolidated balances","Disclosure evidence","Approval/certification record","Audit/assurance trail","Published-version control"],
+      "controls":["No AI certification/publication","Cross-statement consistency","Disclosure checklist","Final version control","Audit adjustments traceable","Feedback loop does not rewrite approved historical records"],
+      "autonomy":"Prepare draft, explain variances, support assurance"
+    }
+  ]
+}
