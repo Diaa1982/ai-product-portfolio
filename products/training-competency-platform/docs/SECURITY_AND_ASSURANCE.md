@@ -1,0 +1,7 @@
+# Security, audit and assurance
+
+The executable MVP is **for synthetic data only**. It uses a forgeable `X-Demo-User` header and lists demo user IDs. It has no enterprise login, tenant isolation, production-grade immutable audit, secure hosted deployment, malware scanning, live RAG or model governance. The database audit table is ordinary mutable data; do not call it tamper-proof. Approval endpoints check demo role but do not enforce full enterprise segregation of duties.
+
+Before a real pilot: implement OIDC/SSO, scoped server-side RBAC, tenant boundaries, HTTPS, secrets management, CSRF/CORS protections as applicable, rate limiting, upload scanning, immutable effective-dated sources, migrations, transactional attempt locking, backup/restore, retention and independent audit export. Test access to every object by organization and role.
+
+AI output must remain a draft until approved; retrieval uses approved effective sources and exact references; model/prompt/source versions and reviewer decisions are traceable. AI cannot independently change deterministic pass/fail or override critical-control rules. Frontend must not show misleading success states or disclose protected answer keys before permitted result release.
