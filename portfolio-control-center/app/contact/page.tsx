@@ -1,0 +1,2 @@
+import { SiteHeader } from "../components/SiteHeader"; import { LeadForm } from "../components/LeadForm";
+export default function Page(){return <main><SiteHeader/><section className="page-hero compact"><p className="kicker">CONTACT</p><h1>Start with the transformation problem.</h1><p>Tell us what your organization is trying to improve. We will use the enquiry to structure the right next conversation.</p></section><section className="section form-section"><LeadForm source="contact"/></section></main>}
