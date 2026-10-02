@@ -7,12 +7,12 @@ export const siteConfig = {
   secondaryCta: { label: "Explore Platform", href: "/platform" },
   tertiaryCta: { label: "Talk to an Expert", href: "/contact" },
   navigation: [
-    { label: "Solutions", href: "#solutions" },
-    { label: "Platform", href: "#platform" },
-    { label: "Assessments", href: "#assessment" },
-    { label: "Industries", href: "#industries" },
-    { label: "Insights", href: "#insights" },
-    { label: "Company", href: "#company" },
+    { label: "Solutions", href: "/solutions" },
+    { label: "Platform", href: "/platform" },
+    { label: "Assessments", href: "/assessments" },
+    { label: "Industries", href: "/industries/government" },
+    { label: "Insights", href: "/" },
+    { label: "Company", href: "/company/about" },
   ],
 } as const;
 
