@@ -14,6 +14,8 @@ class DiagnosticCreate(BaseModel):
     id:str;organization:str;objective:str="";priorities:list[str]=[]
 class ExecuteRequest(BaseModel):
     domains:list[str]
+class DiscoveryAnswerRequest(BaseModel):
+    question_id:str;answer:str;precision:str="qualitative";note:str|None=None
 class DecisionRequest(BaseModel):
     decision:str;reviewer_role:str;reason:str;modified_statement:str|None=None
 
@@ -33,6 +35,17 @@ async def upload_evidence(engagement_id:str,file:UploadFile=File(...),classifica
     if len(data)>25*1024*1024:raise HTTPException(413,"Evidence file exceeds 25 MB staging limit")
     try:return runtime.upload(engagement_id,file.filename or "evidence",file.content_type or "application/octet-stream",data,classification).to_dict()
     except (ValueError,RuntimeError) as e:raise HTTPException(400,str(e))
+
+@router.post("/{engagement_id}/discover")
+def discover(engagement_id:str,body:ExecuteRequest):
+    try:return runtime.discover(engagement_id,body.domains)
+    except KeyError:raise HTTPException(404,"Diagnostic engagement not found")
+
+@router.post("/{engagement_id}/discovery/answer")
+def answer_discovery(engagement_id:str,body:DiscoveryAnswerRequest):
+    try:return runtime.answer_discovery(engagement_id,body.question_id,body.answer,body.precision,body.note)
+    except KeyError:raise HTTPException(404,"Diagnostic engagement or question not found")
+    except ValueError as e:raise HTTPException(400,str(e))
 
 @router.post("/{engagement_id}/execute")
 def execute(engagement_id:str,body:ExecuteRequest):
