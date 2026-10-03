@@ -1,0 +1,1 @@
+import {SiteHeader} from "../../components/SiteHeader";import {DiagnosticStart} from "./DiagnosticStart";export default function Page(){return <main><SiteHeader/><section className="page-hero compact"><p className="kicker">DIAGNOSTIC ENGAGEMENT</p><h1>Start with evidence, not assumptions.</h1></section><DiagnosticStart/></main>}

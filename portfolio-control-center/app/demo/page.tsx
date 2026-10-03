@@ -1,0 +1,2 @@
+import { SiteHeader } from "../components/SiteHeader"; import { LeadForm } from "../components/LeadForm";
+export default function Page(){return <main><SiteHeader/><section className="page-hero compact"><p className="kicker">PLATFORM DEMO</p><h1>See how organizational information becomes transformation intelligence.</h1><p>Request a focused demonstration around your priority: assessment, operational excellence, performance, governance or enterprise AI.</p></section><section className="section form-section"><LeadForm source="demo-request"/></section></main>}

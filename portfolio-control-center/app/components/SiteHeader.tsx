@@ -1,0 +1,2 @@
+import { siteConfig } from "../site-config";
+export function SiteHeader(){return <header className="site-header"><a className="wordmark" href="/"><strong>TRANSFORMATION</strong><span>INTELLIGENCE</span></a><nav>{siteConfig.navigation.map(x=><a key={x.label} href={x.href}>{x.label}</a>)}</nav><a className="button small" href="/assessments/transformation-readiness">Start Assessment</a></header>}
