@@ -20,11 +20,11 @@ class DiagnosticRuntime:
     def _read(self):return json.loads(self.cases.read_text()) if self.cases.exists() else {}
     def _write(self,d):self.cases.parent.mkdir(parents=True,exist_ok=True);t=self.cases.with_suffix(".tmp");t.write_text(json.dumps(d,indent=2,default=str)+"\n");t.replace(self.cases)
     def create(self,engagement):
-        d=self._read();eid=engagement["id"];d[eid]={"engagement":engagement,"findings":[],"decisions":[],"synthesis":None,"status":"evidence_collection"};self._write(d);return d[eid]
+        d=self._read();eid=engagement["id"]\n        if eid in d:return d[eid]\n        d[eid]={"engagement":engagement,"findings":[],"decisions":[],"synthesis":None,"status":"evidence_collection"};self._write(d);return d[eid]
     def get(self,eid):return self._read()[eid]
     def upload(self,eid,filename,media_type,data,classification="Internal"):
         if eid not in self._read():raise KeyError(eid)
-        r=self.evidence.store(eid,filename,media_type,data,classification);x=self.extractor.extract(filename,media_type,data);p=self.root/"extracted"/f"{r.evidence_id}.txt";p.parent.mkdir(parents=True,exist_ok=True);p.write_text(x["text"]);return self.evidence.update(r.evidence_id,extracted_text_path=str(p),extraction_status=x["status"])
+        x=self.extractor.extract(filename,media_type,data);r=self.evidence.store(eid,filename,media_type,data,classification);p=self.root/"extracted"/f"{r.evidence_id}.txt";p.parent.mkdir(parents=True,exist_ok=True);p.write_text(x["text"]);return self.evidence.update(r.evidence_id,extracted_text_path=str(p),extraction_status=x["status"])
     def _texts(self,eid):
         out={}
         for r in self.evidence.list(eid):
@@ -62,11 +62,11 @@ class DiagnosticRuntime:
         for w in normalized["warnings"]:findings.append(Finding.create(eid,"Evidence & Quality Agent","Evidence","Evidence retained for qualitative review",w["warning"],[w["evidence_id"]],severity="low",confidence=.99,recommendation="Use a controlled structured template when deterministic specialist analysis is required.").to_dict())
         synthesis=ExecutiveSynthesisAgent().run(eid,findings);case.update({"findings":findings,"synthesis":synthesis,"status":"human_review","evidence_quality":quality,"normalized_counts":{k:len(v) for k,v in normalized.items() if isinstance(v,list)},"engine_outputs":engine_outputs});self._write(d);return case
     def decide(self,eid,finding_id,decision,reviewer_role,reason,modified_statement=None):
-        d=self._read();case=d[eid];f=next(x for x in case["findings"] if x["finding_id"]==finding_id)
+        d=self._read();case=d[eid];f=next((x for x in case["findings"] if x["finding_id"]==finding_id),None)\n        if f is None:raise KeyError(finding_id)
         if decision=="modified":
             if not modified_statement:raise ValueError("Modified decision requires replacement statement")
             f["statement"]=modified_statement
         f["status"]=decision;case["decisions"].append(ReviewDecision(finding_id,decision,reviewer_role,reason).__dict__);self._write(d);return case
     def report(self,eid):
         c=self._read()[eid];approved=[x for x in c["findings"] if x["status"] in {"approved","modified"}]
-        return {"engagement":c["engagement"],"report_status":"reviewed" if approved else "draft","approved_findings":approved,"executive_synthesis":c["synthesis"],"evidence":[x.to_dict() for x in self.evidence.list(eid)],"decisions":c["decisions"],"engine_outputs":c.get("engine_outputs",{}),"notice":"Only human-approved or human-modified specialist findings are publishable conclusions."}
+        synthesis=ExecutiveSynthesisAgent().run(eid,approved) if approved else None\n        return {"engagement":c["engagement"],"report_status":"reviewed" if approved else "draft","approved_findings":approved,"executive_synthesis":synthesis,"evidence":[x.to_dict() for x in self.evidence.list(eid)],"decisions":c["decisions"],"engine_outputs":c.get("engine_outputs",{}),"notice":"Only human-approved or human-modified specialist findings are publishable conclusions."}
