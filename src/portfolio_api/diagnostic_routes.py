@@ -2,6 +2,8 @@ from __future__ import annotations
 import os
 from pathlib import Path
 from fastapi import APIRouter,File,Form,HTTPException,UploadFile
+from fastapi.responses import HTMLResponse,Response
+from .diagnostic.reporting import render_html,render_pdf
 from pydantic import BaseModel
 from .diagnostic import DiagnosticRuntime
 
@@ -44,6 +46,11 @@ def decide(engagement_id:str,finding_id:str,body:DecisionRequest):
     except ValueError as e:raise HTTPException(400,str(e))
 
 @router.get("/{engagement_id}/report")
-def report(engagement_id:str):
-    try:return runtime.report(engagement_id)
+def report(engagement_id:str,format:str="json"):
+    try:
+        data=runtime.report(engagement_id)
+        if format=="html":return HTMLResponse(render_html(data))
+        if format=="pdf":return Response(render_pdf(data),media_type="application/pdf",headers={"Content-Disposition":f'attachment; filename="{engagement_id}-diagnostic.pdf"'})
+        return data
     except KeyError:raise HTTPException(404,"Diagnostic engagement not found")
+    except RuntimeError as e:raise HTTPException(500,str(e))
