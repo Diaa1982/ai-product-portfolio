@@ -26,6 +26,7 @@ from .p16_it_management import IntegratedITManagementAI, ITManagementInput
 from .p08_assessor import AssessmentInput, UseCaseAssessor
 from .p14_control_tower import AIGovernanceControlTower, UseCaseProfile
 from .p09_performance import CorporatePerformanceReview, KPIReviewInput
+from .diagnostic_routes import router as diagnostic_router
 
 
 REPO_ROOT = Path(__file__).resolve().parents[2]
@@ -96,6 +97,7 @@ app = FastAPI(
     version="0.4.0",
     description="Shared governed platform with controlled, evidence-led AI product workflows.",
 )
+app.include_router(diagnostic_router)
 
 
 class CaseCreate(BaseModel):
