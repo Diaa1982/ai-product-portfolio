@@ -20,6 +20,11 @@ def create_diagnostic(body:DiagnosticCreate):
     try:return runtime.create(body.model_dump())
     except Exception as e:raise HTTPException(400,str(e))
 
+@router.get("/{engagement_id}")
+def get_diagnostic(engagement_id:str):
+    try:return runtime.get(engagement_id)
+    except KeyError:raise HTTPException(404,"Diagnostic engagement not found")
+
 @router.post("/{engagement_id}/evidence")
 async def upload_evidence(engagement_id:str,file:UploadFile=File(...),classification:str=Form("Internal")):
     data=await file.read()
