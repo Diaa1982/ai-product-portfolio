@@ -7,6 +7,7 @@ from .extraction import EvidenceExtractor
 from .storage import EvidenceRepository
 from .normalization import EvidenceNormalizer
 from .grc import EnterpriseGRCReview
+from .discovery import AdaptiveDiscovery
 from ..p10_process_intelligence import EnterpriseProcessIntelligence,ProcessPortfolioInput
 from ..p09_performance import CorporatePerformanceReview,KPIReviewInput
 
@@ -16,13 +17,13 @@ class DiagnosticRuntime:
         self.root=Path(root);self.evidence=EvidenceRepository(self.root/"evidence");self.extractor=EvidenceExtractor();self.normalizer=EvidenceNormalizer();self.cases=self.root/"diagnostics.json"
         self.process_engine=EnterpriseProcessIntelligence(ROOT/"products/enterprise-process-intelligence/config/process-intelligence.v1.json")
         self.performance_engine=CorporatePerformanceReview(ROOT/"products/corporate-performance-review-ai/config/performance.v1.json")
-        self.grc_engine=EnterpriseGRCReview()
+        self.grc_engine=EnterpriseGRCReview();self.discovery=AdaptiveDiscovery()
     def _read(self):return json.loads(self.cases.read_text()) if self.cases.exists() else {}
     def _write(self,d):self.cases.parent.mkdir(parents=True,exist_ok=True);t=self.cases.with_suffix(".tmp");t.write_text(json.dumps(d,indent=2,default=str)+"\n");t.replace(self.cases)
     def create(self,engagement):
         d=self._read();eid=engagement["id"]
         if eid in d:return d[eid]
-        d[eid]={"engagement":engagement,"findings":[],"decisions":[],"synthesis":None,"status":"evidence_collection"};self._write(d);return d[eid]
+        d[eid]={"engagement":engagement,"findings":[],"decisions":[],"synthesis":None,"status":"evidence_collection","discovery_answers":[],"discovery":None};self._write(d);return d[eid]
     def get(self,eid):return self._read()[eid]
     def upload(self,eid,filename,media_type,data,classification="Internal"):
         if eid not in self._read():raise KeyError(eid)
@@ -52,8 +53,22 @@ class DiagnosticRuntime:
             except Exception as ex:
                 fs.append(Finding.create(eid,"Performance Intelligence Agent","Performance","KPI record could not be deterministically evaluated",f"{m.get('KPI_ID')}: {ex}",[x["evidence_id"]],severity="high",confidence=.99,recommendation="Complete the controlled KPI master/result fields.").to_dict())
         return fs,results
+    def discover(self,eid,domains):
+        d=self._read();case=d[eid];texts=self._texts(eid);normalized=self.normalizer.normalize(texts);answers=case.get("discovery_answers",[])
+        matrix=self.discovery.matrix(texts,normalized,answers,domains);questions=self.discovery.next_questions(matrix,answers);readiness=self.discovery.readiness(matrix,questions)
+        summary={"readiness":readiness,"matrix":matrix,"questions":questions,"remaining_questions":len(questions),"normalized_counts":{k:len(v) for k,v in normalized.items() if isinstance(v,list)}}
+        case["discovery"]=summary;case["status"]="guided_discovery" if readiness=="questions_required" else "ready_for_analysis";self._write(d);return case
+    def answer_discovery(self,eid,question_id,answer,precision="qualitative",note=None):
+        d=self._read();case=d[eid];item=self.discovery.answer(question_id,answer,precision,note);answers=case.setdefault("discovery_answers",[])
+        answers=[a for a in answers if a["question_id"]!=question_id];answers.append(item);case["discovery_answers"]=answers;self._write(d)
+        return self.discover(eid,case["engagement"].get("priorities") or ["Processes","Performance","Governance"])
     def execute(self,eid,domains):
-        d=self._read();case=d[eid];records=self.evidence.list(eid);texts=self._texts(eid);quality=EvidenceQualityAgent().run(eid,records,texts);normalized=self.normalizer.normalize(texts);findings=list(quality["findings"]);engine_outputs={}
+        d=self._read();case=d[eid];records=self.evidence.list(eid);texts=self._texts(eid);quality=EvidenceQualityAgent().run(eid,records,texts);normalized=self.normalizer.normalize(texts)
+        matrix=self.discovery.matrix(texts,normalized,case.get("discovery_answers",[]),domains);questions=self.discovery.next_questions(matrix,case.get("discovery_answers",[]));readiness=self.discovery.readiness(matrix,questions)
+        case["discovery"]={"readiness":readiness,"matrix":matrix,"questions":questions,"remaining_questions":len(questions),"normalized_counts":{k:len(v) for k,v in normalized.items() if isinstance(v,list)}}
+        if readiness=="questions_required":
+            case["status"]="guided_discovery";self._write(d);return case
+        findings=list(quality["findings"]);engine_outputs={}
         if quality["ready"] and "Processes" in domains:
             f,o=self._process(eid,normalized["processes"]);findings+=f;engine_outputs["process"]=o
         if quality["ready"] and "Performance" in domains:
