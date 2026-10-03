@@ -1,0 +1,1 @@
+import {SiteHeader} from "../components/SiteHeader";import {WorkspaceClient} from "./WorkspaceClient";export default function Page(){return <main><SiteHeader/><WorkspaceClient/></main>}
