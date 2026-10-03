@@ -48,8 +48,8 @@ class AdaptiveDiscovery:
   critical=[m for m in matrix if m["critical"]];known=[m for m in critical if m["status"] in {"confirmed","partial"}]
   ratio=len(known)/len(critical) if critical else 1
   if ratio>=.80:return "sufficient"
-  if not questions and ratio>=.50:return "limited"
-  if not questions:return "insufficient"
+  unanswered_critical=any(m["critical"] and m["status"]=="unknown" and m["question_id"] in {q["id"] for q in questions} for m in matrix)
+  if not unanswered_critical:return "limited" if ratio>=.50 else "insufficient"
   return "questions_required"
  def answer(self,question_id,value,precision="qualitative",note=None):
   if question_id not in {q["id"] for q in QUESTION_LIBRARY}:raise KeyError(question_id)
