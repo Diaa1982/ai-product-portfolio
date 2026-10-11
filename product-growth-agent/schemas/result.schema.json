@@ -1,0 +1,21 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "Growth Decision Result",
+  "type": "object",
+  "required": ["task_id", "status", "facts", "inferences", "assumptions", "actions", "confidence"],
+  "properties": {
+    "task_id": {"type": "string"},
+    "status": {"enum": ["completed", "needs_data", "needs_approval", "delegated", "blocked"]},
+    "facts": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "inferences": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "assumptions": {"type": "array", "items": {"type": "string"}},
+    "diagnosis": {"type": "object", "additionalProperties": true},
+    "opportunities": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "experiments": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "actions": {"type": "array", "items": {"type": "object", "additionalProperties": true}},
+    "controls": {"type": "array", "items": {"type": "string"}},
+    "confidence": {"enum": ["HIGH", "MEDIUM", "LOW"]},
+    "evidence_refs": {"type": "array", "items": {"type": "string"}}
+  },
+  "additionalProperties": false
+}
