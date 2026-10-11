@@ -1,0 +1,22 @@
+experiment_policy:
+  default_method: randomized_controlled_test
+  allow_quasi_experiment_when_randomization_unavailable: true
+  require_pre_registration: true
+  require_primary_metric: true
+  require_guardrail_metrics: true
+  require_stopping_rule: true
+  require_rollback_plan: true
+  check_sample_ratio_mismatch: true
+  check_novelty_effect: true
+  check_seasonality: true
+  check_multiple_testing: true
+  prohibit_unapproved_mid_test_changes: true
+
+prioritization:
+  method: weighted_ice
+  weights:
+    impact: 0.35
+    confidence: 0.25
+    ease: 0.15
+    strategic_fit: 0.15
+    reversibility: 0.10
