@@ -1,0 +1,37 @@
+workflow:
+  id: sustainable-growth-cycle
+  trigger:
+    - scheduled_growth_review
+    - anomaly
+    - leadership_request
+    - experiment_completed
+    - campaign_completed
+    - product_release
+  steps:
+    - id: define
+      output: decision_frame
+    - id: collect
+      tools: [analytics, warehouse, crm, billing]
+      output: evidence_bundle
+    - id: validate
+      output: data_quality_assessment
+      on_material_issue: delegate_to_data_agent
+    - id: diagnose
+      output: growth_constraint_map
+    - id: segment
+      output: segment_opportunity_table
+    - id: prioritize
+      output: ranked_opportunity_backlog
+    - id: design
+      output: experiment_or_action_plan
+    - id: control
+      output: approval_requirement
+    - id: execute
+      condition: approved_or_read_only
+      output: execution_receipts
+    - id: measure
+      output: impact_analysis
+    - id: learn
+      output: validated_learning
+    - id: decide
+      output: scale_iterate_stop
