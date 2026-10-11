@@ -1,0 +1,23 @@
+{
+  "task_id": "growth-001",
+  "objective": "Increase paid conversion without increasing CAC or degrading 30-day retention.",
+  "business_context": {
+    "product": "Example SaaS",
+    "market": "B2B"
+  },
+  "time_horizon": "next 90 days",
+  "population": "new qualified accounts",
+  "constraints": {
+    "paid_media_budget_change_pct_max": 10
+  },
+  "available_sources": [
+    "ga4",
+    "mixpanel",
+    "crm",
+    "billing"
+  ],
+  "requested_output": "ranked opportunities and experiment plan",
+  "approval_context": {
+    "pricing_changes": "approval_required"
+  }
+}

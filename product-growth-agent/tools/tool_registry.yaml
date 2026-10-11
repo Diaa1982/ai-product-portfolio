@@ -1,0 +1,73 @@
+tools:
+  - name: ga4.run_report
+    mode: read
+    purpose: Query GA4 report metrics and dimensions.
+    approval: none
+  - name: ga4.run_realtime_report
+    mode: read
+    purpose: Query near-real-time GA4 activity.
+    approval: none
+  - name: ga4.run_funnel_report
+    mode: read
+    purpose: Query GA4 funnel progression when supported.
+    approval: none
+  - name: ga4.get_metadata
+    mode: read
+    purpose: Resolve metric and dimension metadata.
+    approval: none
+  - name: mixpanel.query_insights
+    mode: read
+    purpose: Behavioral/product analytics.
+    approval: none
+  - name: mixpanel.query_funnel
+    mode: read
+    purpose: Funnel analysis.
+    approval: none
+  - name: mixpanel.query_retention
+    mode: read
+    purpose: Retention analysis.
+    approval: none
+  - name: mixpanel.list_cohorts
+    mode: read
+    purpose: Behavioral cohort discovery.
+    approval: none
+  - name: mixpanel.export_events
+    mode: read_sensitive
+    purpose: Raw event export.
+    approval: policy_based
+  - name: warehouse.query
+    mode: read
+    purpose: Query governed analytical datasets.
+    approval: none
+  - name: crm.query
+    mode: read
+    purpose: Query lead, account, opportunity and lifecycle data.
+    approval: none
+  - name: billing.query
+    mode: read
+    purpose: Query subscriptions, purchases, refunds and revenue.
+    approval: none
+  - name: experiment.create_draft
+    mode: write_draft
+    purpose: Register a draft experiment.
+    approval: none
+  - name: experiment.launch
+    mode: write
+    purpose: Launch a production experiment.
+    approval: required
+  - name: campaign.create_draft
+    mode: write_draft
+    purpose: Draft a campaign configuration.
+    approval: none
+  - name: campaign.launch
+    mode: write
+    purpose: Launch a campaign.
+    approval: required
+  - name: pricing.update
+    mode: write_high_impact
+    purpose: Change production pricing or discounts.
+    approval: required
+  - name: agent.send
+    mode: orchestration
+    purpose: Send a structured task to another agent.
+    approval: none
