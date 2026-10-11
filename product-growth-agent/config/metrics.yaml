@@ -1,0 +1,61 @@
+north_star:
+  name: configure_me
+  definition: configure_me
+  owner: configure_me
+  grain: user_or_account
+  target: null
+
+metrics:
+  acquisition:
+    - qualified_traffic
+    - new_users
+    - marketing_qualified_leads
+    - customer_acquisition_cost
+    - cost_per_acquisition
+  activation:
+    - signup_rate
+    - activation_rate
+    - onboarding_completion_rate
+    - time_to_value
+  engagement:
+    - dau
+    - wau
+    - mau
+    - dau_mau_ratio
+    - feature_adoption_rate
+    - sessions_per_active_user
+  retention:
+    - d1_retention
+    - d7_retention
+    - d30_retention
+    - logo_churn
+    - customer_churn
+    - reactivation_rate
+  monetization:
+    - paid_conversion_rate
+    - arpu
+    - arpa
+    - average_order_value
+    - gross_revenue_retention
+    - net_revenue_retention
+    - expansion_revenue
+  referral:
+    - referral_rate
+    - referral_conversion_rate
+    - viral_coefficient
+  efficiency:
+    - ltv
+    - ltv_cac_ratio
+    - cac_payback_months
+    - roas
+    - romi
+    - contribution_margin
+  guardrails:
+    - refund_rate
+    - complaint_rate
+    - unsubscribe_rate
+    - support_contact_rate
+    - crash_rate
+    - p95_latency
+    - nps
+    - csat
