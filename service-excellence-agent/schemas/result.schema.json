@@ -1,0 +1,8 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"Service Excellence Result",
+  "type":"object",
+  "required":["task_id","status","facts","actions","confidence"],
+  "properties":{"task_id":{"type":"string"},"status":{"enum":["completed","needs_data","needs_approval","delegated","blocked"]},"facts":{"type":"array","items":{"type":"object","additionalProperties":true}},"inferences":{"type":"array","items":{"type":"object","additionalProperties":true}},"hypotheses":{"type":"array","items":{"type":"object","additionalProperties":true}},"kpi_status":{"type":"array","items":{"type":"object","additionalProperties":true}},"data_quality":{"type":"object","additionalProperties":true},"root_causes":{"type":"array","items":{"type":"object","additionalProperties":true}},"actions":{"type":"array","items":{"type":"object","additionalProperties":true}},"risks":{"type":"array","items":{"type":"object","additionalProperties":true}},"decisions_required":{"type":"array","items":{"type":"object","additionalProperties":true}},"confidence":{"enum":["HIGH","MEDIUM","LOW"]}},
+  "additionalProperties":false
+}
