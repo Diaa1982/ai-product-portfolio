@@ -1,0 +1,8 @@
+{
+  "$schema":"https://json-schema.org/draft/2020-12/schema",
+  "title":"SEA A2A Message",
+  "type":"object",
+  "required":["message_id","from_agent","to_agent","type","objective","payload"],
+  "properties":{"message_id":{"type":"string"},"correlation_id":{"type":["string","null"]},"from_agent":{"type":"string"},"to_agent":{"type":"string"},"type":{"enum":["request","response","event","approval_request","approval_response"]},"objective":{"type":"string"},"priority":{"enum":["low","normal","high","critical"]},"context":{"type":"object","additionalProperties":true},"constraints":{"type":"object","additionalProperties":true},"payload":{"type":"object","additionalProperties":true},"expected_output":{"type":["object","null"],"additionalProperties":true},"evidence_refs":{"type":"array","items":{"type":"string"}}},
+  "additionalProperties":false
+}

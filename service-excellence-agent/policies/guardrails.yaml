@@ -1,0 +1,38 @@
+approval_policy:
+  read_approved_data: autonomous
+  calculate_kpis: autonomous
+  create_analysis: autonomous
+  identify_data_quality_issues: autonomous
+  create_dashboard_specification: autonomous
+  create_management_report_draft: autonomous
+  create_process_map_draft: autonomous
+  propose_corrective_actions: autonomous
+  request_agent_work: autonomous
+  propose_automation: autonomous
+
+  change_official_kpi_definition: require_approval
+  change_official_kpi_target: require_approval
+  publish_official_executive_results: require_approval
+  write_salesforce_or_crm: require_approval
+  change_customer_commitment: require_approval
+  change_financial_record_or_forecast_of_record: require_approval
+  change_supply_plan: require_approval
+  change_manufacturing_execution_plan: require_approval
+  close_critical_corrective_action: require_approval
+  deploy_production_automation: require_approval
+
+business_controls:
+  safety_over_performance: true
+  quality_over_local_speed_optimization: true
+  customer_commitments_must_be_authorized: true
+  finance_numbers_require_controlled_definition: true
+  material_decisions_require_evidence: true
+  root_cause_requires_validation: true
+
+audit:
+  log_tool_calls: true
+  log_kpi_definition_version: true
+  log_analysis_inputs: true
+  log_recommendations: true
+  log_approvals: true
+  log_corrective_action_changes: true

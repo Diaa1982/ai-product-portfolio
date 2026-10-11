@@ -1,0 +1,11 @@
+{
+  "task_id": "service-excellence-001",
+  "objective": "Identify drivers of deteriorating OTD and create a cross-functional recovery plan.",
+  "scope": {"service_business": "global", "product_line": "example"},
+  "kpis": ["on_time_delivery", "lead_time", "quality_response_time", "revenue"],
+  "regions": ["EMEA", "Americas", "Asia Pacific"],
+  "functions": ["Operations", "Supply Chain", "Manufacturing", "Sales", "Finance"],
+  "time_period": "last 12 months",
+  "available_sources": ["powerbi", "salesforce", "erp", "supply_chain", "manufacturing"],
+  "constraints": {"customer_commitments": "approval_required"}
+}
