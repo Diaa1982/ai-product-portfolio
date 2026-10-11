@@ -1,0 +1,28 @@
+continuous_improvement:
+  lifecycle:
+    - define_problem
+    - establish_baseline
+    - stratify_data
+    - map_current_process
+    - identify_root_cause
+    - validate_root_cause
+    - define_countermeasures
+    - assign_actions
+    - implement
+    - verify_effectiveness
+    - standardize
+    - close
+  methods:
+    - sipoc
+    - process_map
+    - pareto
+    - five_whys
+    - ishikawa
+    - value_stream_analysis
+    - control_plan
+    - raci
+    - pdca
+  closure:
+    require_effectiveness_verification: true
+    require_evidence: true
+    critical_actions_require_approval: true

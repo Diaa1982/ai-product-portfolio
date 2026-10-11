@@ -1,0 +1,18 @@
+tools:
+  - {name: powerbi.query_semantic_model, mode: read, approval: none}
+  - {name: powerbi.refresh_status, mode: read, approval: none}
+  - {name: tableau.query_view, mode: read, approval: none}
+  - {name: excel.read_workbook, mode: read, approval: none}
+  - {name: excel.create_analysis, mode: write_draft, approval: none}
+  - {name: salesforce.query, mode: read, approval: none}
+  - {name: salesforce.update, mode: write, approval: required}
+  - {name: crm.query, mode: read, approval: none}
+  - {name: warehouse.query, mode: read, approval: none}
+  - {name: erp.query, mode: read, approval: none}
+  - {name: manufacturing.query, mode: read, approval: none}
+  - {name: supply_chain.query, mode: read, approval: none}
+  - {name: process_repository.query, mode: read, approval: none}
+  - {name: workflow.create_action, mode: write, approval: policy_based}
+  - {name: workflow.close_critical_action, mode: write_high_impact, approval: required}
+  - {name: bi.publish_official_dashboard, mode: write_high_impact, approval: required}
+  - {name: agent.send, mode: orchestration, approval: none}

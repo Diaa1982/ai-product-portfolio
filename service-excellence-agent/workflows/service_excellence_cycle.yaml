@@ -1,0 +1,23 @@
+workflow:
+  id: service-excellence-cycle
+  triggers:
+    - scheduled_performance_review
+    - kpi_exception
+    - leadership_request
+    - customer_issue
+    - quality_issue
+    - data_quality_issue
+    - process_failure
+  steps:
+    - {id: define, output: decision_frame}
+    - {id: validate_data, output: data_quality_assessment}
+    - {id: measure, output: controlled_kpi_baseline}
+    - {id: compare, output: performance_gap_table}
+    - {id: diagnose, output: issue_tree}
+    - {id: root_cause, output: validated_or_hypothesized_causes}
+    - {id: prioritize, output: ranked_improvement_opportunities}
+    - {id: improve, output: corrective_action_plan}
+    - {id: control, output: approval_and_owner_requirements}
+    - {id: track, output: action_and_kpi_tracking}
+    - {id: standardize, output: process_reporting_training_or_system_change}
+    - {id: report, output: management_update}

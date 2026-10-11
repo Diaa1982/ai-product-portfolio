@@ -1,0 +1,64 @@
+kpi_governance:
+  require_definition: true
+  require_owner: true
+  require_source: true
+  require_formula: true
+  require_refresh_frequency: true
+  require_data_quality_status: true
+  prohibit_definition_drift: true
+
+kpis:
+  on_time_delivery:
+    acronym: OTD
+    formula: on_time_deliveries / eligible_deliveries
+    unit: percent
+    direction: higher_is_better
+    owner: configure_me
+    source: configure_me
+  quality_response_time:
+    acronym: QRT
+    formula: configured_elapsed_time_between_defined_start_and_response_events
+    unit: hours
+    direction: lower_is_better
+    owner: configure_me
+    source: configure_me
+  revenue:
+    formula: finance_controlled
+    unit: currency
+    direction: higher_is_better
+    owner: finance
+    source: configure_me
+  order_entry:
+    formula: commercial_controlled
+    unit: currency_or_count
+    direction: higher_is_better
+    owner: sales_operations
+    source: configure_me
+  lead_time:
+    formula: end_timestamp - start_timestamp
+    unit: days
+    direction: lower_is_better
+    owner: operations
+    source: configure_me
+  hit_rate:
+    formula: won_opportunities / eligible_opportunities
+    unit: percent
+    direction: higher_is_better
+    owner: sales_operations
+    source: configure_me
+  first_time_right:
+    formula: outputs_without_rework / eligible_outputs
+    unit: percent
+    direction: higher_is_better
+  corrective_action_closure:
+    formula: actions_closed_on_time / actions_due
+    unit: percent
+    direction: higher_is_better
+  crm_data_completeness:
+    formula: valid_required_fields / required_fields
+    unit: percent
+    direction: higher_is_better
+  dashboard_data_freshness:
+    formula: current_time - latest_successful_refresh_time
+    unit: hours
+    direction: lower_is_better
