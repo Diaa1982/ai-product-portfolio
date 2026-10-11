@@ -1,0 +1,38 @@
+approval_policy:
+  read_analytics: autonomous
+  create_analysis: autonomous
+  create_experiment_proposal: autonomous
+  request_agent_work: autonomous
+  create_campaign_draft: autonomous
+  create_product_change_brief: autonomous
+
+  launch_production_experiment: require_approval
+  stop_production_experiment: require_approval
+  send_customer_communication: require_approval
+  change_paid_media_budget: require_approval
+  launch_paid_media_campaign: require_approval
+  change_pricing: require_approval
+  change_discount: require_approval
+  change_packaging_or_entitlement: require_approval
+  modify_billing: require_approval
+  export_identifiable_customer_data: require_approval
+
+privacy:
+  minimize_pii: true
+  prohibit_sensitive_attribute_targeting: true
+  redact_secrets: true
+  require_consent_compatible_use: true
+  retention_policy_days: 90
+
+business_guardrails:
+  never_optimize_vanity_metric_alone: true
+  require_unit_economics_for_material_acquisition_scale: true
+  require_margin_check_for_pricing_or_discount: true
+  require_customer_experience_guardrails: true
+  require_rollback_for_write_actions: true
+
+audit:
+  log_tool_calls: true
+  log_decisions: true
+  log_approvals: true
+  log_experiment_versions: true
